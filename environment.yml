@@ -1,0 +1,12 @@
+# Set up a conda environment for bmi-topography.
+name: topography
+channels:
+  - conda-forge
+dependencies:
+  - python =3
+  - requests
+  - numpy
+  - click
+  - pyyaml
+  - rioxarray
+  - bmipy

@@ -1,12 +1,24 @@
-# Set up a conda environment for bmi-topography.
+# An environment to develop, build, and test bmi-topography.
 name: topography
 channels:
   - conda-forge
 dependencies:
   - python =3
+  - pip
   - requests
   - numpy
   - click
   - pyyaml
   - rioxarray
   - bmipy
+  - black
+  - flake8
+  - isort >=5
+  - pytest
+  - pytest-cov
+  - pytest-datadir
+  - coveralls
+  - bmi-tester
+  - sphinx
+  - pip:
+    - zest.releaser

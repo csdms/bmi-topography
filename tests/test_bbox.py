@@ -2,9 +2,7 @@
 import pytest
 
 from bmi_topography import BoundingBox
-
-VALID_LL = (30, -120)
-VALID_UR = (45, -100)
+from . import (VALID_LL, VALID_UR)
 
 
 def test_valid_bbox():

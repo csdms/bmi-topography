@@ -6,6 +6,7 @@ from .topography import Topography
 
 @click.command()
 @click.version_option()
+@click.option('-q', '--quiet', is_flag=True, help='Enables quiet mode')
 @click.option(
     "--dem_type",
     type=click.Choice(["SRTMGL3", "SRTMGL1", "SRTMGL1_E"], case_sensitive=True),
@@ -48,7 +49,11 @@ from .topography import Topography
     help="Output file format.",
     show_default="GTiff",
 )
-def main(dem_type, south, north, west, east, output_format):
+def main(quiet, dem_type, south, north, west, east, output_format):
     """Fetch and cache Shuttle Radar Topography Mission (SRTM) elevation data"""
     topo = Topography(dem_type, south, north, west, east, output_format)
+    if not quiet:
+        click.secho("Fetching data...", fg='yellow')
     topo.fetch()
+    if not quiet:
+        click.secho("File downloaded to {}".format(getattr(topo, "cache_dir")), fg='green')

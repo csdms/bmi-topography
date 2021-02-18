@@ -44,19 +44,19 @@ def test_demtype_is_case_sensitive():
 
 def test_south_inrange():
     runner = CliRunner()
-    result = runner.invoke(main, ["--south=40.0"])
+    result = runner.invoke(main, ["--south=-90.0"])
     assert result.exit_code == 0
 
 
 def test_south_outrange():
     runner = CliRunner()
-    result = runner.invoke(main, ["--south=400.0"])
+    result = runner.invoke(main, ["--south=200.0"])
     assert result.exit_code != 0
 
 
 def test_north_inrange():
     runner = CliRunner()
-    result = runner.invoke(main, ["--north=20.0"])
+    result = runner.invoke(main, ["--north=90.0"])
     assert result.exit_code == 0
 
 
@@ -68,25 +68,25 @@ def test_north_outrange():
 
 def test_west_inrange():
     runner = CliRunner()
-    result = runner.invoke(main, ["--west=-30.0"])
+    result = runner.invoke(main, ["--west=-180.0"])
     assert result.exit_code == 0
 
 
 def test_west_outrange():
     runner = CliRunner()
-    result = runner.invoke(main, ["--west=-300.0"])
+    result = runner.invoke(main, ["--west=400.0"])
     assert result.exit_code != 0
 
 
 def test_east_inrange():
     runner = CliRunner()
-    result = runner.invoke(main, ["--east=50.0"])
+    result = runner.invoke(main, ["--east=180.0"])
     assert result.exit_code == 0
 
 
 def test_east_outrange():
     runner = CliRunner()
-    result = runner.invoke(main, ["--east=-500.0"])
+    result = runner.invoke(main, ["--east=400.0"])
     assert result.exit_code != 0
 
 

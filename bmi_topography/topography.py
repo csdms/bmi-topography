@@ -2,6 +2,8 @@
 import urllib
 from pathlib import Path
 
+from .bbox import BoundingBox
+
 
 class Topography:
 
@@ -11,12 +13,6 @@ class Topography:
 
     VALID_DEM_TYPES = ("SRTMGL3", "SRTMGL1", "SRTMGL1_E")
     VALID_OUTPUT_FORMATS = ("GTiff", "AAIGrid", "HFA")
-    DEFAULT = {
-        "south": 36.738884,
-        "north": 38.091337,
-        "west": -120.168457,
-        "east": -118.465576,
-    }
 
     def __init__(
         self,
@@ -36,52 +32,14 @@ class Topography:
                 "dem_type must be one of %s." % (Topography.VALID_DEM_TYPES,)
             )
 
-        if dem_type in Topography.VALID_OUTPUT_FORMATS:
+        if output_format in Topography.VALID_OUTPUT_FORMATS:
             self._output_format = output_format
         else:
             raise ValueError(
                 "output_format must be one of %s." % (Topography.VALID_OUTPUT_FORMATS,)
             )
 
-        self._south = south or Topography.DEFAULT["south"]
-        self._north = north or Topography.DEFAULT["north"]
-
-        if self._south > 90 or self._south < -90:
-            raise ValueError(
-                "south coordinate ({0}) must be in [-90,90]".format(self.south)
-            )
-
-        if self._north > 90 or self._north < -90:
-            raise ValueError(
-                "north coordinate ({0}) must be in [-90,90]".format(self.north)
-            )
-
-        if self._south > self._north:
-            raise ValueError(
-                "south coordinate ({0}) must be less than north ({1})".format(
-                    self.south, self.north
-                )
-            )
-
-        self._west = west or Topography.DEFAULT["west"]
-        self._east = east or Topography.DEFAULT["east"]
-
-        if self._west > 180 or self._west < -180:
-            raise ValueError(
-                "west coordinate ({0}) must be in [-180,180]".format(self.west)
-            )
-
-        if self._east > 180 or self._east < -180:
-            raise ValueError(
-                "east coordinate ({0}) must be in [-180,180]".format(self.east)
-            )
-
-        if self._west > self._east:
-            raise ValueError(
-                "west coordinate ({0}) must be less than east ({1})".format(
-                    self.west, self.east
-                )
-            )
+        self._bbox = BoundingBox((south, west), (north, east))
 
         if cache_dir is None:
             cache_dir = Path("~/.bmi_topography")
@@ -96,28 +54,18 @@ class Topography:
         return str(self._output_format)
 
     @property
-    def south(self):
-        return self._south
-
-    @property
-    def north(self):
-        return self._north
-
-    @property
-    def west(self):
-        return self._west
-
-    @property
-    def east(self):
-        return self._east
+    def bbox(self):
+        return self._bbox
 
     @property
     def cache_dir(self):
         return self._cache_dir
 
-    @staticmethod
-    def get(dem_type, south, north, west, east, output_format):
+    def fetch(self):
         print("This is bmi-topography!")
+        print(self.dem_type)
+        print(self.bbox)
+        print(self.output_format)
 
     @staticmethod
     def data_url():

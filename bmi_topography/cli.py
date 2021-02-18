@@ -50,10 +50,5 @@ from .topography import Topography
 )
 def main(dem_type, south, north, west, east, output_format):
     """Fetch and cache Shuttle Radar Topography Mission (SRTM) elevation data"""
-    Topography.get(dem_type, south, north, west, east, output_format)
-    print(dem_type)
-    print(south)
-    print(north)
-    print(west)
-    print(east)
-    print(output_format)
+    topo = Topography(dem_type, south, north, west, east, output_format)
+    topo.fetch()

@@ -3,11 +3,11 @@ import pytest
 
 from bmi_topography import Topography
 
+from . import VALID_LL, VALID_UR
+
 API_URL = "https://portal.opentopography.org/API/globaldem"
 DEM_TYPE = "SRTMGL3"
 OUTPUT_FORMAT = "GTiff"
-SOUTH = 36.738884
-NORTH = 38.091337
 
 
 def test_data_url():
@@ -25,31 +25,18 @@ def test_invalid_output_format():
         Topography(dem_type=DEM_TYPE, output_format="foo")
 
 
-def test_south_out_of_range():
-    with pytest.raises(ValueError):
-        Topography(dem_type=DEM_TYPE, output_format=OUTPUT_FORMAT, south=400)
-
-
-def test_north_out_of_range():
-    with pytest.raises(ValueError):
-        Topography(dem_type=DEM_TYPE, output_format=OUTPUT_FORMAT, north=-400)
-
-
-def test_south_greater_than_north():
-    with pytest.raises(ValueError):
-        Topography(dem_type=DEM_TYPE, output_format=OUTPUT_FORMAT, south=20, north=10)
-
-
-def test_west_out_of_range():
-    with pytest.raises(ValueError):
-        Topography(dem_type=DEM_TYPE, output_format=OUTPUT_FORMAT, west=-400)
-
-
-def test_east_out_of_range():
-    with pytest.raises(ValueError):
-        Topography(dem_type=DEM_TYPE, output_format=OUTPUT_FORMAT, east=400)
-
-
-def test_west_greater_than_east():
-    with pytest.raises(ValueError):
-        Topography(dem_type=DEM_TYPE, output_format=OUTPUT_FORMAT, west=50, east=-10)
+def test_valid_bbox():
+    topo = Topography(
+        dem_type=DEM_TYPE,
+        output_format=OUTPUT_FORMAT,
+        south=VALID_LL[0],
+        west=VALID_LL[1],
+        north=VALID_UR[0],
+        east=VALID_UR[1],
+    )
+    assert topo.bbox.south == VALID_LL[0]
+    assert topo.bbox.west == VALID_LL[1]
+    assert topo.bbox.north == VALID_UR[0]
+    assert topo.bbox.east == VALID_UR[1]
+    assert topo.bbox.south < topo.bbox.north
+    assert topo.bbox.west < topo.bbox.east

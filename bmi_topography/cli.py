@@ -8,7 +8,7 @@ from .topography import Topography
 @click.version_option()
 @click.option(
     "--dem_type",
-    type=click.Choice(["SRTMGL3", "SRTMGL1", "SRTMGL1_E"], case_sensitive=False),
+    type=click.Choice(["SRTMGL3", "SRTMGL1", "SRTMGL1_E"], case_sensitive=True),
     default="SRTMGL3",
     help="The global raster dataset.",
     show_default="SRTMGL3",
@@ -43,14 +43,14 @@ from .topography import Topography
 )
 @click.option(
     "--output_format",
-    type=click.Choice(["GeoTiff", "AAIGrid", "HFA"], case_sensitive=False),
-    default="GeoTiff",
+    type=click.Choice(["GTiff", "AAIGrid", "HFA"], case_sensitive=True),
+    default="GTiff",
     help="Output file format.",
-    show_default="GeoTiff",
+    show_default="GTiff",
 )
 def main(dem_type, south, north, west, east, output_format):
     """Fetch and cache Shuttle Radar Topography Mission (SRTM) elevation data"""
-    Topography.run()
+    Topography.get(dem_type, south, north, west, east, output_format)
     print(dem_type)
     print(south)
     print(north)

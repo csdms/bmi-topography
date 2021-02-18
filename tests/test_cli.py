@@ -36,10 +36,10 @@ def test_demtype_invalid():
     assert result.exit_code != 0
 
 
-def test_demtype_is_case_insensitive():
+def test_demtype_is_case_sensitive():
     runner = CliRunner()
     result = runner.invoke(main, ["--dem_type=srtmgl1"])
-    assert result.exit_code == 0
+    assert result.exit_code != 0
 
 
 def test_south_inrange():
@@ -92,7 +92,7 @@ def test_east_outrange():
 
 def test_output_format_valid():
     runner = CliRunner()
-    result = runner.invoke(main, ["--output_format=GeoTiff"])
+    result = runner.invoke(main, ["--output_format=GTiff"])
     assert result.exit_code == 0
 
 
@@ -102,7 +102,7 @@ def test_output_format_invalid():
     assert result.exit_code != 0
 
 
-def test_output_format_is_case_insensitive():
+def test_output_format_is_case_sensitive():
     runner = CliRunner()
-    result = runner.invoke(main, ["--output_format=geotiff"])
-    assert result.exit_code == 0
+    result = runner.invoke(main, ["--output_format=gtiff"])
+    assert result.exit_code != 0

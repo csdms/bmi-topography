@@ -1,5 +1,6 @@
 """Base class to access SRTM elevation data"""
 import urllib
+from pathlib import Path
 
 
 class Topography:
@@ -25,6 +26,7 @@ class Topography:
         west=None,
         east=None,
         output_format=None,
+        cache_dir=None,
     ):
 
         if dem_type in Topography.VALID_DEM_TYPES:
@@ -81,6 +83,10 @@ class Topography:
                 )
             )
 
+        if cache_dir is None:
+            cache_dir = Path("~/.bmi_topography")
+        self._cache_dir = Path(cache_dir).expanduser().resolve()
+
     @property
     def dem_type(self):
         return str(self._dem_type)
@@ -104,6 +110,10 @@ class Topography:
     @property
     def east(self):
         return self._east
+
+    @property
+    def cache_dir(self):
+        return self._cache_dir
 
     @staticmethod
     def get(dem_type, south, north, west, east, output_format):

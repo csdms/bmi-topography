@@ -1,8 +1,10 @@
 """Test BoundingBox class"""
 import pytest
 
-from bmi_topography import BoundingBox
-from . import (VALID_LL, VALID_UR)
+from bmi_topography import BoundingBox, DEFAULT
+
+VALID_LL = (DEFAULT["south"], DEFAULT["west"])
+VALID_UR = (DEFAULT["north"], DEFAULT["east"])
 
 
 def test_valid_bbox():

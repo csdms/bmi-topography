@@ -13,6 +13,16 @@ class Topography:
     NETLOC = "portal.opentopography.org"
     PATH = "/API/globaldem"
 
+    DEFAULT = {
+        "dem_type": "SRTMGL3",
+        "south": 36.738884,
+        "north": 38.091337,
+        "west": -120.168457,
+        "east": -118.465576,
+        "output_format": "GTiff",
+        "cache_dir": "~/.bmi_topography",
+    }
+
     VALID_DEM_TYPES = ("SRTMGL3", "SRTMGL1", "SRTMGL1_E")
     VALID_OUTPUT_FORMATS = ("GTiff", "AAIGrid", "HFA")
 
@@ -46,7 +56,7 @@ class Topography:
         self._dataset = None
 
         if cache_dir is None:
-            cache_dir = Path("~/.bmi_topography")
+            cache_dir = Path(Topography.DEFAULT["cache_dir"])
         self._cache_dir = Path(cache_dir).expanduser().resolve()
 
     @property

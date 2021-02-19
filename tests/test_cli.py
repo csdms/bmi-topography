@@ -26,7 +26,7 @@ def test_defaults():
 
 def test_demtype_valid():
     runner = CliRunner()
-    result = runner.invoke(main, ["--dem_type=SRTMGL1"])
+    result = runner.invoke(main, ["--dem_type=SRTMGL1", "--no_fetch"])
     assert result.exit_code == 0
 
 
@@ -44,7 +44,7 @@ def test_demtype_is_case_sensitive():
 
 def test_south_inrange():
     runner = CliRunner()
-    result = runner.invoke(main, ["--south=-90.0"])
+    result = runner.invoke(main, ["--south=-90.0", "--no_fetch"])
     assert result.exit_code == 0
 
 
@@ -56,7 +56,7 @@ def test_south_outrange():
 
 def test_north_inrange():
     runner = CliRunner()
-    result = runner.invoke(main, ["--north=90.0"])
+    result = runner.invoke(main, ["--north=90.0", "--no_fetch"])
     assert result.exit_code == 0
 
 
@@ -68,7 +68,7 @@ def test_north_outrange():
 
 def test_west_inrange():
     runner = CliRunner()
-    result = runner.invoke(main, ["--west=-180.0"])
+    result = runner.invoke(main, ["--west=-180.0", "--no_fetch"])
     assert result.exit_code == 0
 
 
@@ -80,7 +80,7 @@ def test_west_outrange():
 
 def test_east_inrange():
     runner = CliRunner()
-    result = runner.invoke(main, ["--east=180.0"])
+    result = runner.invoke(main, ["--east=180.0", "--no_fetch"])
     assert result.exit_code == 0
 
 
@@ -92,7 +92,7 @@ def test_east_outrange():
 
 def test_output_format_valid():
     runner = CliRunner()
-    result = runner.invoke(main, ["--output_format=GTiff"])
+    result = runner.invoke(main, ["--output_format=GTiff", "--no_fetch"])
     assert result.exit_code == 0
 
 

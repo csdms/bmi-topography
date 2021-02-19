@@ -114,5 +114,6 @@ class Topography:
     def load(self):
         if self._dataset is None:
             self._dataset = xr.open_rasterio(self.fetch())
+            self._dataset.name = self.dem_type
 
         return self._dataset

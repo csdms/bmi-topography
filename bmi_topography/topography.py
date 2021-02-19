@@ -1,5 +1,6 @@
 """Base class to access SRTM elevation data"""
 import urllib
+import requests
 from pathlib import Path
 
 from .bbox import BoundingBox
@@ -61,14 +62,34 @@ class Topography:
     def cache_dir(self):
         return self._cache_dir
 
-    def fetch(self):
-        print("This is bmi-topography!")
-        print(self.dem_type)
-        print(self.bbox)
-        print(self.output_format)
-
     @staticmethod
     def data_url():
         return urllib.parse.urlunparse(
             (Topography.SCHEME, Topography.NETLOC, Topography.PATH, "", "", "")
         )
+
+    def fetch(self):
+        fname = Path(self.cache_dir) / "{dem_type}_{south}_{west}_{north}_{east}.tif".format(
+            dem_type=self.dem_type, south=self.bbox.south, north=self.bbox.north, west=self.bbox.west, east=self.bbox.east,
+        )
+
+        if not fname.is_file():
+            self.cache_dir.mkdir(exist_ok=True)
+
+            params = {
+                "demtype": self.dem_type,
+                "south": self.bbox.south,
+                "north": self.bbox.north,
+                "west": self.bbox.west,
+                "east": self.bbox.east,
+                "outputFormat": self.output_format,
+            }
+
+            response = requests.get(Topography.data_url(), params=params, stream=True)
+            response.raise_for_status()
+
+            with fname.open("wb") as fp:
+                for chunk in response.iter_content(chunk_size=None):
+                    fp.write(chunk)
+
+        return fname.absolute()

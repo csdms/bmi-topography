@@ -22,5 +22,6 @@ dependencies:
   - bmi-tester
   - sphinx
   - notebook
+  - matplotlib
   - pip:
     - zest.releaser

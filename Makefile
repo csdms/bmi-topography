@@ -58,7 +58,7 @@ pretty: ## reformat files to make them look pretty
 	black bmi_topography tests docs
 
 test: ## run tests quickly with the default Python
-	pytest
+	pytest --disable-warnings
 
 coverage: ## check code coverage quickly with the default Python
 	pytest --cov --cov-report=html

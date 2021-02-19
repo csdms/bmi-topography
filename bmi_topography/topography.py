@@ -1,6 +1,7 @@
 """Base class to access SRTM elevation data"""
 import urllib
 import requests
+import xarray as xr
 from pathlib import Path
 
 from .bbox import BoundingBox
@@ -41,6 +42,8 @@ class Topography:
             )
 
         self._bbox = BoundingBox((south, west), (north, east))
+
+        self._dataset = None
 
         if cache_dir is None:
             cache_dir = Path("~/.bmi_topography")
@@ -93,3 +96,13 @@ class Topography:
                     fp.write(chunk)
 
         return fname.absolute()
+
+    @property
+    def dataset(self):
+        return self._dataset
+
+    def load(self):
+        if self._dataset is None:
+            self._dataset = xr.open_rasterio(self.fetch())
+
+        return self._dataset

@@ -79,7 +79,7 @@ testrelease: clean setup ## build, package and upload a release
 	python setup.py sdist
 	python setup.py bdist_wheel
 	ls -l dist
-	twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+	twine upload --repository testpypi dist/*
 
 prerelease: clean setup ## generate a prerelease with zest.releaser
 	prerelease

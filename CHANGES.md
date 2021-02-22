@@ -1,6 +1,13 @@
 Changes for bmi-topography
 ==========================
 
+0.1.1 (unreleased)
+------------------
+
+* Added Makefile rule to test upload to TestPyPI
+* Tested upload to TestPyPI
+
+
 0.1 (2021-02-22)
 ----------------
 

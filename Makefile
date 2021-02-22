@@ -37,6 +37,7 @@ clean-build: ## remove build artifacts
 	rm -fr .eggs/
 	find . -name '*.egg-info' -exec rm -fr {} +
 	find . -name '*.egg' -exec rm -f {} +
+	rm -f setup.py
 
 clean-pyc: ## remove Python file artifacts
 	find . -name '*.pyc' -exec rm -f {} +
@@ -69,6 +70,22 @@ docs: ## generate Sphinx HTML documentation, including API docs and link check
 	$(MAKE) -C docs html
 	$(MAKE) -C docs linkcheck
 	$(BROWSER) docs/build/html/index.html
+
+setup: ## generate a setup.py file for release tools
+	echo "import setuptools" >> setup.py
+	echo "setuptools.setup()" >> setup.py
+
+testrelease: clean setup ## build, package and upload a release
+	python setup.py sdist
+	python setup.py bdist_wheel
+	ls -l dist
+	twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+
+prerelease: clean setup ## generate a prerelease with zest.releaser
+	prerelease
+
+fullrelease: clean setup ## generate a full release with zest.releaser
+	fullrelease
 
 install: clean ## install the package to the active Python's site-packages
 	pip install .

@@ -1,0 +1,6 @@
+include *.md
+include environment.yml
+include Makefile
+recursive-include examples *
+recursive-exclude docs *
+recursive-exclude tests *

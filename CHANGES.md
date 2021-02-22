@@ -1,8 +1,8 @@
 Changes for bmi-topography
 ==========================
 
-0.1
----
+0.1 (unreleased)
+----------------
 
 * Created base library that calls OpenTopography API
 * Created CLI for library

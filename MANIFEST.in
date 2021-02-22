@@ -1,0 +1,9 @@
+include *.md
+include environment.yml
+include Makefile
+recursive-exclude docs *
+recursive-include tests *.py
+recursive-include tests *.toml
+recursive-include tests *.txt
+recursive-include tests *.cfg
+recursive-include tests *.yaml

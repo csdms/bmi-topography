@@ -10,14 +10,14 @@ Changes for bmi-topography
 0.1.1 (2021-02-22)
 ------------------
 
-* Added Makefile rule to test upload to TestPyPI
-* Tested upload to TestPyPI
+* Add Makefile rule to test upload to TestPyPI
+* Test upload to TestPyPI
 
 
 0.1 (2021-02-22)
 ----------------
 
-* Created base library that calls OpenTopography API
-* Created CLI for library
-* Wrote tests for library and CLI
-* Included demo Jupyter Notebook for library
+* Create base library that calls OpenTopography API
+* Create CLI for library
+* Write tests for library and CLI
+* Include demo Jupyter Notebook for library

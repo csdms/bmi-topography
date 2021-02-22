@@ -1,7 +1,7 @@
 Changes for bmi-topography
 ==========================
 
-0.1 (unreleased)
+0.1 (2021-02-22)
 ----------------
 
 * Created base library that calls OpenTopography API

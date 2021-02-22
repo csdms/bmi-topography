@@ -75,6 +75,12 @@ setup: ## generate a setup.py file for release tools
 	echo "import setuptools" >> setup.py
 	echo "setuptools.setup()" >> setup.py
 
+testrelease: clean setup ## build, package and upload a release
+	python setup.py sdist
+	python setup.py bdist_wheel
+	ls -l dist
+	twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+
 prerelease: clean setup ## generate a prerelease with zest.releaser
 	prerelease
 

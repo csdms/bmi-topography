@@ -55,7 +55,7 @@ class Topography:
 
         self._bbox = BoundingBox((south, west), (north, east))
 
-        self._dataset = None
+        self._dataarray = None
 
         if cache_dir is None:
             cache_dir = Path(Topography.DEFAULT["cache_dir"])
@@ -110,12 +110,12 @@ class Topography:
         return fname.absolute()
 
     @property
-    def dataset(self):
-        return self._dataset
+    def dataarray(self):
+        return self._dataarray
 
     def load(self):
-        if self._dataset is None:
-            self._dataset = xr.open_rasterio(self.fetch())
-            self._dataset.name = self.dem_type
+        if self._dataarray is None:
+            self._dataarray = xr.open_rasterio(self.fetch())
+            self._dataarray.name = self.dem_type
 
-        return self._dataset
+        return self._dataarray

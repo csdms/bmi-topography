@@ -98,4 +98,4 @@ def test_load(tmpdir, shared_datadir):
             cache_dir=shared_datadir,
         )
         topo.load()
-        assert topo.dataset is not None
+        assert topo.dataarray is not None

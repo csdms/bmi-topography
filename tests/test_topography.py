@@ -30,7 +30,7 @@ def test_valid_bbox():
         west=Topography.DEFAULT["west"],
         north=Topography.DEFAULT["north"],
         east=Topography.DEFAULT["east"],
-   )
+    )
     assert topo.bbox.south == Topography.DEFAULT["south"]
     assert topo.bbox.west == Topography.DEFAULT["west"]
     assert topo.bbox.north == Topography.DEFAULT["north"]

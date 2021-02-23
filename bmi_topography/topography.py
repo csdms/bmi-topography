@@ -1,8 +1,9 @@
 """Base class to access SRTM elevation data"""
 import urllib
+from pathlib import Path
+
 import requests
 import xarray as xr
-from pathlib import Path
 
 from .bbox import BoundingBox
 
@@ -84,8 +85,14 @@ class Topography:
         )
 
     def fetch(self):
-        fname = Path(self.cache_dir) / "{dem_type}_{south}_{west}_{north}_{east}.tif".format(
-            dem_type=self.dem_type, south=self.bbox.south, north=self.bbox.north, west=self.bbox.west, east=self.bbox.east,
+        fname = Path(
+            self.cache_dir
+        ) / "{dem_type}_{south}_{west}_{north}_{east}.tif".format(
+            dem_type=self.dem_type,
+            south=self.bbox.south,
+            north=self.bbox.north,
+            west=self.bbox.west,
+            east=self.bbox.east,
         )
 
         if not fname.is_file():

@@ -3,7 +3,6 @@ import yaml
 
 from bmi_topography import Topography
 
-
 CONFIG_FILE = "config.yaml"
 DEM_TYPE = "SRTMGL3"
 OUTPUT_FORMAT = "GTiff"

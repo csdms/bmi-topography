@@ -18,6 +18,8 @@ BmiGridUniformRectilinear = namedtuple(
 
 class BmiTopography(Bmi):
 
+    """BMI-mediated access to NASA SRTM land elevation data."""
+
     _name = "bmi-topography"
     _input_var_names = ()
     _output_var_names = ("land_surface__elevation",)

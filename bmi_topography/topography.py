@@ -9,6 +9,8 @@ from .bbox import BoundingBox
 
 class Topography:
 
+    """Fetch and cache NASA SRTM land elevation data."""
+
     SCHEME = "https"
     NETLOC = "portal.opentopography.org"
     PATH = "/API/globaldem"

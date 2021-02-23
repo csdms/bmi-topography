@@ -57,7 +57,7 @@ def test_cache_dir(tmpdir, cache_dir):
 
 def test_cached_data(tmpdir, shared_datadir):
     with tmpdir.as_cwd():
-        topo = Topography(
+        Topography(
             dem_type=Topography.DEFAULT["dem_type"],
             output_format=Topography.DEFAULT["output_format"],
             south=Topography.DEFAULT["south"],

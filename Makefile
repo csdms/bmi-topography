@@ -61,6 +61,9 @@ pretty: ## reformat files to make them look pretty
 test: ## run tests quickly with the default Python
 	pytest --disable-warnings
 
+bmi-test: ## run the bmi-tester
+	bmi-test bmi_topography:BmiTopography --config-file=./examples/config.yaml --root-dir=./examples -vvv
+
 coverage: ## check code coverage quickly with the default Python
 	pytest --cov --cov-report=html
 	$(BROWSER) htmlcov/index.html

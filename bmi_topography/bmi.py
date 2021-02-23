@@ -28,7 +28,7 @@ class BmiTopography(Bmi):
         self._config = {}
         self._dataarray = None
         self._grid = {}
-        self._meta = None
+        self._var = None
 
     def finalize(self) -> None:
         """Perform tear-down tasks for the model.
@@ -47,7 +47,7 @@ class BmiTopography(Bmi):
         str
             The name of the component.
         """
-        raise NotImplementedError("get_component_name")
+        return self._name
 
     def get_current_time(self) -> float:
         """Current time of the model.
@@ -211,7 +211,8 @@ class BmiTopography(Bmi):
             The input numpy array that holds the coordinates of the grid's
             lower-left corner.
         """
-        raise NotImplementedError("get_grid_origin")
+        origin[:] = self._grid[grid].yx_of_lower_left
+        return origin
 
     def get_grid_rank(self, grid: int) -> int:
         """Get number of dimensions of the computational grid.
@@ -226,7 +227,7 @@ class BmiTopography(Bmi):
         int
             Rank of the grid.
         """
-        raise NotImplementedError("get_grid_rank")
+        return len(self._grid[grid].shape)
 
     def get_grid_shape(self, grid: int, shape: numpy.ndarray) -> numpy.ndarray:
         """Get dimensions of the computational grid.
@@ -243,7 +244,8 @@ class BmiTopography(Bmi):
         ndarray of int
             The input numpy array that holds the grid's shape.
         """
-        raise NotImplementedError("get_grid_shape")
+        shape[:] = self._grid[grid].shape
+        return shape
 
     def get_grid_size(self, grid: int) -> int:
         """Get the total number of elements in the computational grid.
@@ -258,7 +260,7 @@ class BmiTopography(Bmi):
         int
             Size of the grid.
         """
-        raise NotImplementedError("get_grid_size")
+        return int(numpy.prod(self._grid[grid].shape))
 
     def get_grid_spacing(self, grid: int, spacing: numpy.ndarray) -> numpy.ndarray:
         """Get distance between nodes of the computational grid.
@@ -275,7 +277,8 @@ class BmiTopography(Bmi):
         ndarray of float
             The input numpy array that holds the grid's spacing.
         """
-        raise NotImplementedError("get_grid_spacing")
+        spacing[:] = self._grid[grid].yx_spacing
+        return spacing
 
     def get_grid_type(self, grid: int) -> str:
         """Get the grid type as a string.
@@ -290,7 +293,7 @@ class BmiTopography(Bmi):
         str
             Type of grid as a string.
         """
-        raise NotImplementedError("get_grid_type")
+        return "uniform_rectilinear"
 
     def get_grid_x(self, grid: int, x: numpy.ndarray) -> numpy.ndarray:
         """Get coordinates of grid nodes in the x direction.
@@ -307,7 +310,8 @@ class BmiTopography(Bmi):
         ndarray of float
             The input numpy array that holds the grid's column x-coordinates.
         """
-        raise NotImplementedError("get_grid_x")
+        x[:] = self._dataarray.x.values
+        return x
 
     def get_grid_y(self, grid: int, y: numpy.ndarray) -> numpy.ndarray:
         """Get coordinates of grid nodes in the y direction.
@@ -324,7 +328,8 @@ class BmiTopography(Bmi):
         ndarray of float
             The input numpy array that holds the grid's row y-coordinates.
         """
-        raise NotImplementedError("get_grid_y")
+        y[:] = self._dataarray.y.values
+        return y
 
     def get_grid_z(self, grid: int, z: numpy.ndarray) -> numpy.ndarray:
         """Get coordinates of grid nodes in the z direction.
@@ -351,7 +356,7 @@ class BmiTopography(Bmi):
         int
           The number of input variables.
         """
-        raise NotImplementedError("get_input_item_count")
+        return len(self._input_var_names)
 
     def get_input_var_names(self) -> Tuple[str]:
         """List of a model's input variables.
@@ -373,7 +378,7 @@ class BmiTopography(Bmi):
 
         Standard Names do not have to be used within the model.
         """
-        raise NotImplementedError("get_input_var_names")
+        return self._input_var_names
 
     def get_output_item_count(self) -> int:
         """Count of a model's output variables.
@@ -383,7 +388,7 @@ class BmiTopography(Bmi):
         int
           The number of output variables.
         """
-        raise NotImplementedError("get_output_item_count")
+        return len(self._output_var_names)
 
     def get_output_var_names(self) -> Tuple[str]:
         """List of a model's output variables.
@@ -396,7 +401,7 @@ class BmiTopography(Bmi):
         list of str
             The output variables for the model.
         """
-        raise NotImplementedError("get_output_var_names")
+        return self._output_var_names
 
     def get_start_time(self) -> float:
         """Start time of the model.
@@ -455,7 +460,8 @@ class BmiTopography(Bmi):
         ndarray
             The same numpy array that was passed as an input buffer.
         """
-        raise NotImplementedError("get_value")
+        dest[:] = self.get_value_ptr(name).reshape(-1).copy()
+        return dest
 
     def get_value_at_indices(
         self, name: str, dest: numpy.ndarray, inds: numpy.ndarray
@@ -476,7 +482,8 @@ class BmiTopography(Bmi):
         array_like
             Value of the model variable at the given location.
         """
-        raise NotImplementedError("get_value_at_indices")
+        dest[:] = self.get_value_ptr(name).reshape(-1)[inds]
+        return dest
 
     def get_value_ptr(self, name: str) -> numpy.ndarray:
         """Get a reference to values of the given variable.
@@ -495,7 +502,7 @@ class BmiTopography(Bmi):
         array_like
             A reference to a model variable.
         """
-        raise NotImplementedError("get_value_ptr")
+        return self._dataarray.values
 
     def get_var_grid(self, name: str) -> int:
         """Get grid identifier for the given variable.
@@ -510,7 +517,7 @@ class BmiTopography(Bmi):
         int
           The grid identifier.
         """
-        raise NotImplementedError("get_var_grid")
+        return self._var.grid
 
     def get_var_itemsize(self, name: str) -> int:
         """Get memory use for each array element in bytes.
@@ -525,7 +532,7 @@ class BmiTopography(Bmi):
         int
             Item size in bytes.
         """
-        raise NotImplementedError("get_var_itemsize")
+        return self._var.itemsize
 
     def get_var_location(self, name: str) -> str:
         """Get the grid element type that the a given variable is defined on.
@@ -561,7 +568,7 @@ class BmiTopography(Bmi):
 
         .. _ugrid conventions: http://ugrid-conventions.github.io/ugrid-conventions
         """
-        raise NotImplementedError("get_var_location")
+        return self._var.location
 
     def get_var_nbytes(self, name: str) -> int:
         """Get size, in bytes, of the given variable.
@@ -576,7 +583,7 @@ class BmiTopography(Bmi):
         int
             The size of the variable, counted in bytes.
         """
-        raise NotImplementedError("get_var_nbytes")
+        return self._var.nbytes
 
     def get_var_type(self, name: str) -> str:
         """Get data type of the given variable.
@@ -591,7 +598,7 @@ class BmiTopography(Bmi):
         str
             The Python variable type; e.g., ``str``, ``int``, ``float``.
         """
-        raise NotImplementedError("get_var_type")
+        return self._var.dtype
 
     def get_var_units(self, name: str) -> str:
         """Get units of the given variable.
@@ -620,7 +627,7 @@ class BmiTopography(Bmi):
 
         .. _UDUNITS: http://www.unidata.ucar.edu/software/udunits
         """
-        raise NotImplementedError("get_var_units")
+        return self._var.units
 
     def initialize(self, config_file: str) -> None:
         """Perform startup tasks for the model.
@@ -661,7 +668,7 @@ class BmiTopography(Bmi):
             )
         }
 
-        self._meta = BmiVar(
+        self._var = BmiVar(
             dtype=str(self._dataarray.values.dtype),
             itemsize=self._dataarray.values.itemsize,
             nbytes=self._dataarray.values.nbytes,

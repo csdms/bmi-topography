@@ -27,7 +27,7 @@ class BmiTopography(Bmi):
     def __init__(self) -> None:
         self._config = {}
         self._model = None
-        self._data_array = None
+        self._dataarray = None
         self._grid = {}
         self._meta = None
 
@@ -39,7 +39,7 @@ class BmiTopography(Bmi):
         printing reports.
         """
         self._model = None
-        self._data_array = None
+        self._dataarray = None
 
     def get_component_name(self) -> str:
         """Name of the component.
@@ -652,25 +652,25 @@ class BmiTopography(Bmi):
             self._config = Topography.DEFAULT.copy()
         self._model = Topography(**self._config)
         self._model.load()
-        self._data_array = self._model.data_array
+        self._dataarray = self._model.dataarray
 
         self._grid = {
             0: BmiGridUniformRectilinear(
-                shape=(self._data_array.sizes["y"], self._data_array.sizes["x"]),
-                yx_spacing=self._data_array.res,
+                shape=(self._dataarray.sizes["y"], self._dataarray.sizes["x"]),
+                yx_spacing=self._dataarray.res,
                 yx_of_lower_left=(
-                    float(self._data_array.y.min().data),
-                    float(self._data_array.x.min().data),
+                    float(self._dataarray.y.min().data),
+                    float(self._dataarray.x.min().data),
                 ),
             )
         }
 
         self._meta = BmiVar(
-            dtype=str(self._data_array.values.dtype),
-            itemsize=self._data_array.values.itemsize,
-            nbytes=self._data_array.values.nbytes,
-            location="node",
-            units="meters",
+            dtype=str(self._dataarray.values.dtype),
+            itemsize=self._dataarray.values.itemsize,
+            nbytes=self._dataarray.values.nbytes,
+            location=self._dataarray.attrs["location"],
+            units=self._dataarray.attrs["units"],
             grid=0,
         )
 

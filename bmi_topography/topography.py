@@ -117,5 +117,7 @@ class Topography:
         if self._dataarray is None:
             self._dataarray = xr.open_rasterio(self.fetch())
             self._dataarray.name = self.dem_type
+            self._dataarray.attrs["units"] = "meters"
+            self._dataarray.attrs["location"] = "node"
 
         return self._dataarray

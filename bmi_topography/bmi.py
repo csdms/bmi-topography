@@ -26,7 +26,6 @@ class BmiTopography(Bmi):
 
     def __init__(self) -> None:
         self._config = {}
-        self._model = None
         self._dataarray = None
         self._grid = {}
         self._meta = None
@@ -38,7 +37,6 @@ class BmiTopography(Bmi):
         loop. This typically includes deallocating memory, closing files and
         printing reports.
         """
-        self._model = None
         self._dataarray = None
 
     def get_component_name(self) -> str:
@@ -650,9 +648,7 @@ class BmiTopography(Bmi):
                 self._config = yaml.safe_load(fp).get("bmi-topography", {})
         else:
             self._config = Topography.DEFAULT.copy()
-        self._model = Topography(**self._config)
-        self._model.load()
-        self._dataarray = self._model.dataarray
+        self._dataarray = Topography(**self._config).load()
 
         self._grid = {
             0: BmiGridUniformRectilinear(

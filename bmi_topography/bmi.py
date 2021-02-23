@@ -57,7 +57,7 @@ class BmiTopography(Bmi):
         float
             The current model time.
         """
-        raise NotImplementedError("get_current_time")
+        return 0.0
 
     def get_end_time(self) -> float:
         """End time of the model.
@@ -67,7 +67,7 @@ class BmiTopography(Bmi):
         float
             The maximum model time.
         """
-        raise NotImplementedError("get_end_time")
+        return 0.0
 
     def get_grid_edge_count(self, grid: int) -> int:
         """Get the number of edges in the grid.
@@ -413,7 +413,7 @@ class BmiTopography(Bmi):
         float
             The model start time.
         """
-        raise NotImplementedError("get_start_time")
+        return 0.0
 
     def get_time_step(self) -> float:
         """Current time step of the model.
@@ -425,7 +425,7 @@ class BmiTopography(Bmi):
         float
             The time step used in model.
         """
-        raise NotImplementedError("get_time_step")
+        return 0.0
 
     def get_time_units(self) -> str:
         """Time units of the model.
@@ -439,7 +439,7 @@ class BmiTopography(Bmi):
         -----
         CSDMS uses the UDUNITS standard from Unidata.
         """
-        raise NotImplementedError("get_time_units")
+        return "1"
 
     def get_value(self, name: str, dest: numpy.ndarray) -> numpy.ndarray:
         """Get a copy of values of the given variable.

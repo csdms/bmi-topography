@@ -1,13 +1,34 @@
 # -*- coding: utf-8 -*-
+from collections import namedtuple
 from typing import Tuple
 
 import numpy
+import yaml
 from bmipy import Bmi
 
 from .topography import Topography
 
+BmiVar = namedtuple(
+    "BmiVar", ["dtype", "itemsize", "nbytes", "units", "location", "grid"]
+)
+BmiGridUniformRectilinear = namedtuple(
+    "BmiGridUniformRectilinear", ["shape", "yx_spacing", "yx_of_lower_left"]
+)
+
 
 class BmiTopography(Bmi):
+
+    _name = "bmi-topography"
+    _input_var_names = ()
+    _output_var_names = ("land_surface__elevation",)
+
+    def __init__(self) -> None:
+        self._config = {}
+        self._model = None
+        self._dataset = None
+        self._grid = {}
+        self._meta = None
+
     def finalize(self) -> None:
         """Perform tear-down tasks for the model.
 
@@ -15,7 +36,8 @@ class BmiTopography(Bmi):
         loop. This typically includes deallocating memory, closing files and
         printing reports.
         """
-        raise NotImplementedError("finalize")
+        self._model = None
+        self._dataset = None
 
     def get_component_name(self) -> str:
         """Name of the component.
@@ -621,7 +643,34 @@ class BmiTopography(Bmi):
         recommended. A template of a model's configuration file
         with placeholder values is used by the BMI.
         """
-        raise NotImplementedError("initialize")
+        if config_file:
+            with open(config_file, "r") as fp:
+                self._config = yaml.safe_load(fp).get("bmi-topography", {})
+        else:
+            self._config = Topography.DEFAULT.copy()
+        self._model = Topography(**self._config)
+        self._model.load()
+        self._dataset = self._model.dataset
+
+        self._grid = {
+            0: BmiGridUniformRectilinear(
+                shape=(self._dataset.sizes["y"], self._dataset.sizes["x"]),
+                yx_spacing=self._dataset.res,
+                yx_of_lower_left=(
+                    float(self._dataset.y.min().data),
+                    float(self._dataset.x.min().data),
+                ),
+            )
+        }
+
+        self._meta = BmiVar(
+            dtype=str(self._dataset.values.dtype),
+            itemsize=self._dataset.values.itemsize,
+            nbytes=self._dataset.values.nbytes,
+            location="node",
+            units="meters",
+            grid=0,
+        )
 
     def set_value(self, name: str, values: numpy.ndarray) -> None:
         """Specify a new value for a model variable.

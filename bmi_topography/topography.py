@@ -1,13 +1,16 @@
 """Base class to access SRTM elevation data"""
 import urllib
+from pathlib import Path
+
 import requests
 import xarray as xr
-from pathlib import Path
 
 from .bbox import BoundingBox
 
 
 class Topography:
+
+    """Fetch and cache NASA SRTM land elevation data."""
 
     SCHEME = "https"
     NETLOC = "portal.opentopography.org"
@@ -53,7 +56,7 @@ class Topography:
 
         self._bbox = BoundingBox((south, west), (north, east))
 
-        self._dataset = None
+        self._dataarray = None
 
         if cache_dir is None:
             cache_dir = Path(Topography.DEFAULT["cache_dir"])
@@ -82,8 +85,14 @@ class Topography:
         )
 
     def fetch(self):
-        fname = Path(self.cache_dir) / "{dem_type}_{south}_{west}_{north}_{east}.tif".format(
-            dem_type=self.dem_type, south=self.bbox.south, north=self.bbox.north, west=self.bbox.west, east=self.bbox.east,
+        fname = Path(
+            self.cache_dir
+        ) / "{dem_type}_{south}_{west}_{north}_{east}.tif".format(
+            dem_type=self.dem_type,
+            south=self.bbox.south,
+            north=self.bbox.north,
+            west=self.bbox.west,
+            east=self.bbox.east,
         )
 
         if not fname.is_file():
@@ -108,12 +117,14 @@ class Topography:
         return fname.absolute()
 
     @property
-    def dataset(self):
-        return self._dataset
+    def dataarray(self):
+        return self._dataarray
 
     def load(self):
-        if self._dataset is None:
-            self._dataset = xr.open_rasterio(self.fetch())
-            self._dataset.name = self.dem_type
+        if self._dataarray is None:
+            self._dataarray = xr.open_rasterio(self.fetch())
+            self._dataarray.name = self.dem_type
+            self._dataarray.attrs["units"] = "meters"
+            self._dataarray.attrs["location"] = "node"
 
-        return self._dataset
+        return self._dataarray

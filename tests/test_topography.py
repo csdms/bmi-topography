@@ -30,7 +30,7 @@ def test_valid_bbox():
         west=Topography.DEFAULT["west"],
         north=Topography.DEFAULT["north"],
         east=Topography.DEFAULT["east"],
-   )
+    )
     assert topo.bbox.south == Topography.DEFAULT["south"]
     assert topo.bbox.west == Topography.DEFAULT["west"]
     assert topo.bbox.north == Topography.DEFAULT["north"]
@@ -57,7 +57,7 @@ def test_cache_dir(tmpdir, cache_dir):
 
 def test_cached_data(tmpdir, shared_datadir):
     with tmpdir.as_cwd():
-        topo = Topography(
+        Topography(
             dem_type=Topography.DEFAULT["dem_type"],
             output_format=Topography.DEFAULT["output_format"],
             south=Topography.DEFAULT["south"],
@@ -98,4 +98,4 @@ def test_load(tmpdir, shared_datadir):
             cache_dir=shared_datadir,
         )
         topo.load()
-        assert topo.dataset is not None
+        assert topo.dataarray is not None

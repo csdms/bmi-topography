@@ -16,7 +16,7 @@ class BoundingBox:
     Examples
     --------
     Create a bounding box:
-    
+
     >>> from bmi_topography import BoundingBox
     >>> bbox = BoundingBox((33, 111), (44, 122))
     >>> print(bbox)

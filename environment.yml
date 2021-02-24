@@ -12,6 +12,7 @@ dependencies:
   - xarray
   - rasterio
   - bmipy
+  - make
   - black
   - flake8
   - isort >=5

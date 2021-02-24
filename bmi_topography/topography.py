@@ -60,7 +60,7 @@ class Topography:
 
         if cache_dir is None:
             cache_dir = Path(Topography.DEFAULT["cache_dir"])
-        self._cache_dir = Path(cache_dir).expanduser().resolve()
+        self._cache_dir = Path(cache_dir).expanduser().resolve().absolute()
 
     @property
     def dem_type(self):

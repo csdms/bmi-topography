@@ -59,7 +59,7 @@ pretty: ## reformat files to make them look pretty
 	black bmi_topography tests docs
 
 test: ## run tests quickly with the default Python
-	pytest --disable-warnings
+	pytest --disable-warnings --cov=bmi_topography --cov-report=xml:./coverage.xml -vvv
 
 bmi-test: ## run the bmi-tester
 	bmi-test bmi_topography:BmiTopography --config-file=./examples/config.yaml --root-dir=./examples -vvv

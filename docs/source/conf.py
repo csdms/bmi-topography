@@ -10,19 +10,21 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
-import os
-import sys
-sys.path.insert(0, os.path.abspath('.'))
+# import os
+# import sys
+# sys.path.insert(0, os.path.abspath('.'))
+import datetime
+import pkg_resources
 
 
 # -- Project information -----------------------------------------------------
 
 project = 'bmi-topography'
-copyright = '2021, Mark Piper'
 author = 'Mark Piper'
-
-# The full version, including alpha/beta/rc tags
-release = 'v0.3'
+version = pkg_resources.get_distribution("bmi_topography").version
+release = version
+this_year = datetime.date.today().year
+copyright = '%s, %s' % (this_year, author)
 
 
 # -- General configuration ---------------------------------------------------
@@ -32,6 +34,7 @@ release = 'v0.3'
 # ones.
 extensions = [
     'sphinx.ext.autodoc',
+    'sphinx.ext.napoleon',
     'sphinx.ext.viewcode',
     'recommonmark',
 ]

@@ -18,7 +18,7 @@ import datetime
 import pkg_resources
 
 # The master toctree document.
-master_doc = "index"
+master_doc = "source/index"
 
 
 # -- Project information -----------------------------------------------------

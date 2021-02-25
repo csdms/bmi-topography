@@ -88,7 +88,7 @@ class Topography:
         """Download and locally store topography data.
 
         Returns:
-            pathlib.Path: The path to the downloaded file 
+            pathlib.Path: The path to the downloaded file
         """
         fname = Path(
             self.cache_dir

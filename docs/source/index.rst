@@ -1,9 +1,6 @@
 .. title:: bmi-topography
 
-.. toctree::
-   :maxdepth: 2
-
-   README
+.. include:: README.rst
 
 
 API Reference

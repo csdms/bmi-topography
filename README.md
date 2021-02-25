@@ -3,7 +3,7 @@
 
 # bmi-topography
 
-A Python library to fetch and cache
+*bmi-topography* is a Python library to fetch and cache
 NASA [Shuttle Radar Topography Mission](https://www2.jpl.nasa.gov/srtm/) (SRTM)
 land elevation data
 using the [OpenTopography](https://opentopography.org/)

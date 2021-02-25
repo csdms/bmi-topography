@@ -7,7 +7,7 @@ A Python library to fetch and cache
 NASA [Shuttle Radar Topography Mission](https://www2.jpl.nasa.gov/srtm/) (SRTM)
 land elevation data
 using the [OpenTopography](https://opentopography.org/)
-[REST API](https://portal.opentopography.org/apidocs/#/Public/getGlobalDem).
+[REST API](https://portal.opentopography.org/apidocs/).
 
 The *bmi-topography* library provides access to the following global raster datasets:
 
@@ -41,7 +41,7 @@ pip install bmi-topography
 ```
 
 The *bmi-topography* library can also be built and installed from source.
-The library uses several open source libraries,
+The library uses several other open source libraries,
 so a convenient way of building and installing it is within a
 [conda environment](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html).
 After cloning or downloding the *bmi-topography*
@@ -72,7 +72,7 @@ Start a Python session and import the `Topography` class:
 
 For convenience,
 a set of default parameter values for `Topography` are included in the class definition.
-Copy them and modify them with custom values:
+Copy these and modify them with custom values:
 ```python
 >>> params = Topography.DEFAULT.copy()
 >>> params["south"] = 39.75

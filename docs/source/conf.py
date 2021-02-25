@@ -17,6 +17,10 @@ import datetime
 
 import pkg_resources
 
+# The master toctree document.
+master_doc = 'index'
+
+
 # -- Project information -----------------------------------------------------
 
 project = "bmi-topography"

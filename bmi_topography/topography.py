@@ -85,6 +85,11 @@ class Topography:
         )
 
     def fetch(self):
+        """Download and locally store topography data.
+
+        Returns:
+            pathlib.Path: The path to the downloaded file
+        """
         fname = Path(
             self.cache_dir
         ) / "{dem_type}_{south}_{west}_{north}_{east}.tif".format(
@@ -121,6 +126,11 @@ class Topography:
         return self._dataarray
 
     def load(self):
+        """Load a cached topography data file into an xarray DataArray.
+
+        Returns:
+            xarray.DataArray: A container for the data
+        """
         if self._dataarray is None:
             self._dataarray = xr.open_rasterio(self.fetch())
             self._dataarray.name = self.dem_type

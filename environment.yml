@@ -12,6 +12,7 @@ dependencies:
   - xarray
   - rasterio
   - bmipy
+  - make
   - black
   - flake8
   - isort >=5
@@ -21,6 +22,8 @@ dependencies:
   - coveralls
   - bmi-tester
   - sphinx
+  - recommonmark
+  - pandoc
   - notebook
   - matplotlib
   - pip:

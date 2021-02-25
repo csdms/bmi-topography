@@ -23,6 +23,7 @@ dependencies:
   - bmi-tester
   - sphinx
   - recommonmark
+  - pandoc
   - notebook
   - matplotlib
   - pip:

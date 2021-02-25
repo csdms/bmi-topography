@@ -75,6 +75,6 @@ jobs:
 
       - name: Build docs
         run: |
-          pip install sphinx recommonmark
+          pip install -r docs/source/requirements.txt
           make install
           make docs

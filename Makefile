@@ -69,6 +69,10 @@ coverage: ## check code coverage quickly with the default Python
 	$(BROWSER) htmlcov/index.html
 
 docs: ## generate Sphinx HTML documentation, including API docs and link check
+	rm -f docs/source/api/bmi_topography.rst
+	rm -f docs/source/api/modules.rst
+	sphinx-apidoc -o docs/source/api bmi_topography
+	pandoc --to=rst README.md > docs/source/README.rst
 	$(MAKE) -C docs clean
 	$(MAKE) -C docs html
 	$(MAKE) -C docs linkcheck

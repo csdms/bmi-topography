@@ -22,6 +22,7 @@ dependencies:
   - coveralls
   - bmi-tester
   - sphinx
+  - recommonmark
   - notebook
   - matplotlib
   - pip:

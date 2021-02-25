@@ -77,4 +77,4 @@ jobs:
         run: |
           pip install -r docs/source/requirements.txt
           make install
-          make docs
+          cd docs && make html

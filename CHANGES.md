@@ -1,7 +1,7 @@
 Changes for bmi-topography
 ==========================
 
-0.3 (unreleased)
+0.3 (2021-02-25)
 ----------------
 
 * Update README with overview and install instructions

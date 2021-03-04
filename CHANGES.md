@@ -1,8 +1,8 @@
 Changes for bmi-topography
 ==========================
 
-0.4 (unreleased)
-----------------
+0.3.1 (2021-03-04)
+------------------
 
 * Install with conda
 * Include shell script demonstrating CLI

@@ -1,4 +1,6 @@
 [![Basic Model Interface](https://img.shields.io/badge/CSDMS-Basic%20Model%20Interface-green.svg)](https://bmi.readthedocs.io/)
+[![Conda Version](https://img.shields.io/conda/vn/conda-forge/bmi-topography.svg)](https://anaconda.org/conda-forge/bmi-topography)
+[![PyPI](https://img.shields.io/pypi/v/bmi-topography)](https://pypi.org/project/bmi-topography)
 [![Build/Test CI](https://github.com/csdms/bmi-topography/actions/workflows/build-test-ci.yml/badge.svg)](https://github.com/csdms/bmi-topography/actions/workflows/build-test-ci.yml)
 [![Documentation Status](https://readthedocs.org/projects/bmi-topography/badge/?version=latest)](https://bmi-topography.readthedocs.io/en/latest/?badge=latest)
 
@@ -40,6 +42,10 @@ Install the latest stable release of *bmi-topography* with `pip`:
 ```
 pip install bmi-topography
 ```
+or with `conda`:
+```
+conda install -c conda-forge bmi-topography
+```
 
 The *bmi-topography* library can also be built and installed from source.
 The library uses several other open source libraries,
@@ -52,7 +58,7 @@ and set up a conda environment with the included environment file:
 ```
 conda env create --file=environment.yml
 ```
-Then install *bmi-topography* with
+Then build and install *bmi-topography* from source with
 ```
 make install
 ```
@@ -127,7 +133,8 @@ Attributes:
 ```
 
 For examples with more detail,
-see the two Jupyter Notebooks
+see the two Jupyter Notebooks,
+Python script, and shell script
 included in the [examples](https://github.com/csdms/bmi-topography/tree/main/examples) directory
 of the *bmi-topography* repository.
 

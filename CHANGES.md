@@ -4,7 +4,8 @@ Changes for bmi-topography
 0.4 (unreleased)
 ----------------
 
-- Nothing changed yet.
+* Install with conda
+* Include shell script demonstrating CLI
 
 
 0.3 (2021-02-25)

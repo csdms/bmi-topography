@@ -1,4 +1,5 @@
-|Basic Model Interface| |Build/Test CI|
+|Basic Model Interface| |Conda Version| |PyPI| |Build/Test CI|
+|Documentation Status|
 
 bmi-topography
 ==============
@@ -42,6 +43,12 @@ Install the latest stable release of *bmi-topography* with ``pip``:
 
    pip install bmi-topography
 
+or with ``conda``:
+
+::
+
+   conda install -c conda-forge bmi-topography
+
 The *bmi-topography* library can also be built and installed from
 source. The library uses several other open source libraries, so a
 convenient way of building and installing it is within a `conda
@@ -55,7 +62,7 @@ included environment file:
 
    conda env create --file=environment.yml
 
-Then install *bmi-topography* with
+Then build and install *bmi-topography* from source with
 
 ::
 
@@ -141,8 +148,8 @@ Load the data into an xarray ``DataArray`` for further work:
        units:          meters
        location:       node
 
-For examples with more detail, see the two Jupyter Notebooks included in
-the
+For examples with more detail, see the two Jupyter Notebooks, Python
+script, and shell script included in the
 `examples <https://github.com/csdms/bmi-topography/tree/main/examples>`__
 directory of the *bmi-topography* repository.
 
@@ -157,5 +164,11 @@ Modeling for Water and Sediment Research*.
 
 .. |Basic Model Interface| image:: https://img.shields.io/badge/CSDMS-Basic%20Model%20Interface-green.svg
    :target: https://bmi.readthedocs.io/
+.. |Conda Version| image:: https://img.shields.io/conda/vn/conda-forge/bmi-topography.svg
+   :target: https://anaconda.org/conda-forge/bmi-topography
+.. |PyPI| image:: https://img.shields.io/pypi/v/bmi-topography
+   :target: https://pypi.org/project/bmi-topography
 .. |Build/Test CI| image:: https://github.com/csdms/bmi-topography/actions/workflows/build-test-ci.yml/badge.svg
    :target: https://github.com/csdms/bmi-topography/actions/workflows/build-test-ci.yml
+.. |Documentation Status| image:: https://readthedocs.org/projects/bmi-topography/badge/?version=latest
+   :target: https://bmi-topography.readthedocs.io/en/latest/?badge=latest

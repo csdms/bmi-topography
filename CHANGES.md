@@ -5,6 +5,7 @@ Changes for bmi-topography
 ------------------
 
 * Add citation recommendation with DOI
+* Fix typos, update text in example notebooks
 
 
 0.3.1 (2021-03-04)

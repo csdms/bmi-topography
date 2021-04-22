@@ -68,12 +68,6 @@ Then build and install *bmi-topography* from source with
 
    make install
 
-Documentation
--------------
-
-Documentation for the *bmi-topography* API and CLI is available at
-https://bmi-topography.readthedocs.io.
-
 Examples
 --------
 
@@ -153,14 +147,8 @@ script, and shell script included in the
 `examples <https://github.com/csdms/bmi-topography/tree/main/examples>`__
 directory of the *bmi-topography* repository.
 
-Acknowledgments
----------------
-
-This work is supported by the National Science Foundation under Award
-No.
-`2026951 <https://www.nsf.gov/awardsearch/showAward?AWD_ID=2026951>`__,
-*EarthCube Capabilities: Cloud-Based Accessible and Reproducible
-Modeling for Water and Sediment Research*.
+Documentation for the *bmi-topography* API and CLI is available at
+https://bmi-topography.readthedocs.io.
 
 .. |Basic Model Interface| image:: https://img.shields.io/badge/CSDMS-Basic%20Model%20Interface-green.svg
    :target: https://bmi.readthedocs.io/

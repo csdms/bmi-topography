@@ -63,11 +63,6 @@ Then build and install *bmi-topography* from source with
 make install
 ```
 
-## Documentation
-
-Documentation for the *bmi-topography* API and CLI 
-is available at https://bmi-topography.readthedocs.io.
-
 ## Examples
 
 A brief example of using the *bmi-topography* API is given in the following steps.
@@ -138,8 +133,5 @@ Python script, and shell script
 included in the [examples](https://github.com/csdms/bmi-topography/tree/main/examples) directory
 of the *bmi-topography* repository.
 
-## Acknowledgments
-
-This work is supported by the National Science Foundation under Award No.
-[2026951](https://www.nsf.gov/awardsearch/showAward?AWD_ID=2026951), 
-*EarthCube Capabilities: Cloud-Based Accessible and Reproducible Modeling for Water and Sediment Research*.
+Documentation for the *bmi-topography* API and CLI
+is available at https://bmi-topography.readthedocs.io.

@@ -4,9 +4,9 @@
 bmi-topography
 ==============
 
-*bmi-topography* is a Python library to fetch and cache NASA `Shuttle
-Radar Topography Mission <https://www2.jpl.nasa.gov/srtm/>`__ (SRTM)
-land elevation data using the
+*bmi-topography* is a Python library for fetching and caching NASA
+`Shuttle Radar Topography Mission <https://www2.jpl.nasa.gov/srtm/>`__
+(SRTM) land elevation data using the
 `OpenTopography <https://opentopography.org/>`__ `REST
 API <https://portal.opentopography.org/apidocs/>`__.
 
@@ -17,12 +17,11 @@ raster datasets:
 -  SRTM GL1 (30m)
 -  SRTM GL1 (Ellipsoidal)
 
-The *bmi-topography* library includes an API and CLI that accept the
-dataset type, a latitude-longiture bounding box, and the output file
-format. Data are downloaded from OpenTopography and cached locally. The
-cache is checked before downloading new data. Data from a cached file
-can optionally be loaded into an
-`xarray <http://xarray.pydata.org/en/stable/>`__
+The library includes an API and a CLI that accept the dataset type, a
+latitude-longitude bounding box, and the output file format. Data are
+downloaded from OpenTopography and cached locally. The cache is checked
+before downloading new data. Data from a cached file can optionally be
+loaded into an `xarray <http://xarray.pydata.org/en/stable/>`__
 `DataArray <http://xarray.pydata.org/en/stable/api.html#dataarray>`__
 using the experimental
 `open_rasterio <http://xarray.pydata.org/en/stable/generated/xarray.open_rasterio.html#xarray.open_rasterio>`__
@@ -53,7 +52,7 @@ The *bmi-topography* library can also be built and installed from
 source. The library uses several other open source libraries, so a
 convenient way of building and installing it is within a `conda
 environment <https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html>`__.
-After cloning or downloding the *bmi-topography*
+After cloning or downloading the *bmi-topography*
 `repository <https://github.com/csdms/bmi-topography>`__, change into
 the repository directory and set up a conda environment with the
 included environment file:
@@ -67,12 +66,6 @@ Then build and install *bmi-topography* from source with
 ::
 
    make install
-
-Documentation
--------------
-
-Documentation for the *bmi-topography* API and CLI is available at
-https://bmi-topography.readthedocs.io.
 
 Examples
 --------
@@ -153,14 +146,8 @@ script, and shell script included in the
 `examples <https://github.com/csdms/bmi-topography/tree/main/examples>`__
 directory of the *bmi-topography* repository.
 
-Acknowledgments
----------------
-
-This work is supported by the National Science Foundation under Award
-No.
-`2026951 <https://www.nsf.gov/awardsearch/showAward?AWD_ID=2026951>`__,
-*EarthCube Capabilities: Cloud-Based Accessible and Reproducible
-Modeling for Water and Sediment Research*.
+User and developer documentation for *bmi-topography* is available at
+https://bmi-topography.readthedocs.io.
 
 .. |Basic Model Interface| image:: https://img.shields.io/badge/CSDMS-Basic%20Model%20Interface-green.svg
    :target: https://bmi.readthedocs.io/

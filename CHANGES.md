@@ -1,7 +1,7 @@
 Changes for bmi-topography
 ==========================
 
-0.3.2 (unreleased)
+0.3.2 (2021-04-23)
 ------------------
 
 - Add citation recommendation with DOI

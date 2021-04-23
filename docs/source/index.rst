@@ -10,7 +10,7 @@ Looking for information on a particular function, class, or method?
 This part of the documentation is for you.
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 4
 
    api/index
 

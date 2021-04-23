@@ -6,7 +6,7 @@
 
 # bmi-topography
 
-*bmi-topography* is a Python library to fetch and cache
+*bmi-topography* is a Python library for fetching and caching
 NASA [Shuttle Radar Topography Mission](https://www2.jpl.nasa.gov/srtm/) (SRTM)
 land elevation data
 using the [OpenTopography](https://opentopography.org/)
@@ -18,9 +18,9 @@ The *bmi-topography* library provides access to the following global raster data
 * SRTM GL1 (30m)
 * SRTM GL1 (Ellipsoidal)
 
-The *bmi-topography* library includes an API and CLI that accept
+The library includes an API and a CLI that accept
 the dataset type,
-a latitude-longiture bounding box, and
+a latitude-longitude bounding box, and
 the output file format.
 Data are downloaded from OpenTopography and cached locally.
 The cache is checked before downloading new data.
@@ -51,7 +51,7 @@ The *bmi-topography* library can also be built and installed from source.
 The library uses several other open source libraries,
 so a convenient way of building and installing it is within a
 [conda environment](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html).
-After cloning or downloding the *bmi-topography*
+After cloning or downloading the *bmi-topography*
 [repository](https://github.com/csdms/bmi-topography),
 change into the repository directory
 and set up a conda environment with the included environment file:
@@ -133,5 +133,5 @@ Python script, and shell script
 included in the [examples](https://github.com/csdms/bmi-topography/tree/main/examples) directory
 of the *bmi-topography* repository.
 
-Documentation for the *bmi-topography* API and CLI
+User and developer documentation for *bmi-topography*
 is available at https://bmi-topography.readthedocs.io.

@@ -1,0 +1,10 @@
+cff-version: 1.1.0
+message: "If you use this software, please cite it as below."
+authors:
+  - family-names: Piper
+    given-names: Mark
+    orcid: https://orcid.org/0000-0001-6418-277X
+title: "CSDMS Topography data component"
+version: 0.3.1
+doi: 10.5281/zenodo.4608653
+date-released: 2021-03-16

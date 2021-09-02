@@ -29,7 +29,7 @@ Data are downloaded from OpenTopography and cached locally.
 The cache is checked before downloading new data.
 Data from a cached file can optionally be loaded into an
 [xarray][xarray] [DataArray][xarray-da]
-using the experimental [xarray-or][open-rasterio] method.
+using the experimental [open_rasterio][xarray-or] method.
 
 The *bmi-topography* API is wrapped with a
 [Basic Model Interface][bmi] (BMI),
@@ -147,6 +147,6 @@ is available at https://bmi-topography.readthedocs.io.
 [ot]: https://opentopography.org/
 [ot-rest]: https://portal.opentopography.org/apidocs/
 [srtm]: https://www2.jpl.nasa.gov/srtm/
-[xarray]: (http://xarray.pydata.org/en/stable/)
+[xarray]: http://xarray.pydata.org/en/stable/
 [xarray-da]: http://xarray.pydata.org/en/stable/api.html#dataarray
 [xarray-or]: http://xarray.pydata.org/en/stable/generated/xarray.open_rasterio.html#xarray.open_rasterio

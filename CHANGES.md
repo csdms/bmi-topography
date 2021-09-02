@@ -4,6 +4,8 @@ Changes for bmi-topography
 0.3.3 (unreleased)
 ------------------
 
+- Support ALOS World 3D 30m products
+- Add format job to CI
 - Use CITATION.cff file
 
 

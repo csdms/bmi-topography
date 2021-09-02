@@ -52,11 +52,11 @@ clean-test: ## remove test and coverage artifacts
 	rm -fr .pytest_cache
 
 lint: ## check style with flake8
-	flake8 bmi_topography tests
+	flake8 bmi_topography tests docs examples
 
 pretty: ## reformat files to make them look pretty
-	find bmi_topography tests docs -name '*.py' | xargs isort
-	black bmi_topography tests docs
+	find bmi_topography tests docs examples -name '*.py' | xargs isort
+	black bmi_topography tests docs examples
 
 test: ## run tests quickly with the default Python
 	pytest --disable-warnings --cov=bmi_topography --cov-report=xml:./coverage.xml -vvv
@@ -100,4 +100,4 @@ fullrelease: clean setup ## generate a full release with zest.releaser
 	fullrelease
 
 install: clean ## install the package to the active Python's site-packages
-	pip install .
+	pip install -e .

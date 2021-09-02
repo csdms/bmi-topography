@@ -26,7 +26,7 @@ class Topography:
         "cache_dir": "~/.bmi_topography",
     }
 
-    VALID_DEM_TYPES = ("SRTMGL3", "SRTMGL1", "SRTMGL1_E")
+    VALID_DEM_TYPES = ("SRTMGL3", "SRTMGL1", "SRTMGL1_E", "AW3D30", "AW3D30_E")
     VALID_OUTPUT_FORMATS = ("GTiff", "AAIGrid", "HFA")
 
     def __init__(

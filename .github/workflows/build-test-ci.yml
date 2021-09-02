@@ -4,6 +4,10 @@ on: [push, pull_request]
 
 jobs:
   build-and-test:
+    if:
+      github.event_name == 'push' || github.event.pull_request.head.repo.full_name !=
+      github.repository
+
     runs-on: ${{ matrix.os }}
 
     defaults:
@@ -39,8 +43,8 @@ jobs:
 
       - name: Test
         run: |
-          make test
-          make bmi-test
+          pytest --cov=bmi-topography --cov-report=xml:./coverage.xml -vvv
+          bmi-test bmi_topography:BmiTopography --config-file=./examples/config.yaml --root-dir=./examples -vvv
 
       - name: Coveralls
         if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.8'
@@ -61,6 +65,16 @@ jobs:
         run: |
           pip install flake8
           make lint
+
+  format:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+      - uses: psf/black@stable
+        with:
+          args: ". --check"
 
   docs:
     runs-on: ubuntu-latest

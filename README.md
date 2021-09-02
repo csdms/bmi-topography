@@ -7,16 +7,19 @@
 # bmi-topography
 
 *bmi-topography* is a Python library for fetching and caching
-NASA [Shuttle Radar Topography Mission](https://www2.jpl.nasa.gov/srtm/) (SRTM)
-land elevation data
-using the [OpenTopography](https://opentopography.org/)
-[REST API](https://portal.opentopography.org/apidocs/).
+land elevation data from the
+NASA [Shuttle Radar Topography Mission][srtm] (SRTM)
+and the
+JAXA [Advanced Land Observing Satellite][alos] (ALOS)
+using the [OpenTopography][ot] [REST API][ot-rest].
 
 The *bmi-topography* library provides access to the following global raster datasets:
 
 * SRTM GL3 (90m)
 * SRTM GL1 (30m)
-* SRTM GL1 (Ellipsoidal)
+* SRTM GL1 (30m, Ellipsoidal)
+* ALOS World 3D (30m)
+* ALOS World 3D (30m, Ellipsoidal) 
 
 The library includes an API and a CLI that accept
 the dataset type,
@@ -25,16 +28,14 @@ the output file format.
 Data are downloaded from OpenTopography and cached locally.
 The cache is checked before downloading new data.
 Data from a cached file can optionally be loaded into an
-[xarray](http://xarray.pydata.org/en/stable/)
-[DataArray](http://xarray.pydata.org/en/stable/api.html#dataarray)
-using the experimental [open_rasterio](http://xarray.pydata.org/en/stable/generated/xarray.open_rasterio.html#xarray.open_rasterio) method.
+[xarray][xarray] [DataArray][xarray-da]
+using the experimental [xarray-or][open-rasterio] method.
 
 The *bmi-topography* API is wrapped with a
-[Basic Model Interface](https://bmi.readthedocs.io) (BMI),
+[Basic Model Interface][bmi] (BMI),
 which provides a standard set of functions for coupling with data or models
 that also expose a BMI.
-More information on the BMI can found in its
-[documentation](https://bmi.readthedocs.io).
+More information on the BMI can found in its [documentation][bmi].
 
 ## Installation
 
@@ -50,9 +51,9 @@ conda install -c conda-forge bmi-topography
 The *bmi-topography* library can also be built and installed from source.
 The library uses several other open source libraries,
 so a convenient way of building and installing it is within a
-[conda environment](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html).
+[conda environment][conda-env].
 After cloning or downloading the *bmi-topography*
-[repository](https://github.com/csdms/bmi-topography),
+[repository][bmi-topo-repo],
 change into the repository directory
 and set up a conda environment with the included environment file:
 ```
@@ -130,8 +131,22 @@ Attributes:
 For examples with more detail,
 see the two Jupyter Notebooks,
 Python script, and shell script
-included in the [examples](https://github.com/csdms/bmi-topography/tree/main/examples) directory
+included in the [examples][bmi-topo-examples] directory
 of the *bmi-topography* repository.
 
 User and developer documentation for *bmi-topography*
 is available at https://bmi-topography.readthedocs.io.
+
+<!-- Links (by alpha) -->
+
+[alos]: https://www.eorc.jaxa.jp/ALOS/en/aw3d30/index.htm
+[bmi]: https://bmi.readthedocs.io
+[bmi-topo-examples]: https://github.com/csdms/bmi-topography/tree/main/examples
+[bmi-topo-repo]: https://github.com/csdms/bmi-topography
+[conda-env]: https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html
+[ot]: https://opentopography.org/
+[ot-rest]: https://portal.opentopography.org/apidocs/
+[srtm]: https://www2.jpl.nasa.gov/srtm/
+[xarray]: (http://xarray.pydata.org/en/stable/)
+[xarray-da]: http://xarray.pydata.org/en/stable/api.html#dataarray
+[xarray-or]: http://xarray.pydata.org/en/stable/generated/xarray.open_rasterio.html#xarray.open_rasterio

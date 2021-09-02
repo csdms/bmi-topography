@@ -1,7 +1,7 @@
 """An example used in the README and documentation."""
 import matplotlib.pyplot as plt
-from bmi_topography import Topography
 
+from bmi_topography import Topography
 
 params = Topography.DEFAULT.copy()
 params["south"] = 39.75

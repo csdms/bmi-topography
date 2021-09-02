@@ -4,10 +4,12 @@
 bmi-topography
 ==============
 
-*bmi-topography* is a Python library for fetching and caching NASA
-`Shuttle Radar Topography Mission <https://www2.jpl.nasa.gov/srtm/>`__
-(SRTM) land elevation data using the
-`OpenTopography <https://opentopography.org/>`__ `REST
+*bmi-topography* is a Python library for fetching and caching land
+elevation data from the NASA `Shuttle Radar Topography
+Mission <https://www2.jpl.nasa.gov/srtm/>`__ (SRTM) and the JAXA
+`Advanced Land Observing
+Satellite <https://www.eorc.jaxa.jp/ALOS/en/aw3d30/index.htm>`__ (ALOS)
+using the `OpenTopography <https://opentopography.org/>`__ `REST
 API <https://portal.opentopography.org/apidocs/>`__.
 
 The *bmi-topography* library provides access to the following global
@@ -15,7 +17,9 @@ raster datasets:
 
 -  SRTM GL3 (90m)
 -  SRTM GL1 (30m)
--  SRTM GL1 (Ellipsoidal)
+-  SRTM GL1 (30m, Ellipsoidal)
+-  ALOS World 3D (30m)
+-  ALOS World 3D (30m, Ellipsoidal)
 
 The library includes an API and a CLI that accept the dataset type, a
 latitude-longitude bounding box, and the output file format. Data are
@@ -148,6 +152,10 @@ directory of the *bmi-topography* repository.
 
 User and developer documentation for *bmi-topography* is available at
 https://bmi-topography.readthedocs.io.
+
+.. raw:: html
+
+   <!-- Links (by alpha) -->
 
 .. |Basic Model Interface| image:: https://img.shields.io/badge/CSDMS-Basic%20Model%20Interface-green.svg
    :target: https://bmi.readthedocs.io/

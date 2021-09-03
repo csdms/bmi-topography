@@ -52,7 +52,8 @@ class Topography:
             self._file_extension = Topography.VALID_OUTPUT_FORMATS[output_format]
         else:
             raise ValueError(
-                "output_format must be one of %s." % (Topography.VALID_OUTPUT_FORMATS.keys(),)
+                "output_format must be one of %s."
+                % (Topography.VALID_OUTPUT_FORMATS.keys(),)
             )
 
         self._bbox = BoundingBox((south, west), (north, east))

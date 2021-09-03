@@ -43,7 +43,7 @@ jobs:
 
       - name: Test
         run: |
-          pytest --cov=bmi-topography --cov-report=xml:./coverage.xml -vvv
+          pytest --cov=bmi_topography --cov-report=xml:./coverage.xml --cov-config=./setup.cfg -vvv
           bmi-test bmi_topography:BmiTopography --config-file=./examples/config.yaml --root-dir=./examples -vvv
 
       - name: Coveralls

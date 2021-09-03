@@ -44,14 +44,14 @@ from .topography import Topography
 )
 @click.option(
     "--output_format",
-    type=click.Choice(Topography.VALID_OUTPUT_FORMATS, case_sensitive=True),
+    type=click.Choice(Topography.VALID_OUTPUT_FORMATS.keys(), case_sensitive=True),
     default=Topography.DEFAULT["output_format"],
     help="Output file format.",
     show_default=True,
 )
 @click.option("--no_fetch", is_flag=True, help="Do not fetch data from server.")
 def main(quiet, dem_type, south, north, west, east, output_format, no_fetch):
-    """Fetch and cache Shuttle Radar Topography Mission (SRTM) elevation data"""
+    """Fetch and cache NASA SRTM and JAXA ALOS land elevation data"""
     topo = Topography(dem_type, south, north, west, east, output_format)
     if not no_fetch:
         if not quiet:

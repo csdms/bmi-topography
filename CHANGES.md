@@ -1,8 +1,8 @@
 Changes for bmi-topography
 ==========================
 
-0.3.3 (unreleased)
-------------------
+0.4 (2021-09-03)
+----------------
 
 - Support ALOS World 3D 30m products (#13)
 - Support .asc and .img files (#14)

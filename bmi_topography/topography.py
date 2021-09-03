@@ -27,7 +27,7 @@ class Topography:
     }
 
     VALID_DEM_TYPES = ("SRTMGL3", "SRTMGL1", "SRTMGL1_E", "AW3D30", "AW3D30_E")
-    VALID_OUTPUT_FORMATS = ("GTiff", "AAIGrid", "HFA")
+    VALID_OUTPUT_FORMATS = {"GTiff": "tif", "AAIGrid": "asc", "HFA": "img"}
 
     def __init__(
         self,
@@ -47,11 +47,13 @@ class Topography:
                 "dem_type must be one of %s." % (Topography.VALID_DEM_TYPES,)
             )
 
-        if output_format in Topography.VALID_OUTPUT_FORMATS:
+        if output_format in Topography.VALID_OUTPUT_FORMATS.keys():
             self._output_format = output_format
+            self._file_extension = Topography.VALID_OUTPUT_FORMATS[output_format]
         else:
             raise ValueError(
-                "output_format must be one of %s." % (Topography.VALID_OUTPUT_FORMATS,)
+                "output_format must be one of %s."
+                % [k for k in Topography.VALID_OUTPUT_FORMATS.keys()]
             )
 
         self._bbox = BoundingBox((south, west), (north, east))
@@ -69,6 +71,10 @@ class Topography:
     @property
     def output_format(self):
         return str(self._output_format)
+
+    @property
+    def file_extension(self):
+        return str(self._file_extension)
 
     @property
     def bbox(self):
@@ -92,12 +98,13 @@ class Topography:
         """
         fname = Path(
             self.cache_dir
-        ) / "{dem_type}_{south}_{west}_{north}_{east}.tif".format(
+        ) / "{dem_type}_{south}_{west}_{north}_{east}.{ext}".format(
             dem_type=self.dem_type,
             south=self.bbox.south,
             north=self.bbox.north,
             west=self.bbox.west,
             east=self.bbox.east,
+            ext=self.file_extension,
         )
 
         if not fname.is_file():

@@ -53,7 +53,7 @@ class Topography:
         else:
             raise ValueError(
                 "output_format must be one of %s."
-                % (Topography.VALID_OUTPUT_FORMATS.keys(),)
+                % [k for k in Topography.VALID_OUTPUT_FORMATS.keys()]
             )
 
         self._bbox = BoundingBox((south, west), (north, east))

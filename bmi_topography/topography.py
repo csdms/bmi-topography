@@ -58,7 +58,7 @@ class Topography:
 
         self._bbox = BoundingBox((south, west), (north, east))
 
-        self._dataarray = None
+        self._da = None
 
         if cache_dir is None:
             cache_dir = Path(Topography.DEFAULT["cache_dir"])
@@ -129,8 +129,8 @@ class Topography:
         return fname.absolute()
 
     @property
-    def dataarray(self):
-        return self._dataarray
+    def da(self):
+        return self._da
 
     def load(self):
         """Load a cached topography data file into an xarray DataArray.
@@ -138,10 +138,10 @@ class Topography:
         Returns:
             xarray.DataArray: A container for the data
         """
-        if self._dataarray is None:
-            self._dataarray = xr.open_rasterio(self.fetch())
-            self._dataarray.name = self.dem_type
-            self._dataarray.attrs["units"] = "meters"
-            self._dataarray.attrs["location"] = "node"
+        if self._da is None:
+            self._da = xr.open_rasterio(self.fetch())
+            self._da.name = self.dem_type
+            self._da.attrs["units"] = "meters"
+            self._da.attrs["location"] = "node"
 
-        return self._dataarray
+        return self._da

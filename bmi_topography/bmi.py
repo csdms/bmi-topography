@@ -26,7 +26,7 @@ class BmiTopography(Bmi):
 
     def __init__(self) -> None:
         self._config = {}
-        self._dataarray = None
+        self._da = None
         self._grid = {}
         self._var = None
 
@@ -37,7 +37,7 @@ class BmiTopography(Bmi):
         loop. This typically includes deallocating memory, closing files and
         printing reports.
         """
-        self._dataarray = None
+        self._da = None
 
     def get_component_name(self) -> str:
         """Name of the component.
@@ -310,7 +310,7 @@ class BmiTopography(Bmi):
         ndarray of float
             The input numpy array that holds the grid's column x-coordinates.
         """
-        x[:] = self._dataarray.x.values
+        x[:] = self._da.x.values
         return x
 
     def get_grid_y(self, grid: int, y: numpy.ndarray) -> numpy.ndarray:
@@ -328,7 +328,7 @@ class BmiTopography(Bmi):
         ndarray of float
             The input numpy array that holds the grid's row y-coordinates.
         """
-        y[:] = self._dataarray.y.values
+        y[:] = self._da.y.values
         return y
 
     def get_grid_z(self, grid: int, z: numpy.ndarray) -> numpy.ndarray:
@@ -502,7 +502,7 @@ class BmiTopography(Bmi):
         array_like
             A reference to a model variable.
         """
-        return self._dataarray.values
+        return self._da.values
 
     def get_var_grid(self, name: str) -> int:
         """Get grid identifier for the given variable.
@@ -655,25 +655,25 @@ class BmiTopography(Bmi):
                 self._config = yaml.safe_load(fp).get("bmi-topography", {})
         else:
             self._config = Topography.DEFAULT.copy()
-        self._dataarray = Topography(**self._config).load()
+        self._da = Topography(**self._config).load()
 
         self._grid = {
             0: BmiGridUniformRectilinear(
-                shape=(self._dataarray.sizes["y"], self._dataarray.sizes["x"]),
-                yx_spacing=self._dataarray.res,
+                shape=(self._da.sizes["y"], self._da.sizes["x"]),
+                yx_spacing=self._da.res,
                 yx_of_lower_left=(
-                    float(self._dataarray.y.min().data),
-                    float(self._dataarray.x.min().data),
+                    float(self._da.y.min().data),
+                    float(self._da.x.min().data),
                 ),
             )
         }
 
         self._var = BmiVar(
-            dtype=str(self._dataarray.values.dtype),
-            itemsize=self._dataarray.values.itemsize,
-            nbytes=self._dataarray.values.nbytes,
-            location=self._dataarray.attrs["location"],
-            units=self._dataarray.attrs["units"],
+            dtype=str(self._da.values.dtype),
+            itemsize=self._da.values.itemsize,
+            nbytes=self._da.values.nbytes,
+            location=self._da.attrs["location"],
+            units=self._da.attrs["units"],
             grid=0,
         )
 

@@ -90,16 +90,16 @@ custom values:
 .. code:: python
 
    >>> params = Topography.DEFAULT.copy()
-   >>> params["south"] = 39.75
-   >>> params["north"] = 40.25
-   >>> params["west"] = -105.25
-   >>> params["east"] = -104.75
+   >>> params["south"] = 39.93
+   >>> params["north"] = 40.00
+   >>> params["west"] = -105.33
+   >>> params["east"] = -105.26
    >>> params
    {'dem_type': 'SRTMGL3',
-    'south': 39.75,
-    'north': 40.25,
-    'west': -105.25,
-    'east': -104.75,
+    'south': 39.93,
+    'north': 40.0,
+    'west': -105.33,
+    'east': -105.26,
     'output_format': 'GTiff',
     'cache_dir': '~/.bmi_topography'}
 
@@ -116,7 +116,7 @@ then fetch the data from OpenTopography:
 .. code:: python
 
    >>> boulder.fetch()
-   PosixPath('/Users/mpiper/.bmi_topography/SRTMGL3_39.75_-105.25_40.25_-104.75.tif')
+   PosixPath('/Users/mpiper/.bmi_topography/SRTMGL3_39.93_-105.33_40.0_-105.26.tif')
 
 This step might take a few moments, and it will increase for requests of
 larger areas. Note that the file has been saved to a local cache
@@ -127,14 +127,18 @@ Load the data into an xarray ``DataArray`` for further work:
 .. code:: python
 
    >>> boulder.load()
-   <xarray.DataArray 'SRTMGL3' (band: 1, y: 600, x: 600)>
-   [360000 values with dtype=int16]
+   <xarray.DataArray 'SRTMGL3' (band: 1, y: 84, x: 84)>
+   array([[[2052, 2035, ..., 1645, 1643],
+           [2084, 2059, ..., 1643, 1642],
+           ...,
+           [2181, 2170, ..., 1764, 1763],
+           [2184, 2179, ..., 1773, 1769]]], dtype=int16)
    Coordinates:
      * band     (band) int64 1
-     * y        (y) float64 40.25 40.25 40.25 40.25 ... 39.75 39.75 39.75 39.75
-     * x        (x) float64 -105.3 -105.2 -105.2 -105.2 ... -104.8 -104.8 -104.8
+     * y        (y) float64 40.0 40.0 40.0 40.0 40.0 ... 39.93 39.93 39.93 39.93
+     * x        (x) float64 -105.3 -105.3 -105.3 -105.3 ... -105.3 -105.3 -105.3
    Attributes:
-       transform:      (0.000833333333333144, 0.0, -105.25041666668365, 0.0, -0....
+       transform:      (0.000833333333333144, 0.0, -105.33041666668363, 0.0, -0....
        crs:            +init=epsg:4326
        res:            (0.000833333333333144, 0.000833333333333144)
        is_tiled:       1
@@ -144,6 +148,21 @@ Load the data into an xarray ``DataArray`` for further work:
        AREA_OR_POINT:  Area
        units:          meters
        location:       node
+
+Display the elevations with the default xarray ``DataArray``
+`plot <https://xarray.pydata.org/en/stable/generated/xarray.plot.plot.html>`__
+method.
+
+.. code:: python
+
+   >>> import matplotlib.pyplot as plt
+   >>> boulder.da.plot()
+   >>> plt.show()
+
+.. figure:: ./examples/bmi-topography_ex.png
+   :alt: Example elevation data displayed through *xarray*.
+
+   Example elevation data displayed through *xarray*.
 
 For examples with more detail, see the two Jupyter Notebooks, Python
 script, and shell script included in the

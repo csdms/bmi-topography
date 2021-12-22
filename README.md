@@ -132,6 +132,15 @@ Attributes:
     location:       node
 ```
 
+Display the elevations with the default xarray `DataArray` [plot][xarray-plot] method.
+```python
+>>> import matplotlib.pyplot as plt
+>>> boulder.da.plot()
+>>> plt.show()
+```
+
+![Example elevation data display through *xarray*.](./examples/bmi-topography_ex.png)
+
 For examples with more detail,
 see the two Jupyter Notebooks,
 Python script, and shell script
@@ -154,3 +163,4 @@ is available at https://bmi-topography.readthedocs.io.
 [xarray]: http://xarray.pydata.org/en/stable/
 [xarray-da]: http://xarray.pydata.org/en/stable/api.html#dataarray
 [xarray-or]: http://xarray.pydata.org/en/stable/generated/xarray.open_rasterio.html#xarray.open_rasterio
+[xarray-plot]: https://xarray.pydata.org/en/stable/generated/xarray.plot.plot.html

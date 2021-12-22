@@ -160,9 +160,9 @@ method.
    >>> plt.show()
 
 .. figure:: ./examples/bmi-topography_ex.png
-   :alt: Example elevation data display through *xarray*.
+   :alt: Example elevation data displayed through *xarray*.
 
-   Example elevation data display through *xarray*.
+   Example elevation data displayed through *xarray*.
 
 For examples with more detail, see the two Jupyter Notebooks, Python
 script, and shell script included in the

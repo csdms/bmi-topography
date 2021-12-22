@@ -139,7 +139,7 @@ Display the elevations with the default xarray `DataArray` [plot][xarray-plot] m
 >>> plt.show()
 ```
 
-![Example elevation data display through *xarray*.](./examples/bmi-topography_ex.png)
+![Example elevation data displayed through *xarray*.](./examples/bmi-topography_ex.png)
 
 For examples with more detail,
 see the two Jupyter Notebooks,

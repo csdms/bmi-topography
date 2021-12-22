@@ -8,7 +8,7 @@ Here are a few examples of using the Topography data component,
   respectively.
 * `bmi-topography_ex.sh`: This shell script demonstrates how to call the
   Topography CLI.
-* `readme_example.py`: This Python script is used in the main
+* `bmi-topography_ex.py`: An example Python script is used in the main
   [README](../README.md).
 * `config.yaml`: A configuration file used to pass parameters to the Topography
   BMI.

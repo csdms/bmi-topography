@@ -23,7 +23,7 @@ def find_api_key():
 
 def read_first_of(files):
     """Read the contents of the first file encountered."""
-    contents = None
+    contents = ""
     for path in files:
         try:
             contents = open(path, "r").read()

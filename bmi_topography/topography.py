@@ -1,4 +1,5 @@
 """Base class to access SRTM elevation data"""
+import os
 import urllib
 from pathlib import Path
 
@@ -6,6 +7,31 @@ import requests
 import xarray as xr
 
 from .bbox import BoundingBox
+
+
+def find_api_key():
+    """Search for an API key."""
+    if "OPEN_TOPOGRAPHY_API_KEY" in os.environ:
+        api_key = os.environ["OPEN_TOPOGRAPHY_API_KEY"]
+    else:
+        api_key = read_first_of(
+            [".open_topography.txt", "~/.open_topography.txt"]
+        ).strip()
+
+    return api_key
+
+
+def read_first_of(files):
+    """Read the contents of the first file encountered."""
+    contents = None
+    for path in files:
+        try:
+            contents = open(path, "r").read()
+        except OSError:
+            pass
+        else:
+            break
+    return contents
 
 
 class Topography:
@@ -38,7 +64,12 @@ class Topography:
         east=None,
         output_format=None,
         cache_dir=None,
+        api_key=None,
     ):
+        if api_key is None:
+            self._api_key = find_api_key()
+        else:
+            self._api_key = api_key
 
         if dem_type in Topography.VALID_DEM_TYPES:
             self._dem_type = dem_type
@@ -118,6 +149,8 @@ class Topography:
                 "east": self.bbox.east,
                 "outputFormat": self.output_format,
             }
+            if self._api_key:
+                params["API_Key"] = self._api_key
 
             response = requests.get(Topography.data_url(), params=params, stream=True)
             response.raise_for_status()

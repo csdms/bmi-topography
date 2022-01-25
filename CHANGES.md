@@ -4,7 +4,9 @@ Changes for bmi-topography
 0.5 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Use an API key when requesting OpenTopography data (#25)
+- Add python 3.10 to tests (#24)
+- Address technical debt (#22)
 
 
 0.4 (2021-09-03)

@@ -11,11 +11,11 @@ from .bbox import BoundingBox
 
 def find_api_key():
     """Search for an API key."""
-    if "OPEN_TOPOGRAPHY_API_KEY" in os.environ:
-        api_key = os.environ["OPEN_TOPOGRAPHY_API_KEY"]
+    if "OPENTOPOGRAPHY_API_KEY" in os.environ:
+        api_key = os.environ["OPENTOPOGRAPHY_API_KEY"]
     else:
         api_key = read_first_of(
-            [".open_topography.txt", "~/.open_topography.txt"]
+            [".opentopography.txt", "~/.opentopography.txt"]
         ).strip()
 
     return api_key

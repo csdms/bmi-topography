@@ -43,7 +43,7 @@ jobs:
 
       - name: Test
         env:
-          OPEN_TOPOGRAPHY_API_KEY: ${{ secrets.OPEN_TOPOGRAPHY_API_KEY }}
+          OPENTOPOGRAPHY_API_KEY: ${{ secrets.OPENTOPOGRAPHY_API_KEY }}
         run: |
           pytest --cov=bmi_topography --cov-report=xml:./coverage.xml --cov-config=./setup.cfg -vvv
           bmi-test bmi_topography:BmiTopography --config-file=./examples/config.yaml --root-dir=./examples -vvv

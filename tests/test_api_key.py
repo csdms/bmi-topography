@@ -15,26 +15,26 @@ def copy_environ(exclude=None):
 
 def test_find_api_key_not_found():
     """The API key is not given anywhere"""
-    env = copy_environ(exclude="OPEN_TOPOGRAPHY_API_KEY")
+    env = copy_environ(exclude="OPENTOPOGRAPHY_API_KEY")
     with mock.patch.dict(os.environ, env, clear=True):
         assert find_api_key() == ""
 
 
-@mock.patch.dict(os.environ, {"OPEN_TOPOGRAPHY_API_KEY": "foo"})
+@mock.patch.dict(os.environ, {"OPENTOPOGRAPHY_API_KEY": "foo"})
 def test_find_api_key_env(tmpdir):
     """The API key is an environment variable"""
     with tmpdir.as_cwd():
-        with open(".open_topography.txt", "w") as fp:
+        with open(".opentopography.txt", "w") as fp:
             fp.write("bar")
     assert find_api_key() == "foo"
 
 
-@mock.patch.dict(os.environ, {"OPEN_TOPOGRAPHY_API_KEY": "foo"})
+@mock.patch.dict(os.environ, {"OPENTOPOGRAPHY_API_KEY": "foo"})
 def test_find_api_key_from_file(tmpdir):
     """The API key is in a file"""
-    env = copy_environ(exclude="OPEN_TOPOGRAPHY_API_KEY")
+    env = copy_environ(exclude="OPENTOPOGRAPHY_API_KEY")
     with tmpdir.as_cwd():
-        with open(".open_topography.txt", "w") as fp:
+        with open(".opentopography.txt", "w") as fp:
             fp.write("bar")
 
         with mock.patch.dict(os.environ, env, clear=True):

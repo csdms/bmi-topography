@@ -61,8 +61,8 @@ def main(quiet, dem_type, south, north, west, east, output_format, no_fetch):
 
     Once you have received your key, you can pass it to the *bmi-topography*
     command in one of two ways:
-    1. As the environment variable, OPEN_TOPOGRAPHY_API_KEY.
-    2. As the contents of an *.open_topography.txt* file located either in
+    1. As the environment variable, OPENTOPOGRAPHY_API_KEY.
+    2. As the contents of an *.opentopography.txt* file located either in
        your current directory or you home directory.
     """
     topo = Topography(dem_type, south, north, west, east, output_format)

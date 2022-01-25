@@ -129,4 +129,4 @@ dmypy.json
 .pyre/
 
 # OpenTopography API key file
-.open_topography.txt
+.opentopography.txt

@@ -6,6 +6,12 @@ Project lead
 
 * Mark Piper
 
+Contributors
+------------
+
+* Eric Hutton
+* Mark Piper
+
 Acknowledgments
 ---------------
 

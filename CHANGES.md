@@ -1,7 +1,7 @@
 Changes for bmi-topography
 ==========================
 
-0.5 (unreleased)
+0.5 (2022-01-25)
 ----------------
 
 - Use an API key when requesting OpenTopography data (#25)

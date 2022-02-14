@@ -34,6 +34,14 @@ def read_first_of(files):
     return contents
 
 
+class APIKeyError(Exception):
+    def __init__(self):
+        self.message = "This dataset requires an API Key for access."
+
+    def __str__(self):
+        return self.message
+
+
 class Topography:
 
     """Fetch and cache NASA SRTM land elevation data."""
@@ -153,7 +161,10 @@ class Topography:
                 params["API_Key"] = self._api_key
 
             response = requests.get(Topography.data_url(), params=params, stream=True)
-            response.raise_for_status()
+            if response.status_code == 401:
+                raise APIKeyError()
+            else:
+                response.raise_for_status()
 
             with fname.open("wb") as fp:
                 for chunk in response.iter_content(chunk_size=None):

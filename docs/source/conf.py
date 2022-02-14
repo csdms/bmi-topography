@@ -24,7 +24,7 @@ master_doc = "index"
 # -- Project information -----------------------------------------------------
 
 project = "bmi-topography"
-author = "Mark Piper"
+author = "Community Surface Dynamics Modeling System"
 version = pkg_resources.get_distribution("bmi_topography").version
 release = version
 this_year = datetime.date.today().year

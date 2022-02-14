@@ -53,17 +53,16 @@ from .topography import Topography
 def main(quiet, dem_type, south, north, west, east, output_format, no_fetch):
     """Fetch and cache NASA SRTM and JAXA ALOS land elevation data
 
-    To fetch some datasets you will need an OpenTopography API key.
-    You can find instructions on how to obtain one from the OpenTopography
-    website:
+    Some datasets require an OpenTopography API key. You can find instructions
+    on how to obtain one from the OpenTopography website:
 
         https://opentopography.org/blog/introducing-api-keys-access-opentopography-global-datasets
 
-    Once you have received your key, you can pass it to the *bmi-topography*
-    command in one of two ways:
-    1. As the environment variable, OPENTOPOGRAPHY_API_KEY.
-    2. As the contents of an *.opentopography.txt* file located either in
-       your current directory or you home directory.
+    Once you have a key, you can pass it to the bmi-topography
+    command in one of two ways: 1) through the environment variable
+    OPENTOPOGRAPHY_API_KEY, or 2) as the contents of the file
+    ".opentopography.txt" located either in your current directory or your home
+    directory.
     """
     topo = Topography(dem_type, south, north, west, east, output_format)
     if not no_fetch:

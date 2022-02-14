@@ -153,6 +153,8 @@ class Topography:
                 params["API_Key"] = self._api_key
 
             response = requests.get(Topography.data_url(), params=params, stream=True)
+            if response.status_code == 401:
+                response.reason = "This dataset requires an API Key for access"
             response.raise_for_status()
 
             with fname.open("wb") as fp:

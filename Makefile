@@ -55,7 +55,6 @@ lint: ## check style with flake8
 	flake8 bmi_topography tests docs examples
 
 pretty: ## reformat files to make them look pretty
-	find bmi_topography tests docs examples -name '*.py' | xargs isort
 	black bmi_topography tests docs examples
 
 test: ## run tests quickly with the default Python

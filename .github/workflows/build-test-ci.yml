@@ -76,7 +76,8 @@ jobs:
       - uses: actions/setup-python@v2
       - uses: psf/black@stable
         with:
-          args: ". --check"
+          options: "--check --verbose --diff"
+          src: "bmi_topography tests examples docs"
 
   docs:
     runs-on: ubuntu-latest

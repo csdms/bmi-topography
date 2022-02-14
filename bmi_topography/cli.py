@@ -49,8 +49,14 @@ from .topography import Topography
     help="Output file format.",
     show_default=True,
 )
+@click.option(
+    "--api_key",
+    type=str,
+    help="OpenTopography API key.",
+    show_default=True,
+)
 @click.option("--no_fetch", is_flag=True, help="Do not fetch data from server.")
-def main(quiet, dem_type, south, north, west, east, output_format, no_fetch):
+def main(quiet, dem_type, south, north, west, east, output_format, api_key, no_fetch):
     """Fetch and cache NASA SRTM and JAXA ALOS land elevation data
 
     Some datasets require an OpenTopography API key. You can find instructions

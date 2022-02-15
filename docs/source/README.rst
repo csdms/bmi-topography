@@ -71,6 +71,31 @@ Then build and install *bmi-topography* from source with
 
    make install
 
+API key
+-------
+
+To better understand usage, OpenTopography `requires an API
+key <https://opentopography.org/blog/introducing-api-keys-access-opentopography-global-datasets>`__
+to access datasets they host. Getting an API key is easy, and it’s free;
+just follow the instructions in the link above.
+
+Once you have an API key, there are three ways to use it with
+*bmi-topography*:
+
+1. *parameter*: Pass the API key as a string through the ``API_key``
+   parameter.
+2. *environment variable*: In the shell, set the
+   ``OPENTOPOGRAPHY_API_KEY`` environment variable to the API key value.
+3. *dot file*: Put the API key in the file ``.opentopography.txt`` in
+   the current directory or in your home directory.
+
+If you attempt to use *bmi-topography* to access an OpenTopography
+dataset without an API key, you’ll get a error like this:
+
+::
+
+   requests.exceptions.HTTPError: 401 Client Error: This dataset requires an API Key for access.
+
 Examples
 --------
 

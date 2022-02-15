@@ -1,4 +1,4 @@
-"""Base class to access SRTM elevation data"""
+"""Base class to access elevation data"""
 import os
 import urllib
 from pathlib import Path

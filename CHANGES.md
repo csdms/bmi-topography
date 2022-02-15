@@ -1,8 +1,8 @@
 Changes for bmi-topography
 ==========================
 
-0.6 (unreleased)
-----------------
+0.5.1 (2022-02-15)
+------------------
 
 - Document use of OpenTopography API key (#33)
 - Add text to exception raised when API key is missing (#32)

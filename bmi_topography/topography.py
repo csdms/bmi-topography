@@ -1,6 +1,7 @@
 """Base class to access elevation data"""
 import os
 import urllib
+import warnings
 from pathlib import Path
 
 import requests
@@ -9,7 +10,7 @@ import xarray as xr
 from .bbox import BoundingBox
 
 
-def find_api_key():
+def find_user_api_key():
     """Search for an API key."""
     if "OPENTOPOGRAPHY_API_KEY" in os.environ:
         api_key = os.environ["OPENTOPOGRAPHY_API_KEY"]
@@ -19,6 +20,15 @@ def find_api_key():
         ).strip()
 
     return api_key
+
+
+def use_demo_key():
+    warnings.warn(
+        "You are using a demo key to fetch data from OpenTopography, functionality "
+        "will be limited. See https://bmi-topography.readthedocs.io/en/latest/#api-key "
+        "for more information."
+    )
+    return "<the-demo-key>"
 
 
 def read_first_of(files):
@@ -67,7 +77,7 @@ class Topography:
         api_key=None,
     ):
         if api_key is None:
-            self._api_key = find_api_key()
+            self._api_key = find_user_api_key() or use_demo_key()
         else:
             self._api_key = api_key
 

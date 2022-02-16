@@ -8,7 +8,7 @@ from .topography import Topography
 @click.version_option()
 @click.option("-q", "--quiet", is_flag=True, help="Enables quiet mode.")
 @click.option(
-    "--dem_type",
+    "--dem-type",
     type=click.Choice(Topography.VALID_DEM_TYPES, case_sensitive=True),
     default=Topography.DEFAULT["dem_type"],
     help="The global raster dataset.",
@@ -43,19 +43,19 @@ from .topography import Topography
     show_default=True,
 )
 @click.option(
-    "--output_format",
+    "--output-format",
     type=click.Choice(Topography.VALID_OUTPUT_FORMATS.keys(), case_sensitive=True),
     default=Topography.DEFAULT["output_format"],
     help="Output file format.",
     show_default=True,
 )
 @click.option(
-    "--api_key",
+    "--api-key",
     type=str,
     help="OpenTopography API key.",
     show_default=True,
 )
-@click.option("--no_fetch", is_flag=True, help="Do not fetch data from server.")
+@click.option("--no-fetch", is_flag=True, help="Do not fetch data from server.")
 def main(quiet, dem_type, south, north, west, east, output_format, api_key, no_fetch):
     """Fetch and cache NASA SRTM and JAXA ALOS land elevation data
 
@@ -73,9 +73,12 @@ def main(quiet, dem_type, south, north, west, east, output_format, api_key, no_f
     topo = Topography(dem_type, south, north, west, east, output_format)
     if not no_fetch:
         if not quiet:
-            click.secho("Fetching data...", fg="yellow")
-        topo.fetch()
+            click.secho("Fetching data...", fg="yellow", err=True)
+        path_to_dem = topo.fetch()
         if not quiet:
             click.secho(
-                "File downloaded to {}".format(getattr(topo, "cache_dir")), fg="green"
+                "File downloaded to {}".format(getattr(topo, "cache_dir")),
+                fg="green",
+                err=True,
             )
+        print(path_to_dem)

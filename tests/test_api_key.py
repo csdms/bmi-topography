@@ -1,7 +1,9 @@
 import os
 from unittest import mock
 
-from bmi_topography.topography import find_user_api_key, read_first_of
+import pytest
+
+from bmi_topography.topography import find_user_api_key, read_first_of, use_demo_key
 
 
 def copy_environ(exclude=None):
@@ -56,3 +58,14 @@ def test_read_first_file(tmpdir):
 
         assert read_first_of(["foo.txt", "bar.txt"]) == "foo"
         assert read_first_of(["bar.txt", "foo.txt"]) == "bar"
+
+
+def test_use_demo_key_is_a_string():
+    demo_key = use_demo_key()
+    assert isinstance(demo_key, str)
+    assert len(demo_key) > 0
+
+
+def test_use_demo_key_issues_warning():
+    with pytest.warns(UserWarning):
+        use_demo_key()

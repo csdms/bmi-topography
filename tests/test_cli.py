@@ -27,6 +27,14 @@ def test_defaults():
     assert result.exit_code == 0
 
 
+def test_quiet():
+    runner = CliRunner()
+    quiet_lines = runner.invoke(main, ["--quiet"]).output.splitlines()
+    verbose_lines = runner.invoke(main).output.splitlines()
+
+    assert len(verbose_lines) > len(quiet_lines)
+
+
 def test_demtype_valid():
     runner = CliRunner()
     result = runner.invoke(main, ["--dem-type=SRTMGL1", "--no-fetch"])

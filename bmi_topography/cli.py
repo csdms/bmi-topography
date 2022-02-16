@@ -74,10 +74,11 @@ def main(quiet, dem_type, south, north, west, east, output_format, api_key, no_f
     if not no_fetch:
         if not quiet:
             click.secho("Fetching data...", fg="yellow", err=True)
-        topo.fetch()
+        path_to_dem = topo.fetch()
         if not quiet:
             click.secho(
                 "File downloaded to {}".format(getattr(topo, "cache_dir")),
                 fg="green",
                 err=True,
             )
+        print(path_to_dem)

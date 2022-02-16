@@ -1,4 +1,6 @@
 """Test bmi-topography command-line interface"""
+import pathlib
+
 from click.testing import CliRunner
 
 from bmi_topography.cli import main
@@ -20,7 +22,8 @@ def test_version():
 
 def test_defaults():
     runner = CliRunner()
-    result = runner.invoke(main)
+    result = runner.invoke(main, ["--quiet"])
+    assert pathlib.Path(result.output.strip()).is_file()
     assert result.exit_code == 0
 
 

@@ -12,9 +12,9 @@ bmi-topography --version
 bmi-topography --help
 
 bmi-topography \
-    --dem_type=$DEM_TYPE \
+    --dem-type=$DEM_TYPE \
     --south=$SOUTH \
     --north=$NORTH \
     --west=$WEST \
     --east=$EAST \
-    --output_format=$OUTPUT_FORMAT
+    --output-format=$OUTPUT_FORMAT

@@ -1,7 +1,7 @@
 import os
 from unittest import mock
 
-from bmi_topography.topography import find_api_key, read_first_of
+from bmi_topography.topography import find_user_api_key, read_first_of
 
 
 def copy_environ(exclude=None):
@@ -13,24 +13,24 @@ def copy_environ(exclude=None):
     return {key: value for key, value in os.environ.items() if key not in exclude}
 
 
-def test_find_api_key_not_found():
+def test_find_user_api_key_not_found():
     """The API key is not given anywhere"""
     env = copy_environ(exclude="OPENTOPOGRAPHY_API_KEY")
     with mock.patch.dict(os.environ, env, clear=True):
-        assert find_api_key() == ""
+        assert find_user_api_key() == ""
 
 
 @mock.patch.dict(os.environ, {"OPENTOPOGRAPHY_API_KEY": "foo"})
-def test_find_api_key_env(tmpdir):
+def test_find_user_api_key_env(tmpdir):
     """The API key is an environment variable"""
     with tmpdir.as_cwd():
         with open(".opentopography.txt", "w") as fp:
             fp.write("bar")
-    assert find_api_key() == "foo"
+    assert find_user_api_key() == "foo"
 
 
 @mock.patch.dict(os.environ, {"OPENTOPOGRAPHY_API_KEY": "foo"})
-def test_find_api_key_from_file(tmpdir):
+def test_find_user_api_key_from_file(tmpdir):
     """The API key is in a file"""
     env = copy_environ(exclude="OPENTOPOGRAPHY_API_KEY")
     with tmpdir.as_cwd():
@@ -38,7 +38,7 @@ def test_find_api_key_from_file(tmpdir):
             fp.write("bar")
 
         with mock.patch.dict(os.environ, env, clear=True):
-            assert find_api_key() == "bar"
+            assert find_user_api_key() == "bar"
 
 
 def test_read_first_missing(tmpdir):

@@ -28,7 +28,7 @@ def use_demo_key():
         "will be limited. See https://bmi-topography.readthedocs.io/en/latest/#api-key "
         "for more information."
     )
-    return "<the-demo-key>"
+    return "demoapikeyot2022"
 
 
 def read_first_of(files):

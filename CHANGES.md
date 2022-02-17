@@ -4,7 +4,8 @@ Changes for bmi-topography
 0.5.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Use dashes in command line options (#36)
+- Use a demo API key if a user key can't be found (#34)
 
 
 0.5.1 (2022-02-15)

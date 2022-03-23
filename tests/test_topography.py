@@ -1,10 +1,13 @@
 """Test Topography class"""
-import numpy
+import os
 import pytest
 
 from bmi_topography import Topography
 
 API_URL = "https://portal.opentopography.org/API/globaldem"
+CENTER_LAT = 40.0
+CENTER_LON = -105.0
+WIDTH = 0.01
 
 
 def test_data_url():
@@ -69,21 +72,24 @@ def test_cached_data(tmpdir, shared_datadir):
         assert len(tmpdir.listdir(fil=lambda f: f.ext == ".tif")) == 0
 
 
-def test_fetch(tmpdir):
-    new_south = numpy.mean([Topography.DEFAULT["south"], Topography.DEFAULT["north"]])
-    new_west = numpy.mean([Topography.DEFAULT["west"], Topography.DEFAULT["east"]])
+@pytest.mark.skipif("NO_FETCH" in os.environ, reason="NO_FETCH is set")
+@pytest.mark.parametrize("dem_type", Topography.VALID_DEM_TYPES)
+@pytest.mark.parametrize(
+    "output_format,file_type", Topography.VALID_OUTPUT_FORMATS.items()
+)
+def test_fetch(tmpdir, dem_type, output_format, file_type):
     with tmpdir.as_cwd():
         topo = Topography(
-            dem_type=Topography.DEFAULT["dem_type"],
-            output_format=Topography.DEFAULT["output_format"],
-            south=new_south,
-            west=new_west,
-            north=Topography.DEFAULT["north"],
-            east=Topography.DEFAULT["east"],
+            dem_type=dem_type,
+            output_format=output_format,
+            south=CENTER_LAT - WIDTH,
+            west=CENTER_LON - WIDTH,
+            north=CENTER_LAT + WIDTH,
+            east=CENTER_LON + WIDTH,
             cache_dir=".",
         )
         topo.fetch()
-        assert len(tmpdir.listdir(fil=lambda f: f.ext == ".tif")) == 1
+        assert len(tmpdir.listdir(fil=lambda f: f.ext == "." + file_type)) == 1
 
 
 def test_load(tmpdir, shared_datadir):

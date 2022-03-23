@@ -1,6 +1,5 @@
 """Test Topography class"""
 import os
-import numpy
 import pytest
 
 from bmi_topography import Topography
@@ -75,7 +74,9 @@ def test_cached_data(tmpdir, shared_datadir):
 
 @pytest.mark.skipif("NO_FETCH" in os.environ, reason="NO_FETCH is set")
 @pytest.mark.parametrize("dem_type", Topography.VALID_DEM_TYPES)
-@pytest.mark.parametrize("output_format,file_type", Topography.VALID_OUTPUT_FORMATS.items())
+@pytest.mark.parametrize(
+    "output_format,file_type", Topography.VALID_OUTPUT_FORMATS.items()
+)
 def test_fetch(tmpdir, dem_type, output_format, file_type):
     with tmpdir.as_cwd():
         topo = Topography(

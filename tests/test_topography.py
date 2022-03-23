@@ -1,4 +1,5 @@
 """Test Topography class"""
+import os
 import numpy
 import pytest
 
@@ -69,6 +70,7 @@ def test_cached_data(tmpdir, shared_datadir):
         assert len(tmpdir.listdir(fil=lambda f: f.ext == ".tif")) == 0
 
 
+@pytest.mark.skipif("NO_FETCH" in os.environ, reason="NO_FETCH is set")
 def test_fetch(tmpdir):
     new_south = numpy.mean([Topography.DEFAULT["south"], Topography.DEFAULT["north"]])
     new_west = numpy.mean([Topography.DEFAULT["west"], Topography.DEFAULT["east"]])

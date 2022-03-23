@@ -4,7 +4,7 @@ Changes for bmi-topography
 0.7 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Optionally disable fetch test
 
 
 0.6 (2022-02-17)

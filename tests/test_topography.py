@@ -73,11 +73,12 @@ def test_cached_data(tmpdir, shared_datadir):
 
 
 @pytest.mark.parametrize("dem_type", Topography.VALID_DEM_TYPES)
-def test_fetch(tmpdir, dem_type):
+@pytest.mark.parametrize("output_format,file_type", Topography.VALID_OUTPUT_FORMATS.items())
+def test_fetch(tmpdir, dem_type, output_format, file_type):
     with tmpdir.as_cwd():
         topo = Topography(
             dem_type=dem_type,
-            output_format=Topography.DEFAULT["output_format"],
+            output_format=output_format,
             south=CENTER_LAT - WIDTH,
             west=CENTER_LON - WIDTH,
             north=CENTER_LAT + WIDTH,
@@ -85,7 +86,7 @@ def test_fetch(tmpdir, dem_type):
             cache_dir=".",
         )
         topo.fetch()
-        assert len(tmpdir.listdir(fil=lambda f: f.ext == ".tif")) == 1
+        assert len(tmpdir.listdir(fil=lambda f: f.ext == "." + file_type)) == 1
 
 
 def test_load(tmpdir, shared_datadir):

@@ -4,7 +4,7 @@ Changes for bmi-topography
 0.7 (unreleased)
 ----------------
 
-- Optionally disable fetch test
+- Create test matrix of datasets and file types (#38)
 
 
 0.6 (2022-02-17)

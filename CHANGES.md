@@ -1,7 +1,7 @@
 Changes for bmi-topography
 ==========================
 
-0.7 (unreleased)
+0.7 (2022-03-24)
 ----------------
 
 - Support all OpenTopography global datasets (#39)

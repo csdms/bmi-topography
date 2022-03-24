@@ -4,6 +4,7 @@ Changes for bmi-topography
 0.7 (unreleased)
 ----------------
 
+- Support all OpenTopography global datasets (#39)
 - Create test matrix of datasets and file types (#38)
 
 

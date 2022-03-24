@@ -76,7 +76,7 @@ just follow the instructions in the link above.
 Once you have an API key,
 there are three ways to use it with *bmi-topography*:
 
-1. *parameter*: Pass the API key as a string through the `API_key` parameter.
+1. *parameter*: Pass the API key as a string through the `api_key` parameter.
 2. *environment variable*: In the shell, set the `OPENTOPOGRAPHY_API_KEY` environment variable to the API key value.
 3. *dot file*: Put the API key in the file `.opentopography.txt` in the current directory or in your home directory.
 

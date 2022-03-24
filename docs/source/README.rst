@@ -1,5 +1,5 @@
-|Basic Model Interface| |Conda Version| |PyPI| |Build/Test CI|
-|Documentation Status|
+|Basic Model Interface| |Conda Version| |PyPI| |Build/Test CI| |Coverage
+Status| |Documentation Status|
 
 bmi-topography
 ==============
@@ -83,7 +83,7 @@ just follow the instructions in the link above.
 Once you have an API key, there are three ways to use it with
 *bmi-topography*:
 
-1. *parameter*: Pass the API key as a string through the ``API_key``
+1. *parameter*: Pass the API key as a string through the ``api_key``
    parameter.
 2. *environment variable*: In the shell, set the
    ``OPENTOPOGRAPHY_API_KEY`` environment variable to the API key value.
@@ -210,5 +210,7 @@ https://bmi-topography.readthedocs.io.
    :target: https://pypi.org/project/bmi-topography
 .. |Build/Test CI| image:: https://github.com/csdms/bmi-topography/actions/workflows/build-test-ci.yml/badge.svg
    :target: https://github.com/csdms/bmi-topography/actions/workflows/build-test-ci.yml
+.. |Coverage Status| image:: https://coveralls.io/repos/github/csdms/bmi-topography/badge.svg?branch=main
+   :target: https://coveralls.io/github/csdms/bmi-topography?branch=main
 .. |Documentation Status| image:: https://readthedocs.org/projects/bmi-topography/badge/?version=latest
    :target: https://bmi-topography.readthedocs.io/en/latest/?badge=latest

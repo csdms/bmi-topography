@@ -10,6 +10,44 @@ import xarray as xr
 from .bbox import BoundingBox
 
 
+class ApiKey:
+    DEMO_API_KEY = "demoapikeyot2022"
+    API_KEY_FILES = (".opentopography.txt", "~/.opentopography.txt")
+    API_KEY_ENV_VAR = "OPENTOPOGRAPHY_API_KEY"
+
+    def __init__(self, api_key=None):
+        if api_key is None:
+            self._api_key = find_user_api_key() or use_demo_key()
+        else:
+            self._api_key = api_key
+
+    @property
+    def api_key(self):
+        return self._api_key
+
+    @staticmethod
+    def find_user_api_key():
+        """Search for an API key."""
+        if ApiKey.API_KEY_ENV_VAR in os.environ:
+            api_key = os.environ[ApiKey.API_KEY_ENV_VAR]
+        else:
+            api_key = read_first_of(ApiKey.API_KEY_FILES).strip()
+
+        return api_key
+
+    @staticmethod
+    def use_demo_key():
+        warnings.warn(
+            "You are using a demo key to fetch data from OpenTopography, functionality "
+            "will be limited. See https://bmi-topography.readthedocs.io/en/latest/#api-key "
+            "for more information."
+        )
+        return ApiKey.DEMO_API_KEY
+
+    def is_demo_key(self):
+        return self._api_key == ApiKey.DEMO_API_KEY
+
+
 def find_user_api_key():
     """Search for an API key."""
     if "OPENTOPOGRAPHY_API_KEY" in os.environ:

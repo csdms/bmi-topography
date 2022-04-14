@@ -1,85 +1,13 @@
 """Base class to access elevation data"""
 import os
 import urllib
-import warnings
 from pathlib import Path
 
 import requests
 import xarray as xr
 
+from .api_key import ApiKey
 from .bbox import BoundingBox
-
-
-class ApiKey:
-    DEMO_API_KEY = "demoapikeyot2022"
-    API_KEY_FILES = (".opentopography.txt", "~/.opentopography.txt")
-    API_KEY_ENV_VAR = "OPENTOPOGRAPHY_API_KEY"
-
-    def __init__(self, api_key=None):
-        if api_key is None:
-            self._api_key = find_user_api_key() or use_demo_key()
-        else:
-            self._api_key = api_key
-
-    @property
-    def api_key(self):
-        return self._api_key
-
-    @staticmethod
-    def find_user_api_key():
-        """Search for an API key."""
-        if ApiKey.API_KEY_ENV_VAR in os.environ:
-            api_key = os.environ[ApiKey.API_KEY_ENV_VAR]
-        else:
-            api_key = read_first_of(ApiKey.API_KEY_FILES).strip()
-
-        return api_key
-
-    @staticmethod
-    def use_demo_key():
-        warnings.warn(
-            "You are using a demo key to fetch data from OpenTopography, functionality "
-            "will be limited. See https://bmi-topography.readthedocs.io/en/latest/#api-key "
-            "for more information."
-        )
-        return ApiKey.DEMO_API_KEY
-
-    def is_demo_key(self):
-        return self._api_key == ApiKey.DEMO_API_KEY
-
-
-def find_user_api_key():
-    """Search for an API key."""
-    if "OPENTOPOGRAPHY_API_KEY" in os.environ:
-        api_key = os.environ["OPENTOPOGRAPHY_API_KEY"]
-    else:
-        api_key = read_first_of(
-            [".opentopography.txt", "~/.opentopography.txt"]
-        ).strip()
-
-    return api_key
-
-
-def use_demo_key():
-    warnings.warn(
-        "You are using a demo key to fetch data from OpenTopography, functionality "
-        "will be limited. See https://bmi-topography.readthedocs.io/en/latest/#api-key "
-        "for more information."
-    )
-    return "demoapikeyot2022"
-
-
-def read_first_of(files):
-    """Read the contents of the first file encountered."""
-    contents = ""
-    for path in files:
-        try:
-            contents = open(path, "r").read()
-        except OSError:
-            pass
-        else:
-            break
-    return contents
 
 
 class Topography:
@@ -124,10 +52,11 @@ class Topography:
         cache_dir=None,
         api_key=None,
     ):
-        if api_key is None:
-            self._api_key = find_user_api_key() or use_demo_key()
-        else:
-            self._api_key = api_key
+        self._api_key = ApiKey.from_sources(api_key)
+        # if api_key is None:
+        #     self._api_key = find_user_api_key() or use_demo_key()
+        # else:
+        #     self._api_key = api_key
 
         if dem_type in Topography.VALID_DEM_TYPES:
             self._dem_type = dem_type
@@ -208,11 +137,22 @@ class Topography:
                 "outputFormat": self.output_format,
             }
             if self._api_key:
-                params["API_Key"] = self._api_key
+                params["API_Key"] = str(self._api_key)
 
             response = requests.get(Topography.data_url(), params=params, stream=True)
             if response.status_code == 401:
-                response.reason = "This dataset requires an API Key for access"
+                if self._api_key.source == "demo":
+                    msg = os.linesep.join(
+                        "It looks like you are using a demo key. This error may be the result of "
+                        "you reaching your maximum number of downloads."
+                    )
+                else:
+                    msg = (
+                        "It looks like you are using a user-supplied key. This error may mean "
+                        "that your key is out of date or there is a typo in the supplied key. "
+                        f"(source={self._api_key.source})"
+                    )
+                response.reason = os.linesep.join([response.reason, "", msg, ""])
             response.raise_for_status()
 
             with fname.open("wb") as fp:

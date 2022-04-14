@@ -1,10 +1,24 @@
 Changes for bmi-topography
 ==========================
 
-0.5.2 (unreleased)
-------------------
+0.8 (unreleased)
+----------------
 
 - Nothing changed yet.
+
+
+0.7 (2022-03-24)
+----------------
+
+- Support all OpenTopography global datasets (#39)
+- Create test matrix of datasets and file types (#38)
+
+
+0.6 (2022-02-17)
+----------------
+
+- Use dashes in command line options (#36)
+- Use a demo API key if a user key can't be found (#34)
 
 
 0.5.1 (2022-02-15)

@@ -1,25 +1,26 @@
-|Basic Model Interface| |Conda Version| |PyPI| |Build/Test CI|
-|Documentation Status|
+|Basic Model Interface| |Conda Version| |PyPI| |Build/Test CI| |Coverage
+Status| |Documentation Status|
 
 bmi-topography
 ==============
 
 *bmi-topography* is a Python library for fetching and caching land
-elevation data from the NASA `Shuttle Radar Topography
-Mission <https://www2.jpl.nasa.gov/srtm/>`__ (SRTM) and the JAXA
-`Advanced Land Observing
-Satellite <https://www.eorc.jaxa.jp/ALOS/en/aw3d30/index.htm>`__ (ALOS)
-using the `OpenTopography <https://opentopography.org/>`__ `REST
+elevation data using the
+`OpenTopography <https://opentopography.org/>`__ `REST
 API <https://portal.opentopography.org/apidocs/>`__.
 
 The *bmi-topography* library provides access to the following global
 raster datasets:
 
--  SRTM GL3 (90m)
--  SRTM GL1 (30m)
--  SRTM GL1 (30m, Ellipsoidal)
--  ALOS World 3D (30m)
--  ALOS World 3D (30m, Ellipsoidal)
+-  SRTMGL3 (SRTM GL3 90m)
+-  SRTMGL1 (SRTM GL1 30m)
+-  SRTMGL1_E (SRTM GL1 Ellipsoidal 30m)
+-  AW3D30 (ALOS World 3D 30m)
+-  AW3D30_E (ALOS World 3D Ellipsoidal, 30m)
+-  SRTM15Plus (Global Bathymetry SRTM15+ V2.1)
+-  NASADEM (NASADEM Global DEM)
+-  COP30 (Copernicus Global DSM 30m)
+-  COP90 (Copernicus Global DSM 90m)
 
 The library includes an API and a CLI that accept the dataset type, a
 latitude-longitude bounding box, and the output file format. Data are
@@ -76,13 +77,13 @@ API key
 
 To better understand usage, OpenTopography `requires an API
 key <https://opentopography.org/blog/introducing-api-keys-access-opentopography-global-datasets>`__
-to access datasets they host. Getting an API key is easy, and it’s free;
+to access datasets they host. Getting an API key is easy, and it’s free:
 just follow the instructions in the link above.
 
 Once you have an API key, there are three ways to use it with
 *bmi-topography*:
 
-1. *parameter*: Pass the API key as a string through the ``API_key``
+1. *parameter*: Pass the API key as a string through the ``api_key``
    parameter.
 2. *environment variable*: In the shell, set the
    ``OPENTOPOGRAPHY_API_KEY`` environment variable to the API key value.
@@ -209,5 +210,7 @@ https://bmi-topography.readthedocs.io.
    :target: https://pypi.org/project/bmi-topography
 .. |Build/Test CI| image:: https://github.com/csdms/bmi-topography/actions/workflows/build-test-ci.yml/badge.svg
    :target: https://github.com/csdms/bmi-topography/actions/workflows/build-test-ci.yml
+.. |Coverage Status| image:: https://coveralls.io/repos/github/csdms/bmi-topography/badge.svg?branch=main
+   :target: https://coveralls.io/github/csdms/bmi-topography?branch=main
 .. |Documentation Status| image:: https://readthedocs.org/projects/bmi-topography/badge/?version=latest
    :target: https://bmi-topography.readthedocs.io/en/latest/?badge=latest

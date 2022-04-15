@@ -77,6 +77,16 @@ def test_find_user_api_key_from_missing_file(tmpdir):
                 ApiKey.from_file()
 
 
+def test_default_to_demo_key(tmpdir):
+    """If a key can't be found, use the demo key"""
+    env = copy_environ(exclude="OPENTOPOGRAPHY_API_KEY")
+    with tmpdir.as_cwd():
+        with mock.patch.dict(os.environ, env, clear=True):
+            key = ApiKey.from_sources()
+            assert key.is_demo_key()
+            assert key.source == "demo"
+
+
 def test_read_first_missing(tmpdir):
     with tmpdir.as_cwd():
         assert find_first_of(["foo.txt"]) is None

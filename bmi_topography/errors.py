@@ -17,3 +17,10 @@ class BadKeyError(BmiTopographyError):
     """Raise for an invalid key."""
 
     pass
+
+
+class BadApiKeySource(BmiTopographyError):
+
+    """Raise for an invalid API key source."""
+
+    pass

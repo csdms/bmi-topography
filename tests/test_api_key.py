@@ -3,8 +3,8 @@ from unittest import mock
 
 import pytest
 
-from bmi_topography.api_key import ApiKey, find_first_of
-from bmi_topography.errors import BadKeyError, MissingKeyError
+from bmi_topography.api_key import ApiKey, _find_first_of
+from bmi_topography.errors import BadApiKeySource, BadKeyError, MissingKeyError
 
 
 def copy_environ(exclude=None):
@@ -28,6 +28,12 @@ def test_find_user_api_key_not_found():
 def test_bad_user_key(bad_key):
     with pytest.raises(BadKeyError):
         ApiKey(bad_key)
+
+
+@pytest.mark.parametrize("bad_source", [None, 0, 1, "", "not-a-source"])
+def test_bad_source(bad_source):
+    with pytest.raises(BadApiKeySource):
+        ApiKey("foobar", source=bad_source)
 
 
 @mock.patch.dict(os.environ, {"OPENTOPOGRAPHY_API_KEY": "foo"})
@@ -89,8 +95,8 @@ def test_default_to_demo_key(tmpdir):
 
 def test_read_first_missing(tmpdir):
     with tmpdir.as_cwd():
-        assert find_first_of(["foo.txt"]) is None
-        assert find_first_of([]) is None
+        assert _find_first_of(["foo.txt"]) is None
+        assert _find_first_of([]) is None
 
 
 def test_read_first_file(tmpdir):
@@ -100,12 +106,12 @@ def test_read_first_file(tmpdir):
         with open("bar.txt", "w") as fp:
             fp.write("bar")
 
-        assert find_first_of(["foo.txt", "bar.txt"]).name == "foo.txt"
-        assert find_first_of(["bar.txt", "foo.txt"]).name == "bar.txt"
+        assert _find_first_of(["foo.txt", "bar.txt"]).name == "foo.txt"
+        assert _find_first_of(["bar.txt", "foo.txt"]).name == "bar.txt"
 
 
 def test_use_demo_key_is_a_string():
-    key = ApiKey.from_demo()
+    key = ApiKey(ApiKey.DEMO_API_KEY, source="demo")
     assert len(key) > 0
     assert key.source == "demo"
     assert key.is_demo_key()
@@ -113,7 +119,7 @@ def test_use_demo_key_is_a_string():
 
 def test_use_demo_key_issues_warning():
     with pytest.warns(UserWarning):
-        ApiKey.from_demo()
+        ApiKey(ApiKey.DEMO_API_KEY)
 
 
 def test_api_key_repr():

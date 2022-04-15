@@ -79,11 +79,21 @@ class ApiKey:
     def __str__(self):
         return self.api_key
 
+    def __len__(self):
+        return len(self.api_key)
+
+    def __eq__(self, val):
+        try:
+            return self.api_key == val.api_key
+        except AttributeError:
+            return str(self) == val
+
 
 def find_first_of(files):
     found = None
     for path in (Path(name) for name in files):
         if path.expanduser().is_file():
             found = path.expanduser()
+            break
     return found
 

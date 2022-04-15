@@ -4,14 +4,7 @@ from typing import Tuple
 
 class BoundingBox:
 
-    """Represent a simple latitude-longiture bounding box.
-
-    Attributes
-    ----------
-    lower_left : tuple
-        The southwest corner of the box, given by (south, west)
-    upper_right : tuple
-        The northeast corner of the box, given by (north, east)
+    """Represent a simple latitude-longitude bounding box.
 
     Examples
     --------
@@ -78,10 +71,12 @@ class BoundingBox:
 
     @property
     def lower_left(self):
+        """The southwest corner of the box, given by tuple of *(south, west)*."""
         return self._lower_left
 
     @property
     def upper_right(self):
+        """The northeast corner of the box, given by tuple of *(north, east)*."""
         return self._upper_right
 
     @property

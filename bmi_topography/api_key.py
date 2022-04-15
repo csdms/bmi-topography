@@ -1,6 +1,9 @@
 import os
 import warnings
+from functools import partial
 from pathlib import Path
+
+from .errors import BadKeyError, MissingKeyError
 
 
 class ApiKey:
@@ -10,13 +13,18 @@ class ApiKey:
 
     def __init__(self, api_key, source="user"):
         if not isinstance(api_key, str) or len(api_key) == 0:
-            raise ValueError("invalid API key")
+            raise BadKeyError("invalid API key")
         self._api_key = api_key
         self._source = source
 
     @classmethod
     def from_env(cls):
-        return cls(os.environ.get(ApiKey.API_KEY_ENV_VAR, ""), source="env")
+        try:
+            api_key = os.environ[ApiKey.API_KEY_ENV_VAR]
+        except KeyError:
+            raise MissingKeyError(f"unable to find key ({ApiKey.API_KEY_ENV_VAR})")
+        else:
+            return cls(api_key, source="env")
 
     @classmethod
     def from_file(cls):
@@ -24,7 +32,9 @@ class ApiKey:
             with open(filepath, "r") as fp:
                 api_key = fp.read().strip()
         else:
-            api_key = ""
+            raise MissingKeyError(
+                f"unable to find key ({', '.join(ApiKey.API_KEY_FILES)})"
+            )
         return cls(api_key, source=f"file:{filepath}")
 
     @classmethod
@@ -33,14 +43,12 @@ class ApiKey:
 
     @classmethod
     def from_sources(cls, api_key=None):
-        if api_key:
-            return cls(api_key)
-        for from_source in [cls.from_env, cls.from_file, cls.from_demo]:
+        for from_source in [partial(cls, api_key), cls.from_env, cls.from_file]:
             try:
                 return from_source()
-            except ValueError:
+            except (BadKeyError, MissingKeyError):
                 pass
-        raise ValueError("unable to find an API key")
+        return cls.from_demo()
 
     @property
     def api_key(self):

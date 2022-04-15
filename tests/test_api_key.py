@@ -4,6 +4,7 @@ from unittest import mock
 import pytest
 
 from bmi_topography.api_key import ApiKey, find_first_of
+from bmi_topography.errors import BadKeyError, MissingKeyError
 
 
 def copy_environ(exclude=None):
@@ -19,8 +20,14 @@ def test_find_user_api_key_not_found():
     """The API key is not given anywhere"""
     env = copy_environ(exclude="OPENTOPOGRAPHY_API_KEY")
     with mock.patch.dict(os.environ, env, clear=True):
-        with pytest.raises(ValueError):
+        with pytest.raises(MissingKeyError):
             ApiKey.from_env()
+
+
+@pytest.mark.parametrize("bad_key", [None, 0, 1, ""])
+def test_bad_user_key(bad_key):
+    with pytest.raises(BadKeyError):
+        ApiKey(bad_key)
 
 
 @mock.patch.dict(os.environ, {"OPENTOPOGRAPHY_API_KEY": "foo"})
@@ -50,6 +57,26 @@ def test_find_user_api_key_from_file(tmpdir):
             assert key.source.endswith(".opentopography.txt")
 
 
+@mock.patch.dict(os.environ, {"OPENTOPOGRAPHY_API_KEY": "foo"})
+def test_find_user_api_key_from_user(tmpdir):
+    """The API key is in a file"""
+    env = copy_environ(exclude="OPENTOPOGRAPHY_API_KEY")
+    with tmpdir.as_cwd():
+        with mock.patch.dict(os.environ, env, clear=True):
+            key = ApiKey.from_sources(api_key="foobar")
+            assert key == "foobar"
+            assert key.source.startswith("user")
+
+
+def test_find_user_api_key_from_missing_file(tmpdir):
+    """The API key is in a file"""
+    env = copy_environ(exclude="OPENTOPOGRAPHY_API_KEY")
+    with tmpdir.as_cwd():
+        with mock.patch.dict(os.environ, env, clear=True):
+            with pytest.raises(MissingKeyError):
+                ApiKey.from_file()
+
+
 def test_read_first_missing(tmpdir):
     with tmpdir.as_cwd():
         assert find_first_of(["foo.txt"]) is None
@@ -71,8 +98,14 @@ def test_use_demo_key_is_a_string():
     key = ApiKey.from_demo()
     assert len(key) > 0
     assert key.source == "demo"
+    assert key.is_demo_key()
 
 
 def test_use_demo_key_issues_warning():
     with pytest.warns(UserWarning):
         ApiKey.from_demo()
+
+
+def test_api_key_repr():
+    key = ApiKey("foobar")
+    assert eval(repr(key)) == key

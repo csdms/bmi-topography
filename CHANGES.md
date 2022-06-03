@@ -1,6 +1,12 @@
 Changes for bmi-topography
 ==========================
 
+0.7.2 (unreleased)
+------------------
+
+- Nothing changed yet.
+
+
 0.7.1 (2022-06-03)
 ------------------
 

@@ -4,7 +4,7 @@ Changes for bmi-topography
 0.8 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Provide a better reason for 401 errors (#41)
 
 
 0.7 (2022-03-24)

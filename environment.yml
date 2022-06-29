@@ -26,5 +26,6 @@ dependencies:
   - pandoc
   - notebook
   - matplotlib
+  - build
   - pip:
     - zest.releaser

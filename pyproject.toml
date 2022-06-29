@@ -8,10 +8,6 @@ description = "Fetch and cache land elevation data from OpenTopography"
 authors = [
   {name = "Mark Piper", email = "mark.piper@colorado.edu"},
 ]
-maintainers = [
-  {name = "Mark Piper", email = "mark.piper@colorado.edu"},
-  {name = "Eric Hutton", email = "eric.hutton@colorado.edu"},
-]
 keywords = [
   "bmi",
   "srtm",
@@ -45,10 +41,10 @@ dependencies = [
 dynamic = ["readme", "version"]
 
 [project.urls]
-homepage = "https://github.com/csdms/bmi-topography"
-documentation = "https://bmi-topography.readthedocs.io/"
-repository = "https://github.com/csdms/bmi-topography"
-changelog = "https://github.com/csdms/bmi-topography/blob/main/CHANGES.md"
+Homepage = "https://github.com/csdms/bmi-topography"
+Documentation = "https://bmi-topography.readthedocs.io/"
+Repository = "https://github.com/csdms/bmi-topography"
+Changelog = "https://github.com/csdms/bmi-topography/blob/main/CHANGES.md"
 
 [project.optional-dependencies]
 testing = [

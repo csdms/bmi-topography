@@ -1,9 +1,78 @@
 [build-system]
-requires = [
-    "setuptools>=42",
-    "wheel"
-]
+requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "bmi-topography"
+description = "Fetch and cache land elevation data from OpenTopography"
+authors = [
+  {name = "Mark Piper", email = "mark.piper@colorado.edu"},
+]
+keywords = [
+  "bmi",
+  "srtm",
+  "alos",
+  "nasadem",
+  "copernicus",
+  "topography",
+  "elevation",
+  "dem",
+  "data",
+]
+license = {text = "MIT License"}
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Science/Research",
+  "Intended Audience :: Education",
+]
+requires-python = ">=3.7"
+dependencies = [
+  "requests",
+  "numpy",
+  "click",
+  "pyyaml",
+  "rasterio",
+  "xarray",
+  "bmipy",
+]
+dynamic = ["readme", "version"]
+
+[project.urls]
+Homepage = "https://github.com/csdms/bmi-topography"
+Documentation = "https://bmi-topography.readthedocs.io/"
+Repository = "https://github.com/csdms/bmi-topography"
+Changelog = "https://github.com/csdms/bmi-topography/blob/main/CHANGES.md"
+
+[project.optional-dependencies]
+testing = [
+  "black",
+  "flake8",
+  "isort >=5",
+  "pytest",
+  "pytest-cov",
+  "pytest-datadir",
+  "coveralls",
+]
+examples = [
+  "matplotlib",
+]
+
+[project.scripts]
+bmi-topography = "bmi_topography.cli:main"
+
+[tool.setuptools.dynamic]
+readme = {file = ["README.md", "CREDITS.md", "LICENSE.md"], content-type = "text/markdown"}
+version = {attr = "bmi_topography._version.__version__"}
+
+[tool.setuptools.packages.find]
+where = ["."]
+exclude = [
+  "bmi_topography.tests*",
+  "bmi_topography.examples*",
+]
 
 [tool.pytest.ini_options]
 minversion = "6.0"

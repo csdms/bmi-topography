@@ -70,7 +70,7 @@ Then build and install *bmi-topography* from source with
 
 ::
 
-   make install
+   pip install -e .
 
 API key
 -------

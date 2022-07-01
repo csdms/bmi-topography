@@ -34,8 +34,8 @@ dependencies = [
   "numpy",
   "click",
   "pyyaml",
-  "rasterio",
   "xarray",
+  "rioxarray",
   "bmipy",
 ]
 dynamic = ["readme", "version"]

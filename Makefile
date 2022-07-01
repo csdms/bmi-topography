@@ -67,7 +67,7 @@ coverage: ## check code coverage quickly with the default Python
 	pytest --cov --cov-report=html
 	$(BROWSER) htmlcov/index.html
 
-docs: ## generate Sphinx HTML documentation, including API docs and link check
+docs: install ## generate Sphinx HTML documentation, including API docs and link check
 	rm -f docs/source/api/bmi_topography.rst
 	rm -f docs/source/api/modules.rst
 	sphinx-apidoc -o docs/source/api bmi_topography

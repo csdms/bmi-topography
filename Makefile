@@ -57,7 +57,7 @@ lint: ## check style with flake8
 pretty: ## reformat files to make them look pretty
 	black bmi_topography tests docs examples
 
-test: ## run tests quickly with the default Python
+test: install ## run tests quickly with the default Python
 	pytest --disable-warnings --cov=bmi_topography --cov-config=./setup.cfg --cov-report=xml:./coverage.xml -vvv
 
 bmi-test: ## run the bmi-tester

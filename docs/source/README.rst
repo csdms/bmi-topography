@@ -28,9 +28,8 @@ downloaded from OpenTopography and cached locally. The cache is checked
 before downloading new data. Data from a cached file can optionally be
 loaded into an `xarray <http://xarray.pydata.org/en/stable/>`__
 `DataArray <http://xarray.pydata.org/en/stable/api.html#dataarray>`__
-using the experimental
-`open_rasterio <http://xarray.pydata.org/en/stable/generated/xarray.open_rasterio.html#xarray.open_rasterio>`__
-method.
+through
+`rioxarray <https://corteva.github.io/rioxarray/stable/getting_started/getting_started.html>`__.
 
 The *bmi-topography* API is wrapped with a `Basic Model
 Interface <https://bmi.readthedocs.io>`__ (BMI), which provides a
@@ -160,20 +159,39 @@ Load the data into an xarray ``DataArray`` for further work:
            [2181, 2170, ..., 1764, 1763],
            [2184, 2179, ..., 1773, 1769]]], dtype=int16)
    Coordinates:
-     * band     (band) int64 1
-     * y        (y) float64 40.0 40.0 40.0 40.0 40.0 ... 39.93 39.93 39.93 39.93
-     * x        (x) float64 -105.3 -105.3 -105.3 -105.3 ... -105.3 -105.3 -105.3
+     * band         (band) int64 1
+     * x            (x) float64 -105.3 -105.3 -105.3 ... -105.3 -105.3 -105.3
+     * y            (y) float64 40.0 40.0 40.0 40.0 ... 39.93 39.93 39.93 39.93
+       spatial_ref  int64 0
    Attributes:
-       transform:      (0.000833333333333144, 0.0, -105.33041666668363, 0.0, -0....
-       crs:            +init=epsg:4326
-       res:            (0.000833333333333144, 0.000833333333333144)
-       is_tiled:       1
-       nodatavals:     (0.0,)
-       scales:         (1.0,)
-       offsets:        (0.0,)
-       AREA_OR_POINT:  Area
-       units:          meters
-       location:       node
+       _FillValue:    0.0
+       scale_factor:  1.0
+       add_offset:    0.0
+       units:         meters
+       location:      node
+
+Note that coordinate reference system information is stored in the
+``spatial_ref`` non-dimension coordinate:
+
+.. code:: python
+
+   >>> boulder.da.spatial_ref
+   <xarray.DataArray 'spatial_ref' ()>
+   array(0)
+   Coordinates:
+       spatial_ref  int64 0
+   Attributes:
+       crs_wkt:                      GEOGCS["WGS 84",DATUM["WGS_1984",SPHEROID["...
+       semi_major_axis:              6378137.0
+       semi_minor_axis:              6356752.314245179
+       inverse_flattening:           298.257223563
+       reference_ellipsoid_name:     WGS 84
+       longitude_of_prime_meridian:  0.0
+       prime_meridian_name:          Greenwich
+       geographic_crs_name:          WGS 84
+       grid_mapping_name:            latitude_longitude
+       spatial_ref:                  GEOGCS["WGS 84",DATUM["WGS_1984",SPHEROID["...
+       GeoTransform:                 -105.33041666668363 0.000833333333333144 0....
 
 Display the elevations with the default xarray ``DataArray``
 `plot <https://xarray.pydata.org/en/stable/generated/xarray.plot.plot.html>`__

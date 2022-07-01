@@ -10,7 +10,7 @@ dependencies:
   - click
   - pyyaml
   - xarray
-  - rasterio
+  - rioxarray
   - bmipy
   - make
   - black

@@ -57,7 +57,7 @@ lint: ## check style with flake8
 pretty: ## reformat files to make them look pretty
 	black bmi_topography tests docs examples
 
-test: ## run tests quickly with the default Python
+test: install ## run tests quickly with the default Python
 	pytest --disable-warnings --cov=bmi_topography --cov-config=./setup.cfg --cov-report=xml:./coverage.xml -vvv
 
 bmi-test: ## run the bmi-tester
@@ -67,7 +67,7 @@ coverage: ## check code coverage quickly with the default Python
 	pytest --cov --cov-report=html
 	$(BROWSER) htmlcov/index.html
 
-docs: ## generate Sphinx HTML documentation, including API docs and link check
+docs: install ## generate Sphinx HTML documentation, including API docs and link check
 	rm -f docs/source/api/bmi_topography.rst
 	rm -f docs/source/api/modules.rst
 	sphinx-apidoc -o docs/source/api bmi_topography

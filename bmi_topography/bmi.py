@@ -657,10 +657,15 @@ class BmiTopography(Bmi):
             self._config = Topography.DEFAULT.copy()
         self._da = Topography(**self._config).load()
 
+        geotransform = list(map(float, self._da.spatial_ref.GeoTransform.split(" ")))
+
         self._grid = {
             0: BmiGridUniformRectilinear(
                 shape=(self._da.sizes["y"], self._da.sizes["x"]),
-                yx_spacing=self._da.res,
+                yx_spacing=(
+                    abs(geotransform[-1]),
+                    abs(geotransform[1]),
+                ),
                 yx_of_lower_left=(
                     float(self._da.y.min().data),
                     float(self._da.x.min().data),

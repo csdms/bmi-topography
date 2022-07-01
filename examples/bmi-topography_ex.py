@@ -14,5 +14,7 @@ boulder = Topography(**params)
 boulder.fetch()
 boulder.load()
 
+boulder.da.spatial_ref
+
 boulder.da.plot()
 plt.show()

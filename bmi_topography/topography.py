@@ -4,7 +4,7 @@ import urllib
 from pathlib import Path
 
 import requests
-import xarray as xr
+import rioxarray
 
 from .api_key import ApiKey
 from .bbox import BoundingBox
@@ -172,7 +172,7 @@ class Topography:
             xarray.DataArray: A container for the data
         """
         if self._da is None:
-            self._da = xr.open_rasterio(self.fetch())
+            self._da = rioxarray.open_rasterio(self.fetch())
             self._da.name = self.dem_type
             self._da.attrs["units"] = "meters"
             self._da.attrs["location"] = "node"

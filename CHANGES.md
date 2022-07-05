@@ -4,7 +4,8 @@ Changes for bmi-topography
 0.7.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Switch from xarray to rioxarray (#45)
+- Move metadata from setup.cfg to pyproject.toml (#44)
 
 
 0.7.1 (2022-06-03)

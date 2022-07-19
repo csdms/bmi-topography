@@ -69,10 +69,7 @@ version = {attr = "bmi_topography._version.__version__"}
 
 [tool.setuptools.packages.find]
 where = ["."]
-exclude = [
-  "bmi_topography.tests*",
-  "bmi_topography.examples*",
-]
+include = ["bmi_topography*"]
 
 [tool.pytest.ini_options]
 minversion = "6.0"

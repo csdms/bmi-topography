@@ -1,6 +1,7 @@
 include *.md
+include *.cff
 include environment.yml
 include Makefile
-recursive-include examples *
-recursive-exclude docs *
-recursive-exclude tests *
+include examples/*
+recursive-include tests *
+recursive-include docs *

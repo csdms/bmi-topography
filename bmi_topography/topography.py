@@ -175,6 +175,6 @@ class Topography:
             self._da = rioxarray.open_rasterio(self.fetch())
             self._da.name = self.dem_type
             self._da.attrs["units"] = "meters"
-            self._da.attrs["location"] = "node"
+            self._da.attrs["location"] = "face"
 
         return self._da

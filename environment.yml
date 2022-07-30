@@ -11,6 +11,7 @@ dependencies:
   - pyyaml
   - xarray
   - rioxarray
+  - pyproj
   - bmipy
   - make
   - black

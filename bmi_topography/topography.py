@@ -175,6 +175,8 @@ class Topography:
         if self._da is None:
             self._da = rioxarray.open_rasterio(self.fetch())
             self._da.name = self.dem_type
-            self._da.attrs["units"] = CRS(self._da.spatial_ref.crs_wkt).prime_meridian.unit_name
+            self._da.attrs["units"] = CRS(
+                self._da.spatial_ref.crs_wkt
+            ).prime_meridian.unit_name
 
         return self._da

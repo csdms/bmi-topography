@@ -5,6 +5,7 @@ from pathlib import Path
 
 import requests
 import rioxarray
+from pyproj import CRS
 
 from .api_key import ApiKey
 from .bbox import BoundingBox
@@ -12,7 +13,7 @@ from .bbox import BoundingBox
 
 class Topography:
 
-    """Fetch and cache NASA SRTM land elevation data."""
+    """Fetch and cache land elevation data from OpenTopography."""
 
     SCHEME = "https"
     NETLOC = "portal.opentopography.org"
@@ -174,7 +175,6 @@ class Topography:
         if self._da is None:
             self._da = rioxarray.open_rasterio(self.fetch())
             self._da.name = self.dem_type
-            self._da.attrs["units"] = "meters"
-            self._da.attrs["location"] = "face"
+            self._da.attrs["units"] = CRS(self._da.spatial_ref.crs_wkt).prime_meridian.unit_name
 
         return self._da

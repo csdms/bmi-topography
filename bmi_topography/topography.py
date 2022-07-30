@@ -5,7 +5,7 @@ from pathlib import Path
 
 import requests
 import rioxarray
-from pyproj import CRS
+from rasterio.crs import CRS
 
 from .api_key import ApiKey
 from .bbox import BoundingBox
@@ -175,8 +175,11 @@ class Topography:
         if self._da is None:
             self._da = rioxarray.open_rasterio(self.fetch())
             self._da.name = self.dem_type
-            self._da.attrs["units"] = CRS(
-                self._da.spatial_ref.crs_wkt
-            ).prime_meridian.unit_name
+
+            crs = CRS.from_wkt(self._da.spatial_ref.crs_wkt)
+            if crs.is_geographic:
+                self._da.attrs["units"] = "degrees"
+            else:
+                self._da.attrs["units"] = crs.linear_units
 
         return self._da

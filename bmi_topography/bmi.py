@@ -661,8 +661,8 @@ class BmiTopography(Bmi):
             0: BmiGridUniformRectilinear(
                 shape=self._da.rio.shape,
                 yx_spacing=(
-                    self._da.rio.transform().e,
-                    self._da.rio.transform().a,
+                    abs(self._da.rio.transform().e),
+                    abs(self._da.rio.transform().a),
                 ),
                 yx_of_lower_left=(
                     float(self._da.y.min().data),

@@ -105,3 +105,4 @@ def test_load(tmpdir, shared_datadir):
         )
         topo.load()
         assert topo.da is not None
+        assert topo.da.attrs["units"] == "degrees"

@@ -8,6 +8,10 @@ description = "Fetch and cache land elevation data from OpenTopography"
 authors = [
   {name = "Mark Piper", email = "mark.piper@colorado.edu"},
 ]
+maintainers = [
+  {name = "Mark Piper", email = "mark.piper@colorado.edu"},
+  {name = "Eric Hutton", email = "eric.hutton@colorado.edu"},
+]
 keywords = [
   "bmi",
   "srtm",

@@ -67,6 +67,11 @@ testing = [
   "pytest-datadir",
   "coveralls",
 ]
+docs = [
+  "sphinx",
+  "recommonmark",
+  "pandoc",
+]
 examples = [
   "matplotlib",
 ]

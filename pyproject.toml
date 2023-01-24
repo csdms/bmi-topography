@@ -8,6 +8,10 @@ description = "Fetch and cache land elevation data from OpenTopography"
 authors = [
   {name = "Mark Piper", email = "mark.piper@colorado.edu"},
 ]
+maintainers = [
+  {name = "Mark Piper", email = "mark.piper@colorado.edu"},
+  {name = "Eric Hutton", email = "eric.hutton@colorado.edu"},
+]
 keywords = [
   "bmi",
   "srtm",
@@ -47,14 +51,26 @@ Repository = "https://github.com/csdms/bmi-topography"
 Changelog = "https://github.com/csdms/bmi-topography/blob/main/CHANGES.md"
 
 [project.optional-dependencies]
-testing = [
+dev = [
   "black",
   "flake8",
-  "isort >=5",
+  "isort",
+]
+build = [
+  "build",
+  "twine",
+  "zest.releaser"
+]
+testing = [
   "pytest",
   "pytest-cov",
   "pytest-datadir",
   "coveralls",
+]
+docs = [
+  "sphinx",
+  "recommonmark",
+  "pandoc",
 ]
 examples = [
   "matplotlib",

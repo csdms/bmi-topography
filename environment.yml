@@ -27,5 +27,6 @@ dependencies:
   - notebook
   - matplotlib
   - build
+  - twine
   - pip:
     - zest.releaser

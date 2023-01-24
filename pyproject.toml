@@ -51,10 +51,17 @@ Repository = "https://github.com/csdms/bmi-topography"
 Changelog = "https://github.com/csdms/bmi-topography/blob/main/CHANGES.md"
 
 [project.optional-dependencies]
-testing = [
+dev = [
   "black",
   "flake8",
-  "isort >=5",
+  "isort",
+]
+build = [
+  "build",
+  "twine",
+  "zest.releaser"
+]
+testing = [
   "pytest",
   "pytest-cov",
   "pytest-datadir",

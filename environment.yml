@@ -28,5 +28,4 @@ dependencies:
   - matplotlib
   - build
   - twine
-  - pip:
-    - zest.releaser
+  - zest.releaser

@@ -1,5 +1,6 @@
 """Test Topography class"""
 import os
+
 import pytest
 
 from bmi_topography import Topography

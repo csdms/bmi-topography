@@ -23,5 +23,8 @@ jobs:
       - name: Install nox
         run: pip install nox
 
+      - name: Install pandoc  # pandoc doesn't install correctly through pip
+        run: conda install -c conda-forge pandoc
+
       - name: Build documentation
         run: nox -s build-docs

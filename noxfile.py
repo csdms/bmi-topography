@@ -58,7 +58,7 @@ def format(session: nox.Session) -> None:
 def build_docs(session: nox.Session) -> None:
     """Build the docs."""
     session.install(".[docs]")
-    session.run("sphinx-apidoc", "-o", "docs/source/api", PACKAGE)
+    session.run("sphinx-apidoc", "-f", "-o", "docs/source/api", PACKAGE)
     session.run(
         "pandoc", "--to", "rst", "README.md", "--output", "docs/source/README.rst"
     )

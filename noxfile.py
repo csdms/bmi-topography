@@ -59,7 +59,9 @@ def build_docs(session: nox.Session) -> None:
     """Build the docs."""
     session.install(".[docs]")
     session.run("sphinx-apidoc", "-o", "docs/source/api", PACKAGE)
-    session.run("pandoc", "--to", "rst", "README.md", "--output", "docs/source/README.rst")
+    session.run(
+        "pandoc", "--to", "rst", "README.md", "--output", "docs/source/README.rst"
+    )
     session.run("make", "-C", "docs", "clean")
     session.run("make", "-C", "docs", "html")
     session.run("make", "-C", "docs", "linkcheck")

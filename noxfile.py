@@ -54,7 +54,15 @@ def format(session: nox.Session) -> None:
     session.run("flake8", *PATHS)
 
 
-# TODO: Need session for building docs.
+@nox.session(name="build-docs")
+def build_docs(session: nox.Session) -> None:
+    """Build the docs."""
+    session.install(".[docs]")
+    session.run("sphinx-apidoc", "-o", "docs/source/api", PACKAGE)
+    session.run("pandoc", "--to", "rst", "README.md", "--output", "docs/source/README.rst")
+    session.run("make", "-C", "docs", "clean")
+    session.run("make", "-C", "docs", "html")
+    session.run("make", "-C", "docs", "linkcheck")
 
 
 @nox.session
@@ -106,6 +114,7 @@ def clean(session):
     """Remove virtual environments, build files, and caches."""
     shutil.rmtree("build", ignore_errors=True)
     shutil.rmtree("dist", ignore_errors=True)
+    shutil.rmtree("docs/build", ignore_errors=True)
     shutil.rmtree(f"{PACKAGE}.egg-info", ignore_errors=True)
     shutil.rmtree(".pytest_cache", ignore_errors=True)
     shutil.rmtree(".venv", ignore_errors=True)

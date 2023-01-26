@@ -13,15 +13,28 @@ PATHS = [PACKAGE, "docs", "examples", "tests", HERE.name]
 PYTHON_VERSIONS = ["3.9", "3.10", "3.11"]
 
 
-# TODO: Add option to test session to skip downloads.
-
-
 @nox.session(python=PYTHON_VERSIONS)
 def test(session: nox.Session) -> None:
     """Run the tests."""
     session.install(".[testing]")
     args = session.posargs or ["--cov", "--cov-report=term", "-vvv"]
     session.run("pytest", *args)
+
+
+@nox.session(name="test-bmi", python=PYTHON_VERSIONS, venv_backend="conda")
+def test_bmi(session: nox.Session) -> None:
+    """Test the Basic Model Interface."""
+    session.conda_install("bmi-tester", "pymt")
+    session.install(".")
+    session.run(
+        "bmi-test",
+        "bmi_topography:BmiTopography",
+        "--config-file",
+        "./examples/config.yaml",
+        "--root-dir",
+        "./examples",
+        "-vvv",
+    )
 
 
 @nox.session(name="test-cli", python=PYTHON_VERSIONS)

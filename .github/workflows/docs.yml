@@ -20,11 +20,9 @@ jobs:
           python-version: 3.11
           auto-activate-base: false
 
-      - name: Install nox
-        run: pip install nox
-
-      - name: Install pandoc  # pandoc doesn't install correctly through pip
-        run: conda install -c conda-forge pandoc
-
       - name: Build documentation
-        run: nox -s build-docs
+        run: |
+          conda install -c conda-forge --file docs/source/requirements.txt
+          pip install -e .
+          make -C docs html
+          make -C docs linkcheck

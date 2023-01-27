@@ -20,12 +20,8 @@ jobs:
           python-version: 3.11
           auto-activate-base: false
 
-      - uses: psf/black@stable
-        with:
-          options: "--check --verbose --diff"
-          src: "bmi_topography docs examples tests noxfile.py"
+      - name: Install nox
+        run: pip install nox
 
-      - name: Lint code
-        run: |
-          pip install flake8
-          flake8 bmi_topography docs examples tests noxfile.py
+      - name: Format code
+        run: nox -s format -- --check --verbose --diff

@@ -20,9 +20,8 @@ jobs:
           python-version: 3.11
           auto-activate-base: false
 
+      - name: Install dependencies
+        run: pip install nox
+
       - name: Build documentation
-        run: |
-          conda install -c conda-forge --file docs/source/requirements.txt
-          pip install -e .
-          make -C docs html
-          make -C docs linkcheck
+        run: nox -s build-docs

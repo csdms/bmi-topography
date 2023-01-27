@@ -72,7 +72,6 @@ docs = [
   "sphinx",
   "recommonmark",
   "pandoc",
-  "make",
 ]
 examples = [
   "matplotlib",

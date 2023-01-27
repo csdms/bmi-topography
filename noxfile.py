@@ -54,17 +54,24 @@ def format(session: nox.Session) -> None:
     session.run("flake8", *PATHS)
 
 
-@nox.session(name="build-docs")
-def build_docs(session: nox.Session) -> None:
-    """Build the docs."""
+@nox.session(name="prepare-docs")
+def prepare_docs(session: nox.Session) -> None:
+    """Update docs source before building."""
     session.install(".[docs]")
     session.run("sphinx-apidoc", "-f", "-o", "docs/source/api", PACKAGE)
     session.run(
         "pandoc", "--to", "rst", "README.md", "--output", "docs/source/README.rst"
     )
-    session.run("make", "-C", "docs", "clean")
-    session.run("make", "-C", "docs", "html")
-    session.run("make", "-C", "docs", "linkcheck")
+
+
+@nox.session(name="build-docs")
+def build_docs(session: nox.Session) -> None:
+    """Build the docs."""
+    session.install(".[docs]")
+    session.chdir("docs")
+    if os.path.exists("build"):
+        shutil.rmtree("build")
+    session.run("sphinx-build", "-b", "html", "-W", "source", "build/html")
 
 
 @nox.session

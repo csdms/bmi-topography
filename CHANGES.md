@@ -1,7 +1,7 @@
 Changes for bmi-topography
 ==========================
 
-0.8.1 (unreleased)
+## 0.8.1 (2023-01-27)
 ------------------
 
 - Run test CI on Windows with Python 3.10 (#52)

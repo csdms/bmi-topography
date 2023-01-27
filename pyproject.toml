@@ -55,6 +55,7 @@ dev = [
   "black",
   "flake8",
   "isort",
+  "nox",
 ]
 build = [
   "build",

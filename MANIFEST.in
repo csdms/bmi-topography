@@ -1,7 +1,9 @@
 include *.md
 include *.cff
 include environment.yml
-include Makefile
+include noxfile.py
 include examples/*
 recursive-include tests *
-recursive-include docs *
+
+exclude .readthedocs.yaml
+recursive-exclude docs *

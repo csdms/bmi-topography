@@ -12,10 +12,10 @@ dependencies:
   - xarray
   - rioxarray
   - bmipy
-  - make
   - black
   - flake8
-  - isort >=5
+  - isort
+  - nox
   - pytest
   - pytest-cov
   - pytest-datadir
@@ -28,5 +28,4 @@ dependencies:
   - matplotlib
   - build
   - twine
-  - pip:
-    - zest.releaser
+  - zest.releaser

@@ -4,7 +4,11 @@ Changes for bmi-topography
 0.8.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Run test CI on Windows with Python 3.10 (#52)
+- Use nox instead of make for building and testing project (#51)
+- Update project metadata files (#50)
+- Use rio accessor for geospatial information (#47)
+- Update contents of source and binary distributions (#46)
 
 
 0.8 (2022-07-05)

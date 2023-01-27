@@ -51,5 +51,5 @@ jobs:
           bmi-test bmi_topography:BmiTopography --config-file=./examples/config.yaml --root-dir=./examples -vvv
 
       - name: Coveralls
-        if: matrix.os == 'ubuntu-latest' && matrix.python-version == "3.11"
+        if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.11'
         uses: AndreMiras/coveralls-python-action@v20201129

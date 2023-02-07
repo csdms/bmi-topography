@@ -1,7 +1,13 @@
 Changes for bmi-topography
 ==========================
 
-## 0.8.2 (2023-02-06)
+0.8.3 (unreleased)
+---------------------
+
+- Nothing changed yet.
+
+
+0.8.2 (2023-02-06)
 ------------------
 
 - Fix problem getting CRS info for AAIGrid type (#53)

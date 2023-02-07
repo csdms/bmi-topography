@@ -73,12 +73,21 @@ def test_cached_data(tmpdir, shared_datadir):
         assert len(tmpdir.listdir(fil=lambda f: f.ext == ".tif")) == 0
 
 
+def test_fetch_load_default(tmpdir):
+    with tmpdir.as_cwd():
+        topo = Topography(**Topography.DEFAULT)
+        topo.fetch()
+        topo.load()
+        assert topo.da is not None
+        assert topo.da.attrs["units"] == "degrees"
+
+
 @pytest.mark.skipif("NO_FETCH" in os.environ, reason="NO_FETCH is set")
 @pytest.mark.parametrize("dem_type", Topography.VALID_DEM_TYPES)
 @pytest.mark.parametrize(
     "output_format,file_type", Topography.VALID_OUTPUT_FORMATS.items()
 )
-def test_fetch(tmpdir, dem_type, output_format, file_type):
+def test_fetch_load(tmpdir, dem_type, output_format, file_type):
     with tmpdir.as_cwd():
         topo = Topography(
             dem_type=dem_type,
@@ -92,18 +101,7 @@ def test_fetch(tmpdir, dem_type, output_format, file_type):
         topo.fetch()
         assert len(tmpdir.listdir(fil=lambda f: f.ext == "." + file_type)) == 1
 
-
-def test_load(tmpdir, shared_datadir):
-    with tmpdir.as_cwd():
-        topo = Topography(
-            dem_type=Topography.DEFAULT["dem_type"],
-            output_format=Topography.DEFAULT["output_format"],
-            south=Topography.DEFAULT["south"],
-            west=Topography.DEFAULT["west"],
-            north=Topography.DEFAULT["north"],
-            east=Topography.DEFAULT["east"],
-            cache_dir=shared_datadir,
-        )
         topo.load()
         assert topo.da is not None
-        assert topo.da.attrs["units"] == "degrees"
+        assert topo.da.name == dem_type
+        assert topo.da.attrs["units"] is not None

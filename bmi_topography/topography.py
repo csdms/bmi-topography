@@ -1,11 +1,13 @@
 """Base class to access elevation data"""
 import os
 import urllib
+import warnings
 from pathlib import Path
 
 import requests
 import rioxarray
 from rasterio.crs import CRS
+from rasterio.errors import CRSError
 
 from .api_key import ApiKey
 from .bbox import BoundingBox
@@ -176,10 +178,18 @@ class Topography:
             self._da = rioxarray.open_rasterio(self.fetch())
             self._da.name = self.dem_type
 
-            crs = CRS.from_wkt(self._da.spatial_ref.crs_wkt)
-            if crs.is_geographic:
-                self._da.attrs["units"] = "degrees"
+            self._da.attrs["units"] = "unknown"
+            try:
+                crs = CRS.from_wkt(self._da.spatial_ref.crs_wkt)
+            except (AttributeError, CRSError):
+                warnings.warn(
+                    "A CRS cannot be identified for these data. "
+                    "Grid units will be set to 'unknown'."
+                )
             else:
-                self._da.attrs["units"] = crs.linear_units
+                if crs.is_geographic:
+                    self._da.attrs["units"] = "degrees"
+                else:
+                    self._da.attrs["units"] = crs.linear_units
 
         return self._da

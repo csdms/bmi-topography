@@ -17,14 +17,25 @@ PYTHON_VERSIONS = ["3.9", "3.10", "3.11"]
 def test(session: nox.Session) -> None:
     """Run the tests."""
     session.install(".[testing]")
-    args = session.posargs or ["--cov", "--cov-report=term", "-vvv"]
+
+    args = [
+        "--cov",
+        PACKAGE,
+        "-vvv",
+    ] + session.posargs
+
+    if "CI" in os.environ:
+        args.append(f"--cov-report=xml:{ROOT.absolute()!s}/coverage.xml")
     session.run("pytest", *args)
+
+    if "CI" not in os.environ:
+        session.run("coverage", "report", "--ignore-errors", "--show-missing")
 
 
 @nox.session(name="test-bmi", python=PYTHON_VERSIONS, venv_backend="conda")
 def test_bmi(session: nox.Session) -> None:
     """Test the Basic Model Interface."""
-    session.conda_install("bmi-tester", "pymt")
+    session.conda_install("bmi-tester", "pymt>=1.3")
     session.install(".")
     session.run(
         "bmi-test",

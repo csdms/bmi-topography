@@ -66,6 +66,7 @@ testing = [
   "pytest",
   "pytest-cov",
   "pytest-datadir",
+  "coverage[toml]",
   "coveralls",
 ]
 docs = [
@@ -112,3 +113,6 @@ include_trailing_comma = true
 force_grid_wrap = 0
 combine_as_imports = true
 line_length = 88
+
+[tool.coverage.run]
+relative_files = true

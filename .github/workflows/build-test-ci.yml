@@ -43,12 +43,12 @@ jobs:
         env:
           OPENTOPOGRAPHY_API_KEY: ${{ secrets.OPENTOPOGRAPHY_API_KEY }}
         run: |
-          pytest --cov=bmi_topography --cov-report=xml:./coverage.xml --cov-config=./setup.cfg -vvv
+          nox -s test --python ${{ matrix.python-version }}
 
       - name: Test BMI
         if: ${{ matrix.python-version == '3.9' }}  # stuck at py39 pending pymt update
         run: |
-          bmi-test bmi_topography:BmiTopography --config-file=./examples/config.yaml --root-dir=./examples -vvv
+          nox -s test-bmi --python ${{ matrix.python-version }}
 
       - name: Coveralls
         if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.11'

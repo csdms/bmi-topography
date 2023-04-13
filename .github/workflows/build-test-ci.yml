@@ -39,9 +39,18 @@ jobs:
       - name: Install package
         run: pip install -e .
 
-      - name: Test
+      - name: Test latest Python version
         env:
           OPENTOPOGRAPHY_API_KEY: ${{ secrets.OPENTOPOGRAPHY_API_KEY }}
+        if: ${{ matrix.python-version == '3.11' }}
+        run: |
+          nox -s test --python ${{ matrix.python-version }}
+
+      - name: Test older Python versions
+        env:
+          OPENTOPOGRAPHY_API_KEY: ${{ secrets.OPENTOPOGRAPHY_API_KEY }}
+          NO_FETCH: 1
+        if: ${{ matrix.python-version != '3.11' }}
         run: |
           nox -s test --python ${{ matrix.python-version }}
 

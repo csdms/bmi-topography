@@ -2,7 +2,7 @@ Changes for bmi-topography
 ==========================
 
 0.8.3 (unreleased)
----------------------
+------------------
 
 - Nothing changed yet.
 

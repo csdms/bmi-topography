@@ -4,7 +4,7 @@ Changes for bmi-topography
 0.8.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Update citation file to cff 1.2.0
 
 
 0.8.2 (2023-02-06)

@@ -1,8 +1,7 @@
 cff-version: 1.2.0
 title: "CSDMS Topography data component"
 message: >-
-  If you use this software, please cite it using the
-  metadata from this file.
+  If you use this software, please cite it as below.
 type: software
 authors:
   - family-names: Piper
@@ -11,12 +10,6 @@ authors:
   - family-names: Hutton
     given-names: Eric
     orcid: 'https://orcid.org/0000-0002-5864-6459'
-identifiers:
-  - type: doi
-    value: 10.5281/zenodo.8327417
-    description: >-
-      CSDMS Topography data component: 2023.1
-repository-code: 'https://github.com/csdms/bmi-topography'
 url: 'https://github.com/csdms/bmi-topography'
 abstract: >-
   Fetch and cache land elevation data from OpenTopography through an API, BMI,
@@ -32,4 +25,5 @@ keywords:
   - nasadem
 license: MIT License
 version: 0.8.2
+doi: 10.5281/zenodo.8327417
 date-released: 2023-09-07

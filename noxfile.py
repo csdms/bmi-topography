@@ -26,7 +26,7 @@ def test(session: nox.Session) -> None:
 
     if "CI" in os.environ:
         args.append(f"--cov-report=xml:{ROOT.absolute()!s}/coverage.xml")
-        args.append(f"--cov-config={ROOT.absolute()!s}/setup.cfg")
+        args.append(f"--cov-config={ROOT.absolute()!s}/pyproject.toml")
     session.run("pytest", *args)
 
     if "CI" not in os.environ:

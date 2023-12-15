@@ -81,14 +81,14 @@ development.
     Now you can make your changes locally.
 
 5.  When you're done making changes, check that your changes pass
-    flake8 and the tests:
+    ruff and the tests:
 
     ``` {.shell}
     $ make lint
     $ make test
     ```
 
-    Both flake8 and pytest are included in the environment.
+    Both ruff and pytest are included in the environment.
 
 6.  Commit your changes and push your branch to GitHub:
 

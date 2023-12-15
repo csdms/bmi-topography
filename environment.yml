@@ -13,7 +13,7 @@ dependencies:
   - rioxarray
   - bmipy
   - black
-  - flake8
+  - ruff
   - isort
   - nox
   - pytest

@@ -69,7 +69,7 @@ def format(session: nox.Session) -> None:
 
     session.run("black", *black_args, *PATHS)
     session.run("isort", *PATHS)
-    session.run("flake8", *PATHS)
+    session.run("ruff", *PATHS)
 
 
 @nox.session(name="prepare-docs")

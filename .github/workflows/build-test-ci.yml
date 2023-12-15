@@ -17,7 +17,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
-        python-version: ["3.9", "3.10", "3.11"]
+        python-version: ["3.9", "3.10", "3.11", "3.12"]
 
     steps:
       - uses: actions/checkout@v4
@@ -42,7 +42,7 @@ jobs:
       - name: Test latest Python version
         env:
           OPENTOPOGRAPHY_API_KEY: ${{ secrets.OPENTOPOGRAPHY_API_KEY }}
-        if: ${{ matrix.python-version == '3.11' }}
+        if: ${{ matrix.python-version == '3.12' }}
         run: |
           nox -s test --python ${{ matrix.python-version }}
 
@@ -50,7 +50,7 @@ jobs:
         env:
           OPENTOPOGRAPHY_API_KEY: ${{ secrets.OPENTOPOGRAPHY_API_KEY }}
           NO_FETCH: 1
-        if: ${{ matrix.python-version != '3.11' }}
+        if: ${{ matrix.python-version != '3.12' }}
         run: |
           nox -s test --python ${{ matrix.python-version }}
 
@@ -60,5 +60,5 @@ jobs:
           nox -s test-bmi --python ${{ matrix.python-version }}
 
       - name: Coveralls
-        if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.11'
+        if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.12'
         uses: AndreMiras/coveralls-python-action@develop

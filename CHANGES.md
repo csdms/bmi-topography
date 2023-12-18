@@ -4,7 +4,10 @@ Changes for bmi-topography
 0.8.3 (unreleased)
 ------------------
 
-- Update citation file to cff 1.2.0
+- Build and test with Python 3.12 (#60)
+- Remove setuptools files in favor of pyproject.toml (#59)
+- Fix failing docs build (#58)
+- Use nox in CI testing (#54)
 
 
 0.8.2 (2023-02-06)

@@ -1,6 +1,12 @@
 Changes for bmi-topography
 ==========================
 
+## 0.8.4 (unreleased)
+---------------------
+
+- Nothing changed yet.
+
+
 ## 0.8.3 (2023-12-18)
 ------------------
 

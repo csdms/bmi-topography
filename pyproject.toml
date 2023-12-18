@@ -22,17 +22,22 @@ keywords = [
   "elevation",
   "dem",
   "data",
+  "csdms",
 ]
 license = {text = "MIT License"}
 classifiers = [
   "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
   "License :: OSI Approved :: MIT License",
   "Operating System :: OS Independent",
   "Intended Audience :: Developers",
   "Intended Audience :: Science/Research",
   "Intended Audience :: Education",
 ]
-requires-python = ">=3.7"
+requires-python = ">=3.9"
 dependencies = [
   "requests",
   "numpy",
@@ -45,7 +50,7 @@ dependencies = [
 dynamic = ["readme", "version"]
 
 [project.urls]
-Homepage = "https://github.com/csdms/bmi-topography"
+Homepage = "https://csdms.colorado.edu"
 Documentation = "https://bmi-topography.readthedocs.io/"
 Repository = "https://github.com/csdms/bmi-topography"
 Changelog = "https://github.com/csdms/bmi-topography/blob/main/CHANGES.md"

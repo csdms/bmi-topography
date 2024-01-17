@@ -41,6 +41,8 @@ class Topography:
         "NASADEM",
         "COP30",
         "COP90",
+        "EU_DTM",
+        "GEDI_L3",
     )
     VALID_OUTPUT_FORMATS = {"GTiff": "tif", "AAIGrid": "asc", "HFA": "img"}
 

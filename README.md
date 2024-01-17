@@ -22,6 +22,8 @@ The *bmi-topography* library provides access to the following global raster data
 * NASADEM (NASADEM Global DEM)
 * COP30 (Copernicus Global DSM 30m)
 * COP90 (Copernicus Global DSM 90m)
+* EU_DTM (DTM 30m)
+* GEDI_L3 (DTM 1000m)
 
 The library includes an API and a CLI that accept
 the dataset type,
@@ -81,7 +83,7 @@ there are three ways to use it with *bmi-topography*:
 3. *dot file*: Put the API key in the file `.opentopography.txt` in the current directory or in your home directory.
 
 If you attempt to use *bmi-topography* to access an OpenTopography dataset without an API key,
-you'll get a error like this: 
+you'll get a error like this:
 ```
 requests.exceptions.HTTPError: 401 Client Error: This dataset requires an API Key for access.
 ```

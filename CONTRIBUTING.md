@@ -69,7 +69,6 @@ development.
     $ cd bmi-topography
     $ conda env create --file=environment.yml
     $ conda activate topography
-    $ make install
     ```
 
 4.  Create a branch for local development:
@@ -83,12 +82,21 @@ development.
 5.  When you're done making changes, check that your changes pass
     ruff and the tests:
 
+    5.1. Optional, check available `nox` test stages. Ref: [`nox` docs -> list all available sessions](https://nox.thea.codes/en/stable/usage.html#listing-available-sessions).
     ``` {.shell}
-    $ make lint
-    $ make test
+    $ nox --list
+    ```
+    5.2. Run linter and test. Ref: [`nox` docs -> run a particular set of sessions](https://nox.thea.codes/en/stable/usage.html#specifying-one-or-more-sessions).
+    ``` {.shell}
+    $ nox -s format
+    $ nox -s test
     ```
 
     Both ruff and pytest are included in the environment.
+
+    <sup> ‡ </sup>Tests may require user's API key. Create environmental
+    variable, `OPENTOPOGRAPHY_API_KEY` or use api key dot file,
+    `.opentopography.txt`.
 
 6.  Commit your changes and push your branch to GitHub:
 

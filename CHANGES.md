@@ -2,7 +2,7 @@
 
 ## 0.8.4 (unreleased)
 
-- Nothing changed yet.
+- Link to project contributing and code of conduct docs (#65)
 
 
 ## 0.8.3 (2023-12-18)

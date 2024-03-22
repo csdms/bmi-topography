@@ -1,4 +1,5 @@
 """An example used in the README and documentation."""
+
 import matplotlib.pyplot as plt
 
 from bmi_topography import Topography

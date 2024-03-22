@@ -1,4 +1,5 @@
 """Test Topography class"""
+
 import os
 
 import pytest

@@ -1,4 +1,5 @@
 """Command-line interface for bmi-topography """
+
 import click
 
 from .topography import Topography

@@ -1,4 +1,5 @@
 """Base class to access elevation data"""
+
 import os
 import urllib
 import warnings
@@ -14,7 +15,6 @@ from .bbox import BoundingBox
 
 
 class Topography:
-
     """Fetch and cache land elevation data from OpenTopography."""
 
     SCHEME = "https"

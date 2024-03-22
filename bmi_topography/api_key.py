@@ -7,7 +7,6 @@ from .errors import BadApiKeySource, BadKeyError, MissingKeyError
 
 
 class ApiKey:
-
     """Store an API key to use when fetching topography data from OpenTopography.
 
     Parameters

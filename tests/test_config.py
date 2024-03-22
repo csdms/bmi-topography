@@ -1,4 +1,5 @@
 """Test config file"""
+
 import yaml
 
 from bmi_topography import Topography

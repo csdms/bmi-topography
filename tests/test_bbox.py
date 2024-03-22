@@ -1,4 +1,5 @@
 """Test BoundingBox class"""
+
 import pytest
 
 from bmi_topography import BoundingBox, Topography

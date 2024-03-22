@@ -1,4 +1,5 @@
 """Test bmi-topography command-line interface"""
+
 import pathlib
 
 from click.testing import CliRunner

@@ -3,7 +3,6 @@ from typing import Tuple
 
 
 class BoundingBox:
-
     """Represent a simple latitude-longitude bounding box.
 
     Examples

@@ -17,7 +17,6 @@ BmiGridUniformRectilinear = namedtuple(
 
 
 class BmiTopography(Bmi):
-
     """BMI-mediated access to NASA SRTM land elevation data."""
 
     _name = "bmi-topography"

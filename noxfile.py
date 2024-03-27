@@ -36,15 +36,15 @@ def test(session: nox.Session) -> None:
 @nox.session(name="test-bmi", python=PYTHON_VERSIONS, venv_backend="conda")
 def test_bmi(session: nox.Session) -> None:
     """Test the Basic Model Interface."""
-    session.conda_install("bmi-tester", "pymt>=1.3")
+    session.install("bmi-tester>=0.5.9")
     session.install(".")
     session.run(
         "bmi-test",
-        "bmi_topography:BmiTopography",
+        f"{PACKAGE}:BmiTopography",
         "--config-file",
-        "./examples/config.yaml",
+        f"{ROOT}/examples/config.yaml",
         "--root-dir",
-        "./examples",
+        "examples",
         "-vvv",
     )
 

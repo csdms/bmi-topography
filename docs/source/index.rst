@@ -21,7 +21,7 @@ Additional Information
 .. toctree::
    :maxdepth: 2
 
-   changelog
+   CHANGES
    license
 
 Help

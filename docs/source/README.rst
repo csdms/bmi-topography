@@ -1,5 +1,5 @@
-|Basic Model Interface| |Conda Version| |PyPI| |Build/Test CI| |Coverage
-Status| |Documentation Status|
+|DOI| |Conda Version| |PyPI| |Build/Test CI| |Coverage Status|
+|Documentation Status|
 
 bmi-topography
 ==============
@@ -220,8 +220,8 @@ https://bmi-topography.readthedocs.io.
 
    <!-- Links (by alpha) -->
 
-.. |Basic Model Interface| image:: https://img.shields.io/badge/CSDMS-Basic%20Model%20Interface-green.svg
-   :target: https://bmi.readthedocs.io/
+.. |DOI| image:: https://zenodo.org/badge/DOI/10.5281/zenodo.8327417.svg
+   :target: https://doi.org/10.5281/zenodo.8327417
 .. |Conda Version| image:: https://img.shields.io/conda/vn/conda-forge/bmi-topography.svg
    :target: https://anaconda.org/conda-forge/bmi-topography
 .. |PyPI| image:: https://img.shields.io/pypi/v/bmi-topography

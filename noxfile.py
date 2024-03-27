@@ -81,6 +81,7 @@ def prepare_docs(session: nox.Session) -> None:
             "pandoc", "--to", "rst", f"{file}.md", "--output", f"docs/source/{file}.rst"
         )
 
+
 @nox.session(name="build-docs")
 def build_docs(session: nox.Session) -> None:
     """Build the docs."""

@@ -2,9 +2,11 @@
 
 .. include:: README.rst
 
+Additional Information
+----------------------
 
 API Reference
-=============
+.............
 
 Looking for information on a particular function, class, or method?
 This part of the documentation is for you.
@@ -14,15 +16,28 @@ This part of the documentation is for you.
 
    api/index
 
-
-Additional Information
-======================
+Changelog
+.........
 
 .. toctree::
    :maxdepth: 2
 
    CHANGES
+
+Project documents
+.................
+
+.. toctree::
+   :maxdepth: 2
+
    license
+
+Indices and tables
+..................
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
 
 Help
 ----
@@ -36,10 +51,3 @@ Acknowledgments
 This work is supported by the National Science Foundation under Award No.
 `2026951 <https://www.nsf.gov/awardsearch/showAward?AWD_ID=2026951>`_, 
 *EarthCube Capabilities: Cloud-Based Accessible and Reproducible Modeling for Water and Sediment Research*.
-
-Indices and tables
-------------------
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`

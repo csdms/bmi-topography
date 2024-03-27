@@ -10,7 +10,7 @@ PACKAGE = PROJECT.replace("-", "_")
 HERE = pathlib.Path(__file__)
 ROOT = HERE.parent
 PATHS = [PACKAGE, "docs", "examples", "tests", HERE.name]
-PYTHON_VERSIONS = ["3.9", "3.10", "3.11", "3.12"]
+PYTHON_VERSIONS = ["3.10", "3.11", "3.12"]
 
 
 @nox.session(python=PYTHON_VERSIONS)

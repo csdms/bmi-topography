@@ -10,7 +10,7 @@ PACKAGE = PROJECT.replace("-", "_")
 HERE = pathlib.Path(__file__)
 ROOT = HERE.parent
 PATHS = [PACKAGE, "docs", "examples", "tests", HERE.name]
-PYTHON_VERSIONS = ["3.9", "3.10", "3.11", "3.12"]
+PYTHON_VERSIONS = ["3.10", "3.11", "3.12"]
 
 
 @nox.session(python=PYTHON_VERSIONS)
@@ -36,15 +36,15 @@ def test(session: nox.Session) -> None:
 @nox.session(name="test-bmi", python=PYTHON_VERSIONS, venv_backend="conda")
 def test_bmi(session: nox.Session) -> None:
     """Test the Basic Model Interface."""
-    session.conda_install("bmi-tester", "pymt>=1.3")
+    session.install("bmi-tester>=0.5.9")
     session.install(".")
     session.run(
         "bmi-test",
-        "bmi_topography:BmiTopography",
+        f"{PACKAGE}:BmiTopography",
         "--config-file",
-        "./examples/config.yaml",
+        f"{ROOT}/examples/config.yaml",
         "--root-dir",
-        "./examples",
+        "examples",
         "-vvv",
     )
 

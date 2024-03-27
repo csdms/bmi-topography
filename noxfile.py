@@ -85,8 +85,11 @@ def prepare_docs(session: nox.Session) -> None:
 @nox.session(name="build-docs")
 def build_docs(session: nox.Session) -> None:
     """Build the docs."""
-    session.install(".[docs]")
+    session.install("-r", "docs/requirements.txt")
+    session.install("-e", ".")
+
     prepare_docs(session)
+
     if os.path.exists("build"):
         shutil.rmtree("build")
     session.run("sphinx-build", "-b", "html", "-W", "docs/source", "build/html")

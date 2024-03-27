@@ -2,6 +2,7 @@
 
 ## 0.8.4 (unreleased)
 
+- Set minimum python>=3.10 (#67)
 - Link to project contributing and code of conduct docs (#65)
 
 

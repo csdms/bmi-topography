@@ -76,7 +76,7 @@ def format(session: nox.Session) -> None:
 def prepare_docs(session: nox.Session) -> None:
     """Update docs source before building."""
     session.run("sphinx-apidoc", "-f", "-o", "docs/source/api", PACKAGE)
-    for file in ["README", "CHANGES"]:
+    for file in ["README", "CHANGES", "CONTRIBUTING", "CODE-OF-CONDUCT", "LICENSE"]:
         session.run(
             "pandoc", "--to", "rst", f"{file}.md", "--output", f"docs/source/{file}.rst"
         )

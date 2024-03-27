@@ -30,7 +30,9 @@ Project documents
 .. toctree::
    :maxdepth: 2
 
-   license
+   LICENSE
+   CODE-OF-CONDUCT
+   CONTRIBUTING
 
 Indices and tables
 ..................

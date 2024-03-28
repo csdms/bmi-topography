@@ -1,6 +1,6 @@
 # Changes for bmi-topography
 
-## 0.8.4 (unreleased)
+## 0.8.4 (2024-03-28)
 
 - Update docs build (#68)
 - Set minimum python>=3.10 (#67)

@@ -170,7 +170,7 @@ class Topography:
                 params["API_Key"] = str(self._api_key)
 
             response = requests.get(Topography.data_url(self.data_type), params=params, stream=True)
-            print (response)
+
             if response.status_code == 401:
                 if self._api_key.source == "demo":
                     msg = os.linesep.join(

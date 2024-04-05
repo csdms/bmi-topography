@@ -19,10 +19,10 @@ class Topography:
 
     SCHEME = "https"
     NETLOC = "portal.opentopography.org"
-    PATH = "/API/globaldem"
+    PATH = "/API/usgsdem"
 
     DEFAULT = {
-        "dem_type": "SRTMGL3",
+        "dem_type": "USGS30m",
         "south": 36.738884,
         "north": 38.091337,
         "west": -120.168457,
@@ -32,15 +32,9 @@ class Topography:
     }
 
     VALID_DEM_TYPES = (
-        "SRTMGL3",
-        "SRTMGL1",
-        "SRTMGL1_E",
-        "AW3D30",
-        "AW3D30_E",
-        "SRTM15Plus",
-        "NASADEM",
-        "COP30",
-        "COP90",
+        "USGS30m",
+        "USGS10m",
+        "USGS1m",
     )
     VALID_OUTPUT_FORMATS = {"GTiff": "tif", "AAIGrid": "asc", "HFA": "img"}
 
@@ -132,7 +126,7 @@ class Topography:
             self.cache_dir.mkdir(exist_ok=True)
 
             params = {
-                "demtype": self.dem_type,
+                "datasetName": self.dem_type,
                 "south": self.bbox.south,
                 "north": self.bbox.north,
                 "west": self.bbox.west,

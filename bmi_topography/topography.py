@@ -19,10 +19,14 @@ class Topography:
 
     SCHEME = "https"
     NETLOC = "portal.opentopography.org"
-    PATH = "/API/usgsdem"
+    PATH = {    
+        "/API/usgsdem",
+        "/API/globaldem"
+    }
 
     DEFAULT = {
-        "dem_type": "USGS30m",
+        "data_type": "/API/globaldem",
+        "dem_type": "SRTMGL3",
         "south": 36.738884,
         "north": 38.091337,
         "west": -120.168457,
@@ -32,6 +36,15 @@ class Topography:
     }
 
     VALID_DEM_TYPES = (
+        "SRTMGL3",
+        "SRTMGL1",
+        "SRTMGL1_E",
+        "AW3D30",
+        "AW3D30_E",
+        "SRTM15Plus",
+        "NASADEM",
+        "COP30",
+        "COP90",
         "USGS30m",
         "USGS10m",
         "USGS1m",
@@ -40,6 +53,7 @@ class Topography:
 
     def __init__(
         self,
+        data_type=None,
         dem_type=None,
         south=None,
         north=None,
@@ -54,6 +68,12 @@ class Topography:
         #     self._api_key = find_user_api_key() or use_demo_key()
         # else:
         #     self._api_key = api_key
+        if data_type in Topography.PATH:
+            self._data_type = data_type
+        else:
+            raise ValueError(
+                "data_type must be one of %s." % (Topography.PATH,)
+            )
 
         if dem_type in Topography.VALID_DEM_TYPES:
             self._dem_type = dem_type
@@ -80,6 +100,10 @@ class Topography:
         self._cache_dir = Path(cache_dir).expanduser().resolve().absolute()
 
     @property
+    def data_type(self):
+        return str(self._data_type)
+    
+    @property
     def dem_type(self):
         return str(self._dem_type)
 
@@ -100,9 +124,9 @@ class Topography:
         return self._cache_dir
 
     @staticmethod
-    def data_url():
+    def data_url(data_type):
         return urllib.parse.urlunparse(
-            (Topography.SCHEME, Topography.NETLOC, Topography.PATH, "", "", "")
+            (Topography.SCHEME, Topography.NETLOC, data_type, "", "", "")
         )
 
     def fetch(self):
@@ -124,19 +148,29 @@ class Topography:
 
         if not fname.is_file():
             self.cache_dir.mkdir(exist_ok=True)
-
-            params = {
-                "datasetName": self.dem_type,
-                "south": self.bbox.south,
-                "north": self.bbox.north,
-                "west": self.bbox.west,
-                "east": self.bbox.east,
-                "outputFormat": self.output_format,
-            }
+            if self.data_type == "/API/usgsdem":
+                params = {
+                    "datasetName": self.dem_type,
+                    "south": self.bbox.south,
+                    "north": self.bbox.north,
+                    "west": self.bbox.west,
+                    "east": self.bbox.east,
+                    "outputFormat": self.output_format,
+                }
+            elif self.data_type == "/API/globaldem":
+                params = {
+                    "demtype": self.dem_type,
+                    "south": self.bbox.south,
+                    "north": self.bbox.north,
+                    "west": self.bbox.west,
+                    "east": self.bbox.east,
+                    "outputFormat": self.output_format,
+                }
             if self._api_key:
                 params["API_Key"] = str(self._api_key)
 
-            response = requests.get(Topography.data_url(), params=params, stream=True)
+            response = requests.get(Topography.data_url(self.data_type), params=params, stream=True)
+            print (response)
             if response.status_code == 401:
                 if self._api_key.source == "demo":
                     msg = os.linesep.join(

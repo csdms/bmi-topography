@@ -56,9 +56,6 @@ Changelog = "https://github.com/csdms/bmi-topography/blob/main/CHANGES.md"
 
 [project.optional-dependencies]
 dev = [
-  "black",
-  "ruff",
-  "isort",
   "nox",
 ]
 build = [

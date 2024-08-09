@@ -75,7 +75,7 @@ class ApiKey:
     def from_file(cls):
         """Read the key from a file."""
         if filepath := _find_first_of(ApiKey.API_KEY_FILES):
-            with open(filepath, "r") as fp:
+            with open(filepath) as fp:
                 api_key = fp.read().strip()
         else:
             raise MissingKeyError(

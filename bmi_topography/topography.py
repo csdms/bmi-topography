@@ -65,7 +65,7 @@ class Topography:
             self._dem_type = dem_type
         else:
             raise ValueError(
-                "dem_type must be one of %s." % (Topography.VALID_DEM_TYPES,)
+                f"dem_type must be one of {Topography.VALID_DEM_TYPES}."
             )
 
         if output_format in Topography.VALID_OUTPUT_FORMATS.keys():

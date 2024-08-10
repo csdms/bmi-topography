@@ -78,7 +78,7 @@ def main(quiet, dem_type, south, north, west, east, output_format, api_key, no_f
         path_to_dem = topo.fetch()
         if not quiet:
             click.secho(
-                "File downloaded to {}".format(getattr(topo, "cache_dir")),
+                f"File downloaded to {getattr(topo, 'cache_dir')}",
                 fg="green",
                 err=True,
             )

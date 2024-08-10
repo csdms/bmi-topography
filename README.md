@@ -81,7 +81,7 @@ there are three ways to use it with *bmi-topography*:
 3. *dot file*: Put the API key in the file `.opentopography.txt` in the current directory or in your home directory.
 
 If you attempt to use *bmi-topography* to access an OpenTopography dataset without an API key,
-you'll get a error like this: 
+you'll get a error like this:
 ```
 requests.exceptions.HTTPError: 401 Client Error: This dataset requires an API Key for access.
 ```

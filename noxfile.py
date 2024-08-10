@@ -143,6 +143,8 @@ def clean(session):
     shutil.rmtree(".ruff_cache", ignore_errors=True)
     if os.path.exists("coverage.xml"):
         os.remove("coverage.xml")
+    if os.path.exists(".coverage"):
+        os.remove(".coverage")
     for p in chain(ROOT.rglob("*.py[co]"), ROOT.rglob("__pycache__")):
         if p.is_dir():
             p.rmdir()

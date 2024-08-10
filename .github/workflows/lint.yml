@@ -1,10 +1,10 @@
-name: Format
+name: Lint
 
 on: [push, pull_request]
 
 jobs:
 
-  format:
+  lint:
     name: Check for lint and format code to a standard style
     if:
       github.event_name == 'push' || github.event.pull_request.head.repo.full_name !=
@@ -24,4 +24,4 @@ jobs:
         run: pip install nox
 
       - name: Format code
-        run: nox -s format -- --check --verbose --diff
+        run: nox -s lint

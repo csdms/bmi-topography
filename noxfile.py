@@ -140,7 +140,6 @@ def clean(session):
     shutil.rmtree(f"{PACKAGE}.egg-info", ignore_errors=True)
     shutil.rmtree(".pytest_cache", ignore_errors=True)
     shutil.rmtree(".venv", ignore_errors=True)
-    shutil.rmtree(".ruff_cache", ignore_errors=True)
     if os.path.exists("coverage.xml"):
         os.remove("coverage.xml")
     if os.path.exists(".coverage"):

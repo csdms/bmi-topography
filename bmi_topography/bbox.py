@@ -21,16 +21,12 @@ class BoundingBox:
 
         if not isinstance(self.lower_left, Iterable) or len(self.lower_left) != 2:
             raise ValueError(
-                "lower left coordinate ({}) must have two elements".format(
-                    self.lower_left
-                )
+                f"lower left coordinate ({self.lower_left}) must have two elements"
             )
 
         if not isinstance(self.upper_right, Iterable) or len(self.upper_right) != 2:
             raise ValueError(
-                "upper right coordinate ({}) must have two elements".format(
-                    self.upper_right
-                )
+                f"upper right coordinate ({self.upper_right}) must have two elements"
             )
 
         if self.south > 90 or self.south < -90:
@@ -41,9 +37,7 @@ class BoundingBox:
 
         if self.south > self.north:
             raise ValueError(
-                "south coordinate ({}) must be less than north ({})".format(
-                    self.south, self.north
-                )
+                f"south coordinate ({self.south}) must be less than north ({self.north})"
             )
 
         if self.west > 180 or self.west < -180:
@@ -54,9 +48,7 @@ class BoundingBox:
 
         if self.west > self.east:
             raise ValueError(
-                "west coordinate ({}) must be less than east ({})".format(
-                    self.west, self.east
-                )
+                f"west coordinate ({self.west}) must be less than east ({self.east})"
             )
 
     @property

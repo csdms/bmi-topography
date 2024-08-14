@@ -1,9 +1,9 @@
-name: Build/Test CI
+name: Test
 
 on: [push, pull_request]
 
 jobs:
-  build-and-test:
+  test:
     if:
       github.event_name == 'push' || github.event.pull_request.head.repo.full_name !=
       github.repository

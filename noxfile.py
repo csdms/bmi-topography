@@ -58,18 +58,10 @@ def test_cli(session: nox.Session) -> None:
 
 
 @nox.session
-def format(session: nox.Session) -> None:
+def lint(session: nox.Session) -> None:
     """Clean lint and assert style."""
-    session.install(".[dev]")
-
-    if session.posargs:
-        black_args = session.posargs
-    else:
-        black_args = []
-
-    session.run("black", *black_args, *PATHS)
-    session.run("isort", *PATHS)
-    session.run("ruff", "check", *PATHS)
+    session.install("pre-commit")
+    session.run("pre-commit", "run", "--all-files")
 
 
 @nox.session(name="prepare-docs")
@@ -148,6 +140,8 @@ def clean(session):
     shutil.rmtree(f"{PACKAGE}.egg-info", ignore_errors=True)
     shutil.rmtree(".pytest_cache", ignore_errors=True)
     shutil.rmtree(".venv", ignore_errors=True)
+    if os.path.exists("coverage.xml"):
+        os.remove("coverage.xml")
     if os.path.exists(".coverage"):
         os.remove(".coverage")
     for p in chain(ROOT.rglob("*.py[co]"), ROOT.rglob("__pycache__")):

@@ -56,9 +56,6 @@ Changelog = "https://github.com/csdms/bmi-topography/blob/main/CHANGES.md"
 
 [project.optional-dependencies]
 dev = [
-  "black",
-  "ruff",
-  "isort",
   "nox",
 ]
 build = [
@@ -117,14 +114,6 @@ include_trailing_comma = true
 force_grid_wrap = 0
 combine_as_imports = true
 line_length = 88
-
-[tool.ruff]
-exclude = ["docs"]
-line-length = 88
-ignore = [
-	"E203",
-	"E501",
-]
 
 [tool.coverage.run]
 relative_files = true

@@ -1,7 +1,7 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8327417.svg)](https://doi.org/10.5281/zenodo.8327417)
 [![Conda Version](https://img.shields.io/conda/vn/conda-forge/bmi-topography.svg)](https://anaconda.org/conda-forge/bmi-topography)
 [![PyPI](https://img.shields.io/pypi/v/bmi-topography)](https://pypi.org/project/bmi-topography)
-[![Build/Test CI](https://github.com/csdms/bmi-topography/actions/workflows/build-test-ci.yml/badge.svg)](https://github.com/csdms/bmi-topography/actions/workflows/build-test-ci.yml)
+[![Build/Test CI](https://github.com/csdms/bmi-topography/actions/workflows/test.yml/badge.svg)](https://github.com/csdms/bmi-topography/actions/workflows/test.yml)
 [![Coverage Status](https://coveralls.io/repos/github/csdms/bmi-topography/badge.svg?branch=main)](https://coveralls.io/github/csdms/bmi-topography?branch=main)
 [![Documentation Status](https://readthedocs.org/projects/bmi-topography/badge/?version=latest)](https://bmi-topography.readthedocs.io/en/latest/?badge=latest)
 

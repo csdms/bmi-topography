@@ -1,9 +1,14 @@
-name: Build/Test CI
+name: Test
 
 on: [push, pull_request]
 
+concurrency:
+  group: ${{ github.ref }}-${{ github.workflow }}
+  cancel-in-progress: true
+
 jobs:
-  build-and-test:
+
+  test:
     if:
       github.event_name == 'push' || github.event.pull_request.head.repo.full_name !=
       github.repository

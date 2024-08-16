@@ -31,18 +31,10 @@ jobs:
         with:
           miniforge-variant: Mambaforge
           miniforge-version: latest
-          environment-file: environment.yml
-          activate-environment: topography
           python-version: ${{ matrix.python-version }}
-          auto-activate-base: false
 
-      - name: Show conda installation info
-        run: |
-          conda info
-          conda list
-
-      - name: Install package
-        run: pip install -e .
+      - name: Install nox
+        run: pip install nox
 
       - name: Test latest Python version
         env:

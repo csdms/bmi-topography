@@ -57,6 +57,23 @@ def test_cli(session: nox.Session) -> None:
     session.run(PROJECT, "--help")
 
 
+@nox.session(name="check-notebooks", python=PYTHON_VERSIONS[-1])
+def check_notebooks(session: nox.Session) -> None:
+    """Run the example notebooks."""
+    session.install(".[testing,examples]")
+    session.install("nbmake")
+
+    args = [
+        "examples",
+        "--nbmake",
+        "--nbmake-kernel=python3",
+        "--nbmake-timeout=3000",
+        "-vvv",
+    ] + session.posargs
+
+    session.run("pytest", *args)
+
+
 @nox.session
 def lint(session: nox.Session) -> None:
     """Clean lint and assert style."""

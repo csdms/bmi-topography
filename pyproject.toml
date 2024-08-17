@@ -101,6 +101,7 @@ addopts = """
   --durations 16
   --doctest-modules
   -vvv
+  --ignore-glob=examples/*.py
 """
 doctest_optionflags = [
   "NORMALIZE_WHITESPACE",

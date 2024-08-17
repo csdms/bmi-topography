@@ -9,7 +9,7 @@ concurrency:
 jobs:
 
   test:
-    name: Run unit tests and calculate coverage
+    name: Run unit tests
     if:
       github.event_name == 'push' || github.event.pull_request.head.repo.full_name !=
       github.repository

@@ -220,14 +220,14 @@ https://bmi-topography.readthedocs.io.
 
    <!-- Links (by alpha) -->
 
-.. |DOI| image:: https://zenodo.org/badge/DOI/10.5281/zenodo.8327417.svg
-   :target: https://doi.org/10.5281/zenodo.8327417
+.. |DOI| image:: https://zenodo.org/badge/DOI/10.5281/zenodo.4608652.svg
+   :target: https://doi.org/10.5281/zenodo.4608652
 .. |Conda Version| image:: https://img.shields.io/conda/vn/conda-forge/bmi-topography.svg
    :target: https://anaconda.org/conda-forge/bmi-topography
 .. |PyPI| image:: https://img.shields.io/pypi/v/bmi-topography
    :target: https://pypi.org/project/bmi-topography
-.. |Build/Test CI| image:: https://github.com/csdms/bmi-topography/actions/workflows/build-test-ci.yml/badge.svg
-   :target: https://github.com/csdms/bmi-topography/actions/workflows/build-test-ci.yml
+.. |Build/Test CI| image:: https://github.com/csdms/bmi-topography/actions/workflows/test.yml/badge.svg
+   :target: https://github.com/csdms/bmi-topography/actions/workflows/test.yml
 .. |Coverage Status| image:: https://coveralls.io/repos/github/csdms/bmi-topography/badge.svg?branch=main
    :target: https://coveralls.io/github/csdms/bmi-topography?branch=main
 .. |Documentation Status| image:: https://readthedocs.org/projects/bmi-topography/badge/?version=latest

@@ -1,6 +1,6 @@
 # Changes for bmi-topography
 
-## 0.8.5 (unreleased)
+## 0.8.5 (2024-08-18)
 
 -  Check example notebooks (#75)
 - Simplify the test CI workflow (#74)

@@ -3,12 +3,12 @@
 ## 0.8.6 (unreleased)
 
 
-- Nothing changed yet.
+- Make an examples landing page (#77)
 
 
 ## 0.8.5 (2024-08-18)
 
--  Check example notebooks (#75)
+- Check example notebooks (#75)
 - Simplify the test CI workflow (#74)
 - Cancel in-progress CI workflows on new push (#73)
 - Use pre-commit for linting and formatting (#72)

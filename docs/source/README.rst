@@ -32,10 +32,10 @@ through
 `rioxarray <https://corteva.github.io/rioxarray/stable/getting_started/getting_started.html>`__.
 
 The *bmi-topography* API is wrapped with a `Basic Model
-Interface <https://bmi.readthedocs.io>`__ (BMI), which provides a
-standard set of functions for coupling with data or models that also
-expose a BMI. More information on the BMI can found in its
-`documentation <https://bmi.readthedocs.io>`__.
+Interface <https://bmi.csdms.io>`__ (BMI), which provides a standard set
+of functions for coupling with data or models that also expose a BMI.
+More information on the BMI can found in its
+`documentation <https://bmi.csdms.io>`__.
 
 Installation
 ------------

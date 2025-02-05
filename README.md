@@ -191,7 +191,7 @@ is available at https://bmi-topography.readthedocs.io.
 
 <!-- Links (by alpha) -->
 
-[bmi]: https://bmi.readthedocs.io
+[bmi]: https://bmi.csdms.io
 [bmi-topo-examples]: https://github.com/csdms/bmi-topography/tree/main/examples
 [bmi-topo-repo]: https://github.com/csdms/bmi-topography
 [conda-env]: https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html

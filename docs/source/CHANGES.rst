@@ -1,7 +1,12 @@
 Changes for bmi-topography
 ==========================
 
-0.8.5 (unreleased)
+0.8.6 (unreleased)
+------------------
+
+-  Make an examples landing page (#77)
+
+0.8.5 (2024-08-18)
 ------------------
 
 -  Check example notebooks (#75)
@@ -10,6 +15,8 @@ Changes for bmi-topography
 -  Use pre-commit for linting and formatting (#72)
 -  De-lint project files (#71)
 
+.. _section-1:
+
 0.8.4 (2024-03-28)
 ------------------
 
@@ -17,7 +24,7 @@ Changes for bmi-topography
 -  Set minimum python>=3.10 (#67)
 -  Link to project contributing and code of conduct docs (#65)
 
-.. _section-1:
+.. _section-2:
 
 0.8.3 (2023-12-18)
 ------------------
@@ -27,14 +34,14 @@ Changes for bmi-topography
 -  Fix failing docs build (#58)
 -  Use nox in CI testing (#54)
 
-.. _section-2:
+.. _section-3:
 
 0.8.2 (2023-02-06)
 ------------------
 
 -  Fix problem getting CRS info for AAIGrid type (#53)
 
-.. _section-3:
+.. _section-4:
 
 0.8.1 (2023-01-27)
 ------------------
@@ -45,7 +52,7 @@ Changes for bmi-topography
 -  Use rio accessor for geospatial information (#47)
 -  Update contents of source and binary distributions (#46)
 
-.. _section-4:
+.. _section-5:
 
 0.8 (2022-07-05)
 ----------------
@@ -53,14 +60,14 @@ Changes for bmi-topography
 -  Switch from xarray to rioxarray (#45)
 -  Move metadata from setup.cfg to pyproject.toml (#44)
 
-.. _section-5:
+.. _section-6:
 
 0.7.1 (2022-06-03)
 ------------------
 
 -  Provide a better reason for 401 errors (#41)
 
-.. _section-6:
+.. _section-7:
 
 0.7 (2022-03-24)
 ----------------
@@ -68,7 +75,7 @@ Changes for bmi-topography
 -  Support all OpenTopography global datasets (#39)
 -  Create test matrix of datasets and file types (#38)
 
-.. _section-7:
+.. _section-8:
 
 0.6 (2022-02-17)
 ----------------
@@ -76,7 +83,7 @@ Changes for bmi-topography
 -  Use dashes in command line options (#36)
 -  Use a demo API key if a user key can’t be found (#34)
 
-.. _section-8:
+.. _section-9:
 
 0.5.1 (2022-02-15)
 ------------------
@@ -85,7 +92,7 @@ Changes for bmi-topography
 -  Add text to exception raised when API key is missing (#32)
 -  Use new black syntax (#31)
 
-.. _section-9:
+.. _section-10:
 
 0.5 (2022-01-25)
 ----------------
@@ -94,7 +101,7 @@ Changes for bmi-topography
 -  Add python 3.10 to tests (#24)
 -  Address technical debt (#22)
 
-.. _section-10:
+.. _section-11:
 
 0.4 (2021-09-03)
 ----------------
@@ -104,7 +111,7 @@ Changes for bmi-topography
 -  Add format job to CI
 -  Use CITATION.cff file
 
-.. _section-11:
+.. _section-12:
 
 0.3.2 (2021-04-23)
 ------------------
@@ -113,7 +120,7 @@ Changes for bmi-topography
 -  Fix typos, update text in example notebooks
 -  Create CREDITS.md and rearrange docs
 
-.. _section-12:
+.. _section-13:
 
 0.3.1 (2021-03-04)
 ------------------
@@ -121,7 +128,7 @@ Changes for bmi-topography
 -  Install with conda
 -  Include shell script demonstrating CLI
 
-.. _section-13:
+.. _section-14:
 
 0.3 (2021-02-25)
 ----------------
@@ -129,7 +136,7 @@ Changes for bmi-topography
 -  Update README with overview and install instructions
 -  Write documentation
 
-.. _section-14:
+.. _section-15:
 
 0.2 (2021-02-24)
 ----------------
@@ -139,7 +146,7 @@ Changes for bmi-topography
 -  Include sample config file and Jupyter Notebook to demo BMI
 -  Add CI with GitHub Actions
 
-.. _section-15:
+.. _section-16:
 
 0.1.1 (2021-02-22)
 ------------------
@@ -147,7 +154,7 @@ Changes for bmi-topography
 -  Add Makefile rule to test upload to TestPyPI
 -  Test upload to TestPyPI
 
-.. _section-16:
+.. _section-17:
 
 0.1 (2021-02-22)
 ----------------

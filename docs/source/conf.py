@@ -14,7 +14,6 @@
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
 import datetime
-
 from importlib.metadata import version as package_version
 
 # The master toctree document.

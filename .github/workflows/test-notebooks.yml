@@ -38,6 +38,7 @@ jobs:
 
       - name: Check Jupyter notebooks
         env:
+          OPENTOPOGRAPHY_API_KEY: ${{ secrets.OPENTOPOGRAPHY_API_KEY }}
           MPLBACKEND: "Agg"
         run: |
           nox --verbose -s check-notebooks --force-pythons="${{ matrix.python-version }}"

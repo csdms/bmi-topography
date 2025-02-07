@@ -72,6 +72,7 @@ docs = [
   "sphinx",
   "recommonmark",
   "pandoc",
+  "importlib-metadata",
 ]
 examples = [
   "matplotlib",

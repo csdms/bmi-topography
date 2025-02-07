@@ -47,7 +47,7 @@ dynamic = ["readme", "version"]
 
 [project.urls]
 Homepage = "https://csdms.colorado.edu"
-Documentation = "https://bmi-topography.readthedocs.io/"
+Documentation = "https://bmi-topography.csdms.io/"
 Repository = "https://github.com/csdms/bmi-topography"
 Changelog = "https://github.com/csdms/bmi-topography/blob/main/CHANGES.md"
 Forum = "https://forum.csdms.io"

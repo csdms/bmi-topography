@@ -2,7 +2,8 @@
 
 ## 0.8.6 (unreleased)
 
-
+- Update project metadata and CI workflows (#79)
+- Switch from Mambaforge to Miniforge (#78)
 - Make an examples landing page (#77)
 
 

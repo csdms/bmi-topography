@@ -32,10 +32,10 @@ through
 `rioxarray <https://corteva.github.io/rioxarray/stable/getting_started/getting_started.html>`__.
 
 The *bmi-topography* API is wrapped with a `Basic Model
-Interface <https://bmi.readthedocs.io>`__ (BMI), which provides a
-standard set of functions for coupling with data or models that also
-expose a BMI. More information on the BMI can found in its
-`documentation <https://bmi.readthedocs.io>`__.
+Interface <https://bmi.csdms.io>`__ (BMI), which provides a standard set
+of functions for coupling with data or models that also expose a BMI.
+More information on the BMI can found in its
+`documentation <https://bmi.csdms.io>`__.
 
 Installation
 ------------
@@ -214,7 +214,7 @@ script, and shell script included in the
 directory of the *bmi-topography* repository.
 
 User and developer documentation for *bmi-topography* is available at
-https://bmi-topography.readthedocs.io.
+https://bmi-topography.csdms.io.
 
 .. raw:: html
 
@@ -231,4 +231,4 @@ https://bmi-topography.readthedocs.io.
 .. |Coverage Status| image:: https://coveralls.io/repos/github/csdms/bmi-topography/badge.svg?branch=main
    :target: https://coveralls.io/github/csdms/bmi-topography?branch=main
 .. |Documentation Status| image:: https://readthedocs.org/projects/bmi-topography/badge/?version=latest
-   :target: https://bmi-topography.readthedocs.io/en/latest/?badge=latest
+   :target: https://bmi-topography.csdms.io/en/latest/?badge=latest

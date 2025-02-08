@@ -14,8 +14,7 @@
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
 import datetime
-
-import pkg_resources
+from importlib.metadata import version as package_version
 
 # The master toctree document.
 master_doc = "index"
@@ -25,7 +24,7 @@ master_doc = "index"
 
 project = "bmi-topography"
 author = "Community Surface Dynamics Modeling System"
-version = pkg_resources.get_distribution("bmi_topography").version
+version = package_version("bmi_topography")
 release = version
 this_year = datetime.date.today().year
 copyright = f"{this_year}, {author}"

@@ -18,11 +18,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: conda-incubator/setup-miniconda@v3
+      - uses: actions/setup-python@v5
         with:
-          miniforge-version: latest
-          python-version: 3.11
-          auto-activate-base: false
+          python-version: 3.12
 
       - name: Install nox
         run: pip install nox

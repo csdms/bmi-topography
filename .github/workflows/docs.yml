@@ -21,7 +21,7 @@ jobs:
       - uses: conda-incubator/setup-miniconda@v3
         with:
           miniforge-version: latest
-          python-version: 3.11
+          python-version: 3.12
           auto-activate-base: false
 
       - name: Install dependencies

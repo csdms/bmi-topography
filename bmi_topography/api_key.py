@@ -47,7 +47,7 @@ class ApiKey:
         if self.is_demo_key():
             warnings.warn(
                 "You are using a demo key to fetch data from OpenTopography, functionality "
-                "will be limited. See https://bmi-topography.readthedocs.io/en/latest/#api-key "
+                "will be limited. See https://bmi-topography.csdms.io/en/latest/#api-key "
                 "for more information."
             )
 

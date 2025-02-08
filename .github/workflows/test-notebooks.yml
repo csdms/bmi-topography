@@ -26,18 +26,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: conda-incubator/setup-miniconda@v3
+      - name: Install Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
-          miniforge-variant: Miniforge3
-          miniforge-version: latest
-          auto-update-conda: true
 
       - name: Install nox
         run: pip install nox
 
       - name: Check Jupyter notebooks
         env:
+          OPENTOPOGRAPHY_API_KEY: ${{ secrets.OPENTOPOGRAPHY_API_KEY }}
           MPLBACKEND: "Agg"
         run: |
           nox --verbose -s check-notebooks --force-pythons="${{ matrix.python-version }}"

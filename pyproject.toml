@@ -1,7 +1,3 @@
-[build-system]
-requires = ["setuptools", "wheel"]
-build-backend = "setuptools.build_meta"
-
 [project]
 name = "bmi-topography"
 description = "Fetch and cache land elevation data from OpenTopography"
@@ -30,6 +26,7 @@ classifiers = [
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
   "License :: OSI Approved :: MIT License",
   "Operating System :: OS Independent",
   "Intended Audience :: Developers",
@@ -50,9 +47,10 @@ dynamic = ["readme", "version"]
 
 [project.urls]
 Homepage = "https://csdms.colorado.edu"
-Documentation = "https://bmi-topography.readthedocs.io/"
+Documentation = "https://bmi-topography.csdms.io/"
 Repository = "https://github.com/csdms/bmi-topography"
 Changelog = "https://github.com/csdms/bmi-topography/blob/main/CHANGES.md"
+Forum = "https://forum.csdms.io"
 
 [project.optional-dependencies]
 dev = [
@@ -74,6 +72,7 @@ docs = [
   "sphinx",
   "recommonmark",
   "pandoc",
+  "importlib-metadata",
 ]
 examples = [
   "matplotlib",
@@ -81,6 +80,10 @@ examples = [
 
 [project.scripts]
 bmi-topography = "bmi_topography.cli:main"
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
 
 [tool.setuptools.dynamic]
 readme = {file = ["README.md", "CREDITS.md", "LICENSE.md"], content-type = "text/markdown"}

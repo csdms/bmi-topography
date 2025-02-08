@@ -12,15 +12,15 @@ API <https://portal.opentopography.org/apidocs/>`__.
 The *bmi-topography* library provides access to the following global
 raster datasets:
 
--  SRTMGL3 (SRTM GL3 90m)
--  SRTMGL1 (SRTM GL1 30m)
--  SRTMGL1_E (SRTM GL1 Ellipsoidal 30m)
--  AW3D30 (ALOS World 3D 30m)
--  AW3D30_E (ALOS World 3D Ellipsoidal, 30m)
--  SRTM15Plus (Global Bathymetry SRTM15+ V2.1)
--  NASADEM (NASADEM Global DEM)
--  COP30 (Copernicus Global DSM 30m)
--  COP90 (Copernicus Global DSM 90m)
+- SRTMGL3 (SRTM GL3 90m)
+- SRTMGL1 (SRTM GL1 30m)
+- SRTMGL1_E (SRTM GL1 Ellipsoidal 30m)
+- AW3D30 (ALOS World 3D 30m)
+- AW3D30_E (ALOS World 3D Ellipsoidal, 30m)
+- SRTM15Plus (Global Bathymetry SRTM15+ V2.1)
+- NASADEM (NASADEM Global DEM)
+- COP30 (Copernicus Global DSM 30m)
+- COP90 (Copernicus Global DSM 90m)
 
 The library includes an API and a CLI that accept the dataset type, a
 latitude-longitude bounding box, and the output file format. Data are

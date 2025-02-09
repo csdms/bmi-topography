@@ -1,6 +1,6 @@
 # Changes for bmi-topography
 
-## 0.8.6 (unreleased)
+## 0.8.6 (2025-02-09)
 
 - Update project metadata and CI workflows (#79)
 - Switch from Mambaforge to Miniforge (#78)

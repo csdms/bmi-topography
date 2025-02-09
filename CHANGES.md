@@ -1,5 +1,11 @@
 # Changes for bmi-topography
 
+## 0.8.7 (unreleased)
+
+
+- Nothing changed yet.
+
+
 ## 0.8.6 (2025-02-09)
 
 - Update project metadata and CI workflows (#79)

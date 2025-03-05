@@ -47,7 +47,7 @@ class ApiKey:
         if self.is_demo_key():
             warnings.warn(
                 "You are using a demo key to fetch data from OpenTopography, functionality "
-                "will be limited. See https://bmi-topography.readthedocs.io/en/latest/#api-key "
+                "will be limited. See https://bmi-topography.csdms.io/en/latest/#api-key "
                 "for more information."
             )
 
@@ -75,7 +75,7 @@ class ApiKey:
     def from_file(cls):
         """Read the key from a file."""
         if filepath := _find_first_of(ApiKey.API_KEY_FILES):
-            with open(filepath, "r") as fp:
+            with open(filepath) as fp:
                 api_key = fp.read().strip()
         else:
             raise MissingKeyError(

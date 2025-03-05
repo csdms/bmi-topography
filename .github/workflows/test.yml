@@ -1,9 +1,19 @@
-name: Build/Test CI
+name: Test
 
-on: [push, pull_request]
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: '34 4 3 * *'  # 4:34a on third day of the month
+
+concurrency:
+  group: ${{ github.ref }}-${{ github.workflow }}
+  cancel-in-progress: true
 
 jobs:
-  build-and-test:
+
+  test:
+    name: Run unit tests
     if:
       github.event_name == 'push' || github.event.pull_request.head.repo.full_name !=
       github.repository
@@ -22,22 +32,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: conda-incubator/setup-miniconda@v3
+      - name: Install Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
         with:
-          miniforge-variant: Mambaforge
-          miniforge-version: latest
-          environment-file: environment.yml
-          activate-environment: topography
           python-version: ${{ matrix.python-version }}
-          auto-activate-base: false
 
-      - name: Show conda installation info
-        run: |
-          conda info
-          conda list
-
-      - name: Install package
-        run: pip install -e .
+      - name: Install nox
+        run: pip install nox
 
       - name: Test latest Python version
         env:

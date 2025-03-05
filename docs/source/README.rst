@@ -12,15 +12,15 @@ API <https://portal.opentopography.org/apidocs/>`__.
 The *bmi-topography* library provides access to the following global
 raster datasets:
 
--  SRTMGL3 (SRTM GL3 90m)
--  SRTMGL1 (SRTM GL1 30m)
--  SRTMGL1_E (SRTM GL1 Ellipsoidal 30m)
--  AW3D30 (ALOS World 3D 30m)
--  AW3D30_E (ALOS World 3D Ellipsoidal, 30m)
--  SRTM15Plus (Global Bathymetry SRTM15+ V2.1)
--  NASADEM (NASADEM Global DEM)
--  COP30 (Copernicus Global DSM 30m)
--  COP90 (Copernicus Global DSM 90m)
+- SRTMGL3 (SRTM GL3 90m)
+- SRTMGL1 (SRTM GL1 30m)
+- SRTMGL1_E (SRTM GL1 Ellipsoidal 30m)
+- AW3D30 (ALOS World 3D 30m)
+- AW3D30_E (ALOS World 3D Ellipsoidal, 30m)
+- SRTM15Plus (Global Bathymetry SRTM15+ V2.1)
+- NASADEM (NASADEM Global DEM)
+- COP30 (Copernicus Global DSM 30m)
+- COP90 (Copernicus Global DSM 90m)
 
 The library includes an API and a CLI that accept the dataset type, a
 latitude-longitude bounding box, and the output file format. Data are
@@ -32,10 +32,10 @@ through
 `rioxarray <https://corteva.github.io/rioxarray/stable/getting_started/getting_started.html>`__.
 
 The *bmi-topography* API is wrapped with a `Basic Model
-Interface <https://bmi.readthedocs.io>`__ (BMI), which provides a
-standard set of functions for coupling with data or models that also
-expose a BMI. More information on the BMI can found in its
-`documentation <https://bmi.readthedocs.io>`__.
+Interface <https://bmi.csdms.io>`__ (BMI), which provides a standard set
+of functions for coupling with data or models that also expose a BMI.
+More information on the BMI can found in its
+`documentation <https://bmi.csdms.io>`__.
 
 Installation
 ------------
@@ -214,21 +214,21 @@ script, and shell script included in the
 directory of the *bmi-topography* repository.
 
 User and developer documentation for *bmi-topography* is available at
-https://bmi-topography.readthedocs.io.
+https://bmi-topography.csdms.io.
 
 .. raw:: html
 
    <!-- Links (by alpha) -->
 
-.. |DOI| image:: https://zenodo.org/badge/DOI/10.5281/zenodo.8327417.svg
-   :target: https://doi.org/10.5281/zenodo.8327417
+.. |DOI| image:: https://zenodo.org/badge/DOI/10.5281/zenodo.4608652.svg
+   :target: https://doi.org/10.5281/zenodo.4608652
 .. |Conda Version| image:: https://img.shields.io/conda/vn/conda-forge/bmi-topography.svg
    :target: https://anaconda.org/conda-forge/bmi-topography
 .. |PyPI| image:: https://img.shields.io/pypi/v/bmi-topography
    :target: https://pypi.org/project/bmi-topography
-.. |Build/Test CI| image:: https://github.com/csdms/bmi-topography/actions/workflows/build-test-ci.yml/badge.svg
-   :target: https://github.com/csdms/bmi-topography/actions/workflows/build-test-ci.yml
+.. |Build/Test CI| image:: https://github.com/csdms/bmi-topography/actions/workflows/test.yml/badge.svg
+   :target: https://github.com/csdms/bmi-topography/actions/workflows/test.yml
 .. |Coverage Status| image:: https://coveralls.io/repos/github/csdms/bmi-topography/badge.svg?branch=main
    :target: https://coveralls.io/github/csdms/bmi-topography?branch=main
 .. |Documentation Status| image:: https://readthedocs.org/projects/bmi-topography/badge/?version=latest
-   :target: https://bmi-topography.readthedocs.io/en/latest/?badge=latest
+   :target: https://bmi-topography.csdms.io/en/latest/?badge=latest

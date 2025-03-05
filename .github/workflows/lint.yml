@@ -1,10 +1,14 @@
-name: Format
+name: Lint
 
 on: [push, pull_request]
 
+concurrency:
+  group: ${{ github.ref }}-${{ github.workflow }}
+  cancel-in-progress: true
+
 jobs:
 
-  format:
+  lint:
     name: Check for lint and format code to a standard style
     if:
       github.event_name == 'push' || github.event.pull_request.head.repo.full_name !=
@@ -14,14 +18,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: conda-incubator/setup-miniconda@v3
+      - uses: actions/setup-python@v5
         with:
-          miniforge-version: latest
-          python-version: 3.11
-          auto-activate-base: false
+          python-version: 3.12
 
       - name: Install nox
         run: pip install nox
 
       - name: Format code
-        run: nox -s format -- --check --verbose --diff
+        run: nox -s lint

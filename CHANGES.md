@@ -1,9 +1,24 @@
 # Changes for bmi-topography
 
-## 0.8.5 (unreleased)
+## 0.8.7 (unreleased)
+
+- Schedule a monthly test workflow run (#80)
 
 
-- Nothing changed yet.
+## 0.8.6 (2025-02-09)
+
+- Update project metadata and CI workflows (#79)
+- Switch from Mambaforge to Miniforge (#78)
+- Make an examples landing page (#77)
+
+
+## 0.8.5 (2024-08-18)
+
+- Check example notebooks (#75)
+- Simplify the test CI workflow (#74)
+- Cancel in-progress CI workflows on new push (#73)
+- Use pre-commit for linting and formatting (#72)
+- De-lint project files (#71)
 
 
 ## 0.8.4 (2024-03-28)

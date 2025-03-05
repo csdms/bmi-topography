@@ -1,9 +1,9 @@
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8327417.svg)](https://doi.org/10.5281/zenodo.8327417)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4608652.svg)](https://doi.org/10.5281/zenodo.4608652)
 [![Conda Version](https://img.shields.io/conda/vn/conda-forge/bmi-topography.svg)](https://anaconda.org/conda-forge/bmi-topography)
 [![PyPI](https://img.shields.io/pypi/v/bmi-topography)](https://pypi.org/project/bmi-topography)
-[![Build/Test CI](https://github.com/csdms/bmi-topography/actions/workflows/build-test-ci.yml/badge.svg)](https://github.com/csdms/bmi-topography/actions/workflows/build-test-ci.yml)
+[![Build/Test CI](https://github.com/csdms/bmi-topography/actions/workflows/test.yml/badge.svg)](https://github.com/csdms/bmi-topography/actions/workflows/test.yml)
 [![Coverage Status](https://coveralls.io/repos/github/csdms/bmi-topography/badge.svg?branch=main)](https://coveralls.io/github/csdms/bmi-topography?branch=main)
-[![Documentation Status](https://readthedocs.org/projects/bmi-topography/badge/?version=latest)](https://bmi-topography.readthedocs.io/en/latest/?badge=latest)
+[![Documentation Status](https://readthedocs.org/projects/bmi-topography/badge/?version=latest)](https://bmi-topography.csdms.io/en/latest/?badge=latest)
 
 # bmi-topography
 
@@ -81,7 +81,7 @@ there are three ways to use it with *bmi-topography*:
 3. *dot file*: Put the API key in the file `.opentopography.txt` in the current directory or in your home directory.
 
 If you attempt to use *bmi-topography* to access an OpenTopography dataset without an API key,
-you'll get a error like this: 
+you'll get a error like this:
 ```
 requests.exceptions.HTTPError: 401 Client Error: This dataset requires an API Key for access.
 ```
@@ -187,11 +187,11 @@ included in the [examples][bmi-topo-examples] directory
 of the *bmi-topography* repository.
 
 User and developer documentation for *bmi-topography*
-is available at https://bmi-topography.readthedocs.io.
+is available at https://bmi-topography.csdms.io.
 
 <!-- Links (by alpha) -->
 
-[bmi]: https://bmi.readthedocs.io
+[bmi]: https://bmi.csdms.io
 [bmi-topo-examples]: https://github.com/csdms/bmi-topography/tree/main/examples
 [bmi-topo-repo]: https://github.com/csdms/bmi-topography
 [conda-env]: https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html

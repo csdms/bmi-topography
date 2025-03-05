@@ -1,3 +1,4 @@
 sphinx
 recommonmark
 pandoc
+importlib-metadata

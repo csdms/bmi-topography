@@ -2,6 +2,10 @@ name: Documentation
 
 on: [push, pull_request]
 
+concurrency:
+  group: ${{ github.ref }}-${{ github.workflow }}
+  cancel-in-progress: true
+
 jobs:
 
   build:
@@ -17,7 +21,7 @@ jobs:
       - uses: conda-incubator/setup-miniconda@v3
         with:
           miniforge-version: latest
-          python-version: 3.11
+          python-version: 3.12
           auto-activate-base: false
 
       - name: Install dependencies

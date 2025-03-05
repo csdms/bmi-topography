@@ -1,5 +1,4 @@
 from collections.abc import Iterable
-from typing import Tuple
 
 
 class BoundingBox:
@@ -16,56 +15,40 @@ class BoundingBox:
 
     """
 
-    def __init__(self, lower_left: Tuple[float], upper_right: Tuple[float]) -> None:
+    def __init__(self, lower_left: tuple[float], upper_right: tuple[float]) -> None:
         self._lower_left = lower_left
         self._upper_right = upper_right
 
         if not isinstance(self.lower_left, Iterable) or len(self.lower_left) != 2:
             raise ValueError(
-                "lower left coordinate ({0}) must have two elements".format(
-                    self.lower_left
-                )
+                f"lower left coordinate ({self.lower_left}) must have two elements"
             )
 
         if not isinstance(self.upper_right, Iterable) or len(self.upper_right) != 2:
             raise ValueError(
-                "upper right coordinate ({0}) must have two elements".format(
-                    self.upper_right
-                )
+                f"upper right coordinate ({self.upper_right}) must have two elements"
             )
 
         if self.south > 90 or self.south < -90:
-            raise ValueError(
-                "south coordinate ({0}) must be in [-90,90]".format(self.south)
-            )
+            raise ValueError(f"south coordinate ({self.south}) must be in [-90,90]")
 
         if self.north > 90 or self.north < -90:
-            raise ValueError(
-                "north coordinate ({0}) must be in [-90,90]".format(self.north)
-            )
+            raise ValueError(f"north coordinate ({self.north}) must be in [-90,90]")
 
         if self.south > self.north:
             raise ValueError(
-                "south coordinate ({0}) must be less than north ({1})".format(
-                    self.south, self.north
-                )
+                f"south coordinate ({self.south}) must be less than north ({self.north})"
             )
 
         if self.west > 180 or self.west < -180:
-            raise ValueError(
-                "west coordinate ({0}) must be in [-180,180]".format(self.west)
-            )
+            raise ValueError(f"west coordinate ({self.west}) must be in [-180,180]")
 
         if self.east > 180 or self.east < -180:
-            raise ValueError(
-                "east coordinate ({0}) must be in [-180,180]".format(self.east)
-            )
+            raise ValueError(f"east coordinate ({self.east}) must be in [-180,180]")
 
         if self.west > self.east:
             raise ValueError(
-                "west coordinate ({0}) must be less than east ({1})".format(
-                    self.west, self.east
-                )
+                f"west coordinate ({self.west}) must be less than east ({self.east})"
             )
 
     @property
@@ -95,5 +78,5 @@ class BoundingBox:
         return self.upper_right[1]
 
     def __str__(self):
-        s = "[{0}, {1}]".format(self.lower_left, self.upper_right)
+        s = f"[{self.lower_left}, {self.upper_right}]"
         return s

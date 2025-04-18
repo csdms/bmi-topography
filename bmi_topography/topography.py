@@ -19,10 +19,7 @@ class Topography:
 
     SCHEME = "https"
     NETLOC = "portal.opentopography.org"
-    PATH = {    
-        "/API/usgsdem",
-        "/API/globaldem"
-    }
+    PATH = {"/API/usgsdem", "/API/globaldem"}
 
     DEFAULT = {
         "data_type": "/API/globaldem",
@@ -75,9 +72,7 @@ class Topography:
         if data_type in Topography.PATH:
             self._data_type = data_type
         else:
-            raise ValueError(
-                "data_type must be one of %s." % (Topography.PATH,)
-            )
+            raise ValueError(f"data_type must be one of {Topography.PATH}.")
 
         if dem_type in Topography.VALID_DEM_TYPES:
             self._dem_type = dem_type
@@ -104,7 +99,7 @@ class Topography:
     @property
     def data_type(self):
         return str(self._data_type)
-    
+
     @property
     def dem_type(self):
         return str(self._dem_type)
@@ -171,7 +166,9 @@ class Topography:
             if self._api_key:
                 params["API_Key"] = str(self._api_key)
 
-            response = requests.get(Topography.data_url(self.data_type), params=params, stream=True)
+            response = requests.get(
+                Topography.data_url(self.data_type), params=params, stream=True
+            )
 
             if response.status_code == 401:
                 if self._api_key.source == "demo":

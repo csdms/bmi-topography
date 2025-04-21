@@ -2,6 +2,7 @@
 
 import os
 import random
+
 import pytest
 
 from bmi_topography import Topography
@@ -110,10 +111,14 @@ def test_fetch_load_default(tmpdir):
 
 n_samples = 4
 dem_types_sample = random.sample(Topography.VALID_DEM_TYPES, n_samples)
+
+
 @pytest.mark.skipif("NO_FETCH" in os.environ, reason="NO_FETCH is set")
 @pytest.mark.parametrize("dem_type", dem_types_sample)
 def test_fetch_load(tmpdir, dem_type):
-    output_format, file_type = random.choice(list(Topography.VALID_OUTPUT_FORMATS.items()))
+    output_format, file_type = random.choice(
+        list(Topography.VALID_OUTPUT_FORMATS.items())
+    )
 
     with tmpdir.as_cwd():
         topo = Topography(

@@ -161,7 +161,7 @@ class Topography:
                 params["API_Key"] = str(self._api_key)
 
             response = requests.get(
-                Topography.data_url(self._server), params=params, stream=True
+                self.data_url(), params=params, stream=True
             )
 
             if response.status_code == 401:

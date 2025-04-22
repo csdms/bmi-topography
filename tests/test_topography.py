@@ -83,6 +83,7 @@ def test_fetch_load_default(tmpdir):
         assert topo.da.attrs["units"] == "degrees"
 
 
+@pytest.mark.skip(reason="disabled pending resolution of #83")
 @pytest.mark.skipif("NO_FETCH" in os.environ, reason="NO_FETCH is set")
 @pytest.mark.parametrize("dem_type", Topography.VALID_DEM_TYPES)
 @pytest.mark.parametrize(

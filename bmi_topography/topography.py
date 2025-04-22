@@ -45,10 +45,6 @@ class Topography:
         "USGS30m",
         "USGS10m",
         "USGS1m",
-        "EU_DTM",
-        "GEDI_L3",
-        "GEBCOIceTopo",
-        "GEBCOSubIceTopo",
     )
     VALID_OUTPUT_FORMATS = {"GTiff": "tif", "AAIGrid": "asc", "HFA": "img"}
 

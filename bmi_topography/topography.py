@@ -32,7 +32,7 @@ class Topography:
         "cache_dir": "~/.bmi_topography",
     }
 
-    VALID_DEM_TYPES = (
+    VALID_GLOBALDEM_TYPES = (
         "SRTMGL3",
         "SRTMGL1",
         "SRTMGL1_E",
@@ -42,10 +42,13 @@ class Topography:
         "NASADEM",
         "COP30",
         "COP90",
+    )
+    VALID_USGSDEM_TYPES = (
         "USGS30m",
         "USGS10m",
         "USGS1m",
     )
+    VALID_DEM_TYPES = (VALID_GLOBALDEM_TYPES + VALID_USGSDEM_TYPES)
     VALID_OUTPUT_FORMATS = {"GTiff": "tif", "AAIGrid": "asc", "HFA": "img"}
 
     def __init__(

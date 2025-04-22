@@ -142,24 +142,17 @@ class Topography:
 
         if not fname.is_file():
             self.cache_dir.mkdir(exist_ok=True)
-            if self.server == "/API/usgsdem":
-                params = {
-                    "datasetName": self.dem_type,
-                    "south": self.bbox.south,
-                    "north": self.bbox.north,
-                    "west": self.bbox.west,
-                    "east": self.bbox.east,
-                    "outputFormat": self.output_format,
-                }
-            elif self.server == "/API/globaldem":
-                params = {
-                    "demtype": self.dem_type,
-                    "south": self.bbox.south,
-                    "north": self.bbox.north,
-                    "west": self.bbox.west,
-                    "east": self.bbox.east,
-                    "outputFormat": self.output_format,
-                }
+            params = {
+                "south": self.bbox.south,
+                "north": self.bbox.north,
+                "west": self.bbox.west,
+                "east": self.bbox.east,
+                "outputFormat": self.output_format,
+            }
+            if "usgs" in self.server:
+                params["datasetName"] = self.dem_type
+            else:
+                params["demtype"] = self.dem_type
             if self._api_key:
                 params["API_Key"] = str(self._api_key)
 

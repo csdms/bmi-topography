@@ -125,7 +125,7 @@ class Topography:
         )
 
     def data_url(self):
-        return Topography.base_url() + self.server
+        return Topography.base_url() + self._server
 
     def fetch(self):
         """Download and locally store topography data.
@@ -153,7 +153,7 @@ class Topography:
                 "east": self.bbox.east,
                 "outputFormat": self.output_format,
             }
-            if "usgs" in self.server:
+            if "usgs" in self._server:
                 params["datasetName"] = self.dem_type
             else:
                 params["demtype"] = self.dem_type
@@ -161,7 +161,7 @@ class Topography:
                 params["API_Key"] = str(self._api_key)
 
             response = requests.get(
-                Topography.data_url(self.server), params=params, stream=True
+                Topography.data_url(self._server), params=params, stream=True
             )
 
             if response.status_code == 401:

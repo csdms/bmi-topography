@@ -6,15 +6,9 @@ import pytest
 
 from bmi_topography import Topography
 
-API_URL = "https://portal.opentopography.org/API/globaldem"
 CENTER_LAT = 40.0
 CENTER_LON = -105.0
 WIDTH = 0.01
-
-
-def test_data_url():
-    r = Topography.data_url()
-    assert r == API_URL
 
 
 def test_invalid_dem_type():
@@ -72,6 +66,22 @@ def test_cached_data(tmpdir, shared_datadir):
             cache_dir=shared_datadir,
         )
         assert len(tmpdir.listdir(fil=lambda f: f.ext == ".tif")) == 0
+
+
+@pytest.mark.parametrize("server_name", tuple(Topography.SERVER_NAME.values()))
+def test_data_url(server_name):
+    if "usgs" in server_name:
+        dem_type = "USGS30m"
+    else:
+        dem_type = "NASADEM"
+
+    params = Topography.DEFAULT.copy()
+    params["dem_type"] = dem_type
+    topo = Topography(**params)
+
+    server = Topography.SERVER_BASE + server_name
+    r = topo.data_url()
+    assert r == Topography.base_url() + server
 
 
 def test_fetch_load_default(tmpdir):

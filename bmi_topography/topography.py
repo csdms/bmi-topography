@@ -20,7 +20,7 @@ class Topography:
     SCHEME = "https"
     NETLOC = "portal.opentopography.org"
     SERVER_BASE = "/API"
-    SERVER_NAME = {"global":"/globaldem", "usgs":"/usgsdem"}
+    SERVER_NAME = {"global": "/globaldem", "usgs": "/usgsdem"}
 
     DEFAULT = {
         "dem_type": "SRTMGL3",
@@ -48,7 +48,7 @@ class Topography:
         "USGS10m",
         "USGS1m",
     )
-    VALID_DEM_TYPES = (VALID_GLOBALDEM_TYPES + VALID_USGSDEM_TYPES)
+    VALID_DEM_TYPES = VALID_GLOBALDEM_TYPES + VALID_USGSDEM_TYPES
     VALID_OUTPUT_FORMATS = {"GTiff": "tif", "AAIGrid": "asc", "HFA": "img"}
 
     def __init__(

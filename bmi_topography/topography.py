@@ -118,10 +118,13 @@ class Topography:
         return self._cache_dir
 
     @staticmethod
-    def data_url(server):
+    def base_url():
         return urllib.parse.urlunparse(
-            (Topography.SCHEME, Topography.NETLOC, server, "", "", "")
+            (Topography.SCHEME, Topography.NETLOC, "", "", "", "")
         )
+
+    def data_url(self):
+        return Topography.base_url() + self.server
 
     def fetch(self):
         """Download and locally store topography data.

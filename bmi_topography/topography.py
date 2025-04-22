@@ -19,10 +19,9 @@ class Topography:
 
     SCHEME = "https"
     NETLOC = "portal.opentopography.org"
-    PATH = {"/API/usgsdem", "/API/globaldem"}
+    SERVER_BASE = "/API"
 
     DEFAULT = {
-        "data_type": "/API/globaldem",
         "dem_type": "SRTMGL3",
         "south": 36.738884,
         "north": 38.091337,
@@ -53,7 +52,6 @@ class Topography:
 
     def __init__(
         self,
-        data_type=None,
         dem_type=None,
         south=None,
         north=None,
@@ -68,15 +66,15 @@ class Topography:
         #     self._api_key = find_user_api_key() or use_demo_key()
         # else:
         #     self._api_key = api_key
-        if data_type in Topography.PATH:
-            self._data_type = data_type
-        else:
-            raise ValueError(f"data_type must be one of {Topography.PATH}.")
 
         if dem_type in Topography.VALID_DEM_TYPES:
             self._dem_type = dem_type
         else:
             raise ValueError(f"dem_type must be one of {Topography.VALID_DEM_TYPES}.")
+
+        self._server = Topography.SERVER_BASE + "/globaldem"
+        if dem_type in Topography.VALID_USGSDEM_TYPES:
+            self._server = Topography.SERVER_BASE + "/usgsdem"
 
         if output_format in Topography.VALID_OUTPUT_FORMATS.keys():
             self._output_format = output_format
@@ -96,8 +94,8 @@ class Topography:
         self._cache_dir = Path(cache_dir).expanduser().resolve().absolute()
 
     @property
-    def data_type(self):
-        return str(self._data_type)
+    def server(self):
+        return str(self._server)
 
     @property
     def dem_type(self):
@@ -120,9 +118,9 @@ class Topography:
         return self._cache_dir
 
     @staticmethod
-    def data_url(data_type):
+    def data_url(server):
         return urllib.parse.urlunparse(
-            (Topography.SCHEME, Topography.NETLOC, data_type, "", "", "")
+            (Topography.SCHEME, Topography.NETLOC, server, "", "", "")
         )
 
     def fetch(self):
@@ -144,7 +142,7 @@ class Topography:
 
         if not fname.is_file():
             self.cache_dir.mkdir(exist_ok=True)
-            if self.data_type == "/API/usgsdem":
+            if self.server == "/API/usgsdem":
                 params = {
                     "datasetName": self.dem_type,
                     "south": self.bbox.south,
@@ -153,7 +151,7 @@ class Topography:
                     "east": self.bbox.east,
                     "outputFormat": self.output_format,
                 }
-            elif self.data_type == "/API/globaldem":
+            elif self.server == "/API/globaldem":
                 params = {
                     "demtype": self.dem_type,
                     "south": self.bbox.south,
@@ -166,7 +164,7 @@ class Topography:
                 params["API_Key"] = str(self._api_key)
 
             response = requests.get(
-                Topography.data_url(self.data_type), params=params, stream=True
+                Topography.data_url(self.server), params=params, stream=True
             )
 
             if response.status_code == 401:

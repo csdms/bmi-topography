@@ -19,7 +19,8 @@ class Topography:
 
     SCHEME = "https"
     NETLOC = "portal.opentopography.org"
-    PATH = "/API/globaldem"
+    SERVER_BASE = "/API"
+    SERVER_NAME = {"global": "/globaldem", "usgs": "/usgsdem"}
 
     DEFAULT = {
         "dem_type": "SRTMGL3",
@@ -31,7 +32,7 @@ class Topography:
         "cache_dir": "~/.bmi_topography",
     }
 
-    VALID_DEM_TYPES = (
+    VALID_GLOBALDEM_TYPES = (
         "SRTMGL3",
         "SRTMGL1",
         "SRTMGL1_E",
@@ -42,6 +43,12 @@ class Topography:
         "COP30",
         "COP90",
     )
+    VALID_USGSDEM_TYPES = (
+        "USGS30m",
+        "USGS10m",
+        "USGS1m",
+    )
+    VALID_DEM_TYPES = VALID_GLOBALDEM_TYPES + VALID_USGSDEM_TYPES
     VALID_OUTPUT_FORMATS = {"GTiff": "tif", "AAIGrid": "asc", "HFA": "img"}
 
     def __init__(
@@ -66,6 +73,10 @@ class Topography:
         else:
             raise ValueError(f"dem_type must be one of {Topography.VALID_DEM_TYPES}.")
 
+        self._server = Topography.SERVER_BASE + Topography.SERVER_NAME["global"]
+        if dem_type in Topography.VALID_USGSDEM_TYPES:
+            self._server = Topography.SERVER_BASE + Topography.SERVER_NAME["usgs"]
+
         if output_format in Topography.VALID_OUTPUT_FORMATS.keys():
             self._output_format = output_format
             self._file_extension = Topography.VALID_OUTPUT_FORMATS[output_format]
@@ -82,6 +93,10 @@ class Topography:
         if cache_dir is None:
             cache_dir = Path(Topography.DEFAULT["cache_dir"])
         self._cache_dir = Path(cache_dir).expanduser().resolve().absolute()
+
+    @property
+    def server(self):
+        return str(self._server)
 
     @property
     def dem_type(self):
@@ -104,10 +119,13 @@ class Topography:
         return self._cache_dir
 
     @staticmethod
-    def data_url():
+    def base_url():
         return urllib.parse.urlunparse(
-            (Topography.SCHEME, Topography.NETLOC, Topography.PATH, "", "", "")
+            (Topography.SCHEME, Topography.NETLOC, "", "", "", "")
         )
+
+    def data_url(self):
+        return Topography.base_url() + self._server
 
     def fetch(self):
         """Download and locally store topography data.
@@ -128,19 +146,22 @@ class Topography:
 
         if not fname.is_file():
             self.cache_dir.mkdir(exist_ok=True)
-
             params = {
-                "demtype": self.dem_type,
                 "south": self.bbox.south,
                 "north": self.bbox.north,
                 "west": self.bbox.west,
                 "east": self.bbox.east,
                 "outputFormat": self.output_format,
             }
+            if "usgs" in self._server:
+                params["datasetName"] = self.dem_type
+            else:
+                params["demtype"] = self.dem_type
             if self._api_key:
                 params["API_Key"] = str(self._api_key)
 
-            response = requests.get(Topography.data_url(), params=params, stream=True)
+            response = requests.get(self.data_url(), params=params, stream=True)
+
             if response.status_code == 401:
                 if self._api_key.source == "demo":
                     msg = os.linesep.join(

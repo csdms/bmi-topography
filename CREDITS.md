@@ -10,6 +10,7 @@ Contributors
 ------------
 
 * Eric Hutton
+* Jeffrey Kwang
 * Mark Piper
 
 Acknowledgments

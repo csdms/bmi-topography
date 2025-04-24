@@ -1,6 +1,7 @@
 """Test Topography class"""
 
 import os
+import random
 
 import pytest
 import requests
@@ -115,13 +116,7 @@ def test_fetch_load_default(tmpdir):
         assert topo.da.attrs["units"] == "degrees"
 
 
-@pytest.mark.skip(reason="disabled pending resolution of #83")
-@pytest.mark.skipif("NO_FETCH" in os.environ, reason="NO_FETCH is set")
-@pytest.mark.parametrize("dem_type", Topography.VALID_DEM_TYPES)
-@pytest.mark.parametrize(
-    "output_format,file_type", Topography.VALID_OUTPUT_FORMATS.items()
-)
-def test_fetch_load(tmpdir, dem_type, output_format, file_type):
+def _fetch_load(tmpdir, dem_type, output_format, file_type):
     with tmpdir.as_cwd():
         topo = Topography(
             dem_type=dem_type,
@@ -139,3 +134,26 @@ def test_fetch_load(tmpdir, dem_type, output_format, file_type):
         assert topo.da is not None
         assert topo.da.name == dem_type
         assert topo.da.attrs["units"] is not None
+
+
+@pytest.mark.skip(reason="too many downloads from OT server")
+@pytest.mark.skipif("NO_FETCH" in os.environ, reason="NO_FETCH is set")
+@pytest.mark.parametrize("dem_type", Topography.VALID_DEM_TYPES)
+@pytest.mark.parametrize(
+    "output_format,file_type", Topography.VALID_OUTPUT_FORMATS.items()
+)
+def test_fetch_load(tmpdir, dem_type, output_format, file_type):
+    _fetch_load(tmpdir, dem_type, output_format, file_type)
+
+
+n_samples = 4
+dem_types_sample = random.sample(Topography.VALID_DEM_TYPES, n_samples)
+
+
+@pytest.mark.skipif("NO_FETCH" in os.environ, reason="NO_FETCH is set")
+@pytest.mark.parametrize("dem_type", dem_types_sample)
+def test_fetch_load_sample(tmpdir, dem_type):
+    output_format, file_type = random.choice(
+        list(Topography.VALID_OUTPUT_FORMATS.items())
+    )
+    _fetch_load(tmpdir, dem_type, output_format, file_type)

@@ -4,7 +4,6 @@ import os
 import urllib
 import warnings
 from pathlib import Path
-import itertools
 
 import requests
 import rioxarray
@@ -188,7 +187,7 @@ class Topography:
     def clear_cache(dir):
         cache_dir = Path(dir).expanduser()
 
-        cache_files = list()
+        cache_files = []
         for fext in Topography.VALID_OUTPUT_FORMATS.values():
             cache_files.extend(cache_dir.glob(f"*.{fext}"))
 

@@ -205,6 +205,6 @@ is available at https://bmi-topography.csdms.io.
 [ot-api-key]: https://opentopography.org/blog/introducing-api-keys-access-opentopography-global-datasets
 [ot-rest]: https://portal.opentopography.org/apidocs/
 [rioxarray]: https://corteva.github.io/rioxarray/stable/getting_started/getting_started.html
-[xarray]: http://xarray.pydata.org/en/stable/
-[xarray-da]: http://xarray.pydata.org/en/stable/api.html#dataarray
-[xarray-plot]: https://xarray.pydata.org/en/stable/generated/xarray.plot.plot.html
+[xarray]: https://docs.xarray.dev/en/stable/index.html
+[xarray-da]: https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html
+[xarray-plot]: https://docs.xarray.dev/en/stable/generated/xarray.DataArray.plot.html

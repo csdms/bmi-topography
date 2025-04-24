@@ -121,6 +121,9 @@ line_length = 88
 
 [tool.coverage.run]
 relative_files = true
+omit = [
+  "bmi_topography/bmi.py",
+]
 
 [tool.zest-releaser]
 tag-format = "v{version}"

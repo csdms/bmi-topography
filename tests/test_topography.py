@@ -3,6 +3,7 @@
 import os
 
 import pytest
+import requests
 
 from bmi_topography import Topography
 from bmi_topography.api_key import ApiKey

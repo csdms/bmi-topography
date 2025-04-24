@@ -74,6 +74,7 @@ def test_find_user_api_key_from_user(tmpdir):
             assert key.source.startswith("user")
 
 
+@pytest.mark.hasuserkey
 def test_find_user_api_key_from_missing_file(tmpdir):
     """The API key is in a file"""
     env = copy_environ(exclude="OPENTOPOGRAPHY_API_KEY")
@@ -83,6 +84,7 @@ def test_find_user_api_key_from_missing_file(tmpdir):
                 ApiKey.from_file()
 
 
+@pytest.mark.hasuserkey
 def test_default_to_demo_key(tmpdir):
     """If a key can't be found, use the demo key"""
     env = copy_environ(exclude="OPENTOPOGRAPHY_API_KEY")

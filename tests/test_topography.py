@@ -5,6 +5,7 @@ import os
 import pytest
 
 from bmi_topography import Topography
+from bmi_topography.api_key import ApiKey
 
 CENTER_LAT = 40.0
 CENTER_LON = -105.0
@@ -82,6 +83,22 @@ def test_data_url(server_name):
     server = Topography.SERVER_BASE + server_name
     r = topo.data_url()
     assert r == Topography.base_url() + server
+
+
+@pytest.mark.parametrize("dem_type", Topography.VALID_DEM_TYPES)
+def test_fetch(dem_type):
+    params = Topography.DEFAULT.copy()
+    params["dem_type"] = dem_type
+    params["api_key"] = ApiKey.INVALID_TEST_API_KEY
+
+    topo = Topography(**params)
+
+    with pytest.raises(requests.exceptions.HTTPError) as error:
+        topo.fetch()
+
+    assert error.value.response.status_code == 401
+    assert ApiKey.INVALID_TEST_API_KEY in error.value.response.url
+    assert topo._api_key.is_invalid_test_key() is True
 
 
 def test_fetch_load_default(tmpdir):

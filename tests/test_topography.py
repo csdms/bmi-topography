@@ -1,6 +1,7 @@
 """Test Topography class"""
 
 import os
+from pathlib import Path
 
 import pytest
 
@@ -51,6 +52,22 @@ def test_cached_data(tmpdir, shared_datadir):
         Topography(**params)
 
         assert len(tmpdir.listdir(fil=lambda f: f.ext == ".tif")) == 0
+
+
+def test_clear_cache(tmpdir):
+    with tmpdir.as_cwd():
+        dem_file = []
+        for fext in Topography.VALID_OUTPUT_FORMATS.values():
+            dem_file.append(Path(f"foo.{fext}"))
+
+        for file in dem_file:
+            file.touch()
+
+        for file in dem_file:
+            assert file.is_file()
+        Topography.clear_cache(tmpdir)
+        for file in dem_file:
+            assert not file.is_file()
 
 
 @pytest.mark.parametrize("server_name", tuple(Topography.SERVER_NAME.values()))

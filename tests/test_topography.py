@@ -22,14 +22,9 @@ def test_invalid_output_format():
 
 
 def test_valid_bbox():
-    topo = Topography(
-        dem_type=Topography.DEFAULT["dem_type"],
-        output_format=Topography.DEFAULT["output_format"],
-        south=Topography.DEFAULT["south"],
-        west=Topography.DEFAULT["west"],
-        north=Topography.DEFAULT["north"],
-        east=Topography.DEFAULT["east"],
-    )
+    params = Topography.DEFAULT.copy()
+    topo = Topography(**params)
+
     assert topo.bbox.south == Topography.DEFAULT["south"]
     assert topo.bbox.west == Topography.DEFAULT["west"]
     assert topo.bbox.north == Topography.DEFAULT["north"]
@@ -41,30 +36,20 @@ def test_valid_bbox():
 @pytest.mark.parametrize("cache_dir", (".", "./cache"))
 def test_cache_dir(tmpdir, cache_dir):
     with tmpdir.as_cwd():
-        topo = Topography(
-            dem_type=Topography.DEFAULT["dem_type"],
-            output_format=Topography.DEFAULT["output_format"],
-            south=Topography.DEFAULT["south"],
-            west=Topography.DEFAULT["west"],
-            north=Topography.DEFAULT["north"],
-            east=Topography.DEFAULT["east"],
-            cache_dir=cache_dir,
-        )
+        params = Topography.DEFAULT.copy()
+        params["cache_dir"] = cache_dir
+        topo = Topography(**params)
+
         assert topo.cache_dir.is_absolute()
         assert list(topo.cache_dir.glob("*.tif")) == []
 
 
 def test_cached_data(tmpdir, shared_datadir):
     with tmpdir.as_cwd():
-        Topography(
-            dem_type=Topography.DEFAULT["dem_type"],
-            output_format=Topography.DEFAULT["output_format"],
-            south=Topography.DEFAULT["south"],
-            west=Topography.DEFAULT["west"],
-            north=Topography.DEFAULT["north"],
-            east=Topography.DEFAULT["east"],
-            cache_dir=shared_datadir,
-        )
+        params = Topography.DEFAULT.copy()
+        params["cache_dir"] = shared_datadir
+        Topography(**params)
+
         assert len(tmpdir.listdir(fil=lambda f: f.ext == ".tif")) == 0
 
 

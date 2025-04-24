@@ -90,6 +90,10 @@ def test_data_url(server_name):
 def test_fetch(dem_type):
     params = Topography.DEFAULT.copy()
     params["dem_type"] = dem_type
+    params["west"] = CENTER_LON - WIDTH
+    params["east"] = CENTER_LON + WIDTH
+    params["north"] = CENTER_LAT + WIDTH
+    params["south"] = CENTER_LAT - WIDTH
     params["api_key"] = ApiKey.INVALID_TEST_API_KEY
 
     topo = Topography(**params)

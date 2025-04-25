@@ -10,10 +10,9 @@ PACKAGE = PROJECT.replace("-", "_")
 HERE = pathlib.Path(__file__)
 ROOT = HERE.parent
 PATHS = [PACKAGE, "docs", "examples", "tests", HERE.name]
-PYTHON_VERSIONS = ["3.10", "3.11", "3.12"]
 
 
-@nox.session(python=PYTHON_VERSIONS)
+@nox.session()
 def test(session: nox.Session) -> None:
     """Run the tests."""
     session.install(".[testing]")
@@ -33,7 +32,7 @@ def test(session: nox.Session) -> None:
         session.run("coverage", "report", "--ignore-errors", "--show-missing")
 
 
-@nox.session(name="test-bmi", python=PYTHON_VERSIONS)
+@nox.session(name="test-bmi")
 def test_bmi(session: nox.Session) -> None:
     """Test the Basic Model Interface."""
     session.install("bmi-tester>=0.5.9")
@@ -49,7 +48,7 @@ def test_bmi(session: nox.Session) -> None:
     )
 
 
-@nox.session(name="test-cli", python=PYTHON_VERSIONS)
+@nox.session(name="test-cli")
 def test_cli(session: nox.Session) -> None:
     """Test the command line interface."""
     session.install(".")
@@ -57,7 +56,7 @@ def test_cli(session: nox.Session) -> None:
     session.run(PROJECT, "--help")
 
 
-@nox.session(name="check-notebooks", python=PYTHON_VERSIONS[-1])
+@nox.session(name="check-notebooks")
 def check_notebooks(session: nox.Session) -> None:
     """Run the example notebooks."""
     session.install(".[testing,examples]")

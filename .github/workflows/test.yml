@@ -45,7 +45,7 @@ jobs:
           OPENTOPOGRAPHY_API_KEY: ${{ secrets.OPENTOPOGRAPHY_API_KEY }}
         if: ${{ matrix.python-version == '3.12' }}
         run: |
-          nox -s test --python ${{ matrix.python-version }}
+          nox -s test
 
       - name: Test older Python versions
         env:
@@ -53,12 +53,12 @@ jobs:
           NO_FETCH: 1
         if: ${{ matrix.python-version != '3.12' }}
         run: |
-          nox -s test --python ${{ matrix.python-version }}
+          nox -s test
 
       - name: Test BMI
         if: ${{ matrix.python-version == '3.12' }}
         run: |
-          nox -s test-bmi --python ${{ matrix.python-version }}
+          nox -s test-bmi
 
       - name: Coveralls
         if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.12'

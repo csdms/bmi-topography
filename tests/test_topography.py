@@ -20,7 +20,7 @@ def test_invalid_dem_type():
 def test_default_output_format():
     params = Topography.DEFAULT.copy()
     params.pop("output_format")
-    assert "output_format" in params.keys() is False
+    assert "output_format" not in params.keys()
 
     topo = Topography(**params)
     assert topo.output_format == "GTiff"

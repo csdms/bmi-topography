@@ -183,6 +183,18 @@ class Topography:
 
         return fname.absolute()
 
+    @staticmethod
+    def clear_cache(dir):
+        cache_dir = Path(dir).expanduser()
+
+        cache_files = []
+        for fext in Topography.VALID_OUTPUT_FORMATS.values():
+            cache_files.extend(cache_dir.glob(f"*.{fext}"))
+
+        for cache_file in cache_files:
+            cache_file.unlink()
+            print(f"rm {cache_file}")
+
     @property
     def da(self):
         return self._da

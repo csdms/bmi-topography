@@ -23,6 +23,12 @@ The *bmi-topography* library provides access to the following global raster data
 * COP30 (Copernicus Global DSM 30m)
 * COP90 (Copernicus Global DSM 90m)
 
+as well as these USGS 3DEP raster datasets:
+
+* USGS30m
+* USGS10m
+* USGS1m (limited to academic users)
+
 The library includes an API and a CLI that accept
 the dataset type,
 a latitude-longitude bounding box, and
@@ -81,7 +87,7 @@ there are three ways to use it with *bmi-topography*:
 3. *dot file*: Put the API key in the file `.opentopography.txt` in the current directory or in your home directory.
 
 If you attempt to use *bmi-topography* to access an OpenTopography dataset without an API key,
-you'll get a error like this:
+you'll get an error like this:
 ```
 requests.exceptions.HTTPError: 401 Client Error: This dataset requires an API Key for access.
 ```
@@ -125,7 +131,7 @@ then fetch the data from OpenTopography:
 PosixPath('/Users/mpiper/.bmi_topography/SRTMGL3_39.93_-105.33_40.0_-105.26.tif')
 ```
 This step might take a few moments,
-and it will increase for requests of larger areas.
+and the time it takes will increase for requests of larger areas.
 Note that the file has been saved to a local cache directory.
 
 Load the data into an xarray `DataArray` for further work:
@@ -199,6 +205,6 @@ is available at https://bmi-topography.csdms.io.
 [ot-api-key]: https://opentopography.org/blog/introducing-api-keys-access-opentopography-global-datasets
 [ot-rest]: https://portal.opentopography.org/apidocs/
 [rioxarray]: https://corteva.github.io/rioxarray/stable/getting_started/getting_started.html
-[xarray]: http://xarray.pydata.org/en/stable/
-[xarray-da]: http://xarray.pydata.org/en/stable/api.html#dataarray
-[xarray-plot]: https://xarray.pydata.org/en/stable/generated/xarray.plot.plot.html
+[xarray]: https://docs.xarray.dev/en/stable/index.html
+[xarray-da]: https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html
+[xarray-plot]: https://docs.xarray.dev/en/stable/generated/xarray.DataArray.plot.html

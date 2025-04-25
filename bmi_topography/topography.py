@@ -58,7 +58,7 @@ class Topography:
         north=None,
         west=None,
         east=None,
-        output_format=None,
+        output_format="GTiff",
         cache_dir=None,
         api_key=None,
     ):

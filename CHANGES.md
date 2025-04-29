@@ -2,6 +2,10 @@
 
 ## 0.8.7 (unreleased)
 
+- Set default output format to GTiff (#87)
+- Update project files (#86)
+- Add a function to clear data files from a directory (#84)
+- Access to USGS 3DEP DEMs using OpenTopgraphy API (#82)
 - Schedule a monthly test workflow run (#80)
 
 

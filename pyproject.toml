@@ -19,6 +19,7 @@ keywords = [
   "dem",
   "data",
   "csdms",
+  "usgs",
 ]
 license = {text = "MIT License"}
 classifiers = [

@@ -4,171 +4,175 @@ Changes for bmi-topography
 0.8.7 (unreleased)
 ------------------
 
-- Nothing changed yet.
+-  Set default output format to GTiff (#87)
+-  Update project files (#86)
+-  Add a function to clear data files from a directory (#84)
+-  Access to USGS 3DEP DEMs using OpenTopgraphy API (#82)
+-  Schedule a monthly test workflow run (#80)
 
 0.8.6 (2025-02-09)
 ------------------
 
-- Update project metadata and CI workflows (#79)
-- Switch from Mambaforge to Miniforge (#78)
-- Make an examples landing page (#77)
+-  Update project metadata and CI workflows (#79)
+-  Switch from Mambaforge to Miniforge (#78)
+-  Make an examples landing page (#77)
 
 .. _section-1:
 
 0.8.5 (2024-08-18)
 ------------------
 
-- Check example notebooks (#75)
-- Simplify the test CI workflow (#74)
-- Cancel in-progress CI workflows on new push (#73)
-- Use pre-commit for linting and formatting (#72)
-- De-lint project files (#71)
+-  Check example notebooks (#75)
+-  Simplify the test CI workflow (#74)
+-  Cancel in-progress CI workflows on new push (#73)
+-  Use pre-commit for linting and formatting (#72)
+-  De-lint project files (#71)
 
 .. _section-2:
 
 0.8.4 (2024-03-28)
 ------------------
 
-- Update docs build (#68)
-- Set minimum python>=3.10 (#67)
-- Link to project contributing and code of conduct docs (#65)
+-  Update docs build (#68)
+-  Set minimum python>=3.10 (#67)
+-  Link to project contributing and code of conduct docs (#65)
 
 .. _section-3:
 
 0.8.3 (2023-12-18)
 ------------------
 
-- Build and test with Python 3.12 (#60)
-- Remove setuptools files in favor of pyproject.toml (#59)
-- Fix failing docs build (#58)
-- Use nox in CI testing (#54)
+-  Build and test with Python 3.12 (#60)
+-  Remove setuptools files in favor of pyproject.toml (#59)
+-  Fix failing docs build (#58)
+-  Use nox in CI testing (#54)
 
 .. _section-4:
 
 0.8.2 (2023-02-06)
 ------------------
 
-- Fix problem getting CRS info for AAIGrid type (#53)
+-  Fix problem getting CRS info for AAIGrid type (#53)
 
 .. _section-5:
 
 0.8.1 (2023-01-27)
 ------------------
 
-- Run test CI on Windows with Python 3.10 (#52)
-- Use nox instead of make for building and testing project (#51)
-- Update project metadata files (#50)
-- Use rio accessor for geospatial information (#47)
-- Update contents of source and binary distributions (#46)
+-  Run test CI on Windows with Python 3.10 (#52)
+-  Use nox instead of make for building and testing project (#51)
+-  Update project metadata files (#50)
+-  Use rio accessor for geospatial information (#47)
+-  Update contents of source and binary distributions (#46)
 
 .. _section-6:
 
 0.8 (2022-07-05)
 ----------------
 
-- Switch from xarray to rioxarray (#45)
-- Move metadata from setup.cfg to pyproject.toml (#44)
+-  Switch from xarray to rioxarray (#45)
+-  Move metadata from setup.cfg to pyproject.toml (#44)
 
 .. _section-7:
 
 0.7.1 (2022-06-03)
 ------------------
 
-- Provide a better reason for 401 errors (#41)
+-  Provide a better reason for 401 errors (#41)
 
 .. _section-8:
 
 0.7 (2022-03-24)
 ----------------
 
-- Support all OpenTopography global datasets (#39)
-- Create test matrix of datasets and file types (#38)
+-  Support all OpenTopography global datasets (#39)
+-  Create test matrix of datasets and file types (#38)
 
 .. _section-9:
 
 0.6 (2022-02-17)
 ----------------
 
-- Use dashes in command line options (#36)
-- Use a demo API key if a user key can’t be found (#34)
+-  Use dashes in command line options (#36)
+-  Use a demo API key if a user key can’t be found (#34)
 
 .. _section-10:
 
 0.5.1 (2022-02-15)
 ------------------
 
-- Document use of OpenTopography API key (#33)
-- Add text to exception raised when API key is missing (#32)
-- Use new black syntax (#31)
+-  Document use of OpenTopography API key (#33)
+-  Add text to exception raised when API key is missing (#32)
+-  Use new black syntax (#31)
 
 .. _section-11:
 
 0.5 (2022-01-25)
 ----------------
 
-- Use an API key when requesting OpenTopography data (#25)
-- Add python 3.10 to tests (#24)
-- Address technical debt (#22)
+-  Use an API key when requesting OpenTopography data (#25)
+-  Add python 3.10 to tests (#24)
+-  Address technical debt (#22)
 
 .. _section-12:
 
 0.4 (2021-09-03)
 ----------------
 
-- Support ALOS World 3D 30m products (#13)
-- Support .asc and .img files (#14)
-- Add format job to CI
-- Use CITATION.cff file
+-  Support ALOS World 3D 30m products (#13)
+-  Support .asc and .img files (#14)
+-  Add format job to CI
+-  Use CITATION.cff file
 
 .. _section-13:
 
 0.3.2 (2021-04-23)
 ------------------
 
-- Add citation recommendation with DOI
-- Fix typos, update text in example notebooks
-- Create CREDITS.md and rearrange docs
+-  Add citation recommendation with DOI
+-  Fix typos, update text in example notebooks
+-  Create CREDITS.md and rearrange docs
 
 .. _section-14:
 
 0.3.1 (2021-03-04)
 ------------------
 
-- Install with conda
-- Include shell script demonstrating CLI
+-  Install with conda
+-  Include shell script demonstrating CLI
 
 .. _section-15:
 
 0.3 (2021-02-25)
 ----------------
 
-- Update README with overview and install instructions
-- Write documentation
+-  Update README with overview and install instructions
+-  Write documentation
 
 .. _section-16:
 
 0.2 (2021-02-24)
 ----------------
 
-- Implement BMI for Topography class from template generated by
-  ``bmipy-render``
-- Include sample config file and Jupyter Notebook to demo BMI
-- Add CI with GitHub Actions
+-  Implement BMI for Topography class from template generated by
+   ``bmipy-render``
+-  Include sample config file and Jupyter Notebook to demo BMI
+-  Add CI with GitHub Actions
 
 .. _section-17:
 
 0.1.1 (2021-02-22)
 ------------------
 
-- Add Makefile rule to test upload to TestPyPI
-- Test upload to TestPyPI
+-  Add Makefile rule to test upload to TestPyPI
+-  Test upload to TestPyPI
 
 .. _section-18:
 
 0.1 (2021-02-22)
 ----------------
 
-- Create base library that calls OpenTopography API
-- Create CLI for library
-- Write tests for library and CLI
-- Include demo Jupyter Notebook for library
+-  Create base library that calls OpenTopography API
+-  Create CLI for library
+-  Write tests for library and CLI
+-  Include demo Jupyter Notebook for library

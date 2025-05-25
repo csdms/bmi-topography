@@ -12,22 +12,28 @@ API <https://portal.opentopography.org/apidocs/>`__.
 The *bmi-topography* library provides access to the following global
 raster datasets:
 
-- SRTMGL3 (SRTM GL3 90m)
-- SRTMGL1 (SRTM GL1 30m)
-- SRTMGL1_E (SRTM GL1 Ellipsoidal 30m)
-- AW3D30 (ALOS World 3D 30m)
-- AW3D30_E (ALOS World 3D Ellipsoidal, 30m)
-- SRTM15Plus (Global Bathymetry SRTM15+ V2.1)
-- NASADEM (NASADEM Global DEM)
-- COP30 (Copernicus Global DSM 30m)
-- COP90 (Copernicus Global DSM 90m)
+-  SRTMGL3 (SRTM GL3 90m)
+-  SRTMGL1 (SRTM GL1 30m)
+-  SRTMGL1_E (SRTM GL1 Ellipsoidal 30m)
+-  AW3D30 (ALOS World 3D 30m)
+-  AW3D30_E (ALOS World 3D Ellipsoidal, 30m)
+-  SRTM15Plus (Global Bathymetry SRTM15+ V2.1)
+-  NASADEM (NASADEM Global DEM)
+-  COP30 (Copernicus Global DSM 30m)
+-  COP90 (Copernicus Global DSM 90m)
+
+as well as these USGS 3DEP raster datasets:
+
+-  USGS30m
+-  USGS10m
+-  USGS1m (limited to academic users)
 
 The library includes an API and a CLI that accept the dataset type, a
 latitude-longitude bounding box, and the output file format. Data are
 downloaded from OpenTopography and cached locally. The cache is checked
 before downloading new data. Data from a cached file can optionally be
-loaded into an `xarray <http://xarray.pydata.org/en/stable/>`__
-`DataArray <http://xarray.pydata.org/en/stable/api.html#dataarray>`__
+loaded into an `xarray <https://docs.xarray.dev/en/stable/index.html>`__
+`DataArray <https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html>`__
 through
 `rioxarray <https://corteva.github.io/rioxarray/stable/getting_started/getting_started.html>`__.
 
@@ -90,7 +96,7 @@ Once you have an API key, there are three ways to use it with
    the current directory or in your home directory.
 
 If you attempt to use *bmi-topography* to access an OpenTopography
-dataset without an API key, you’ll get a error like this:
+dataset without an API key, you’ll get an error like this:
 
 ::
 
@@ -143,9 +149,9 @@ then fetch the data from OpenTopography:
    >>> boulder.fetch()
    PosixPath('/Users/mpiper/.bmi_topography/SRTMGL3_39.93_-105.33_40.0_-105.26.tif')
 
-This step might take a few moments, and it will increase for requests of
-larger areas. Note that the file has been saved to a local cache
-directory.
+This step might take a few moments, and the time it takes will increase
+for requests of larger areas. Note that the file has been saved to a
+local cache directory.
 
 Load the data into an xarray ``DataArray`` for further work:
 
@@ -194,7 +200,7 @@ Note that coordinate reference system information is stored in the
        GeoTransform:                 -105.33041666668363 0.000833333333333144 0....
 
 Display the elevations with the default xarray ``DataArray``
-`plot <https://xarray.pydata.org/en/stable/generated/xarray.plot.plot.html>`__
+`plot <https://docs.xarray.dev/en/stable/generated/xarray.DataArray.plot.html>`__
 method.
 
 .. code:: python

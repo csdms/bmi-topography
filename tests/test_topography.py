@@ -20,6 +20,15 @@ def test_invalid_dem_type():
         Topography(dem_type="foo", output_format=Topography.DEFAULT["output_format"])
 
 
+def test_default_output_format():
+    params = Topography.DEFAULT.copy()
+    params.pop("output_format")
+    assert "output_format" not in params.keys()
+
+    topo = Topography(**params)
+    assert topo.output_format == "GTiff"
+
+
 def test_invalid_output_format():
     with pytest.raises(ValueError):
         Topography(dem_type=Topography.DEFAULT["dem_type"], output_format="foo")

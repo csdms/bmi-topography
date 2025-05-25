@@ -23,6 +23,7 @@ keywords:
   - csdms
   - alos
   - nasadem
+  - usgs
 license: MIT
 version: 0.8.6
 doi: 10.5281/zenodo.4608652

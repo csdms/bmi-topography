@@ -90,10 +90,10 @@ def prepare_docs(session: nox.Session) -> None:
         )
 
 
-@nox.session(name="build-docs", venv_backend="conda")
+@nox.session(name="build-docs")
 def build_docs(session: nox.Session) -> None:
     """Build the docs."""
-    session.conda_install("--file", "docs/requirements.txt")
+    session.install("-r", "docs/requirements.txt")
     session.install("-e", ".")
 
     prepare_docs(session)

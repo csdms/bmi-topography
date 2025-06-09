@@ -93,8 +93,7 @@ def prepare_docs(session: nox.Session) -> None:
 @nox.session(name="build-docs")
 def build_docs(session: nox.Session) -> None:
     """Build the docs."""
-    session.install("-r", "docs/requirements.txt")
-    session.install("-e", ".")
+    session.install(".[docs]")
 
     prepare_docs(session)
 

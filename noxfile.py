@@ -88,6 +88,9 @@ def build_docs(session: nox.Session) -> None:
 
     session.run("sphinx-apidoc", "-f", "-o", "docs/source/api", PACKAGE)
 
+    for file in ["CHANGES", "CONTRIBUTING", "CODE-OF-CONDUCT", "LICENSE"]:
+        shutil.copy(f"{file}.md", f"docs/source/{file}.md")
+
     if os.path.exists("build"):
         shutil.rmtree("build")
     session.run("sphinx-build", "-b", "html", "-W", "docs/source", "build/html")

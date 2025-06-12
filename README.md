@@ -1,3 +1,17 @@
+<!-- Links (by alpha) -->
+
+[bmi]: https://bmi.csdms.io
+[bmi-topo-examples]: https://github.com/csdms/bmi-topography/tree/main/examples
+[bmi-topo-repo]: https://github.com/csdms/bmi-topography
+[conda-env]: https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html
+[ot]: https://opentopography.org/
+[ot-api-key]: https://opentopography.org/blog/introducing-api-keys-access-opentopography-global-datasets
+[ot-rest]: https://portal.opentopography.org/apidocs/
+[rioxarray]: https://corteva.github.io/rioxarray/stable/getting_started/getting_started.html
+[xarray]: https://docs.xarray.dev/en/stable/index.html
+[xarray-da]: https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html
+[xarray-plot]: https://docs.xarray.dev/en/stable/generated/xarray.DataArray.plot.html
+
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4608652.svg)](https://doi.org/10.5281/zenodo.4608652)
 [![Conda Version](https://img.shields.io/conda/vn/conda-forge/bmi-topography.svg)](https://anaconda.org/conda-forge/bmi-topography)
 [![PyPI](https://img.shields.io/pypi/v/bmi-topography)](https://pypi.org/project/bmi-topography)
@@ -192,19 +206,7 @@ Python script, and shell script
 included in the [examples][bmi-topo-examples] directory
 of the *bmi-topography* repository.
 
+<!-- skip-docs-link -->
+
 User and developer documentation for *bmi-topography*
 is available at https://bmi-topography.csdms.io.
-
-<!-- Links (by alpha) -->
-
-[bmi]: https://bmi.csdms.io
-[bmi-topo-examples]: https://github.com/csdms/bmi-topography/tree/main/examples
-[bmi-topo-repo]: https://github.com/csdms/bmi-topography
-[conda-env]: https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html
-[ot]: https://opentopography.org/
-[ot-api-key]: https://opentopography.org/blog/introducing-api-keys-access-opentopography-global-datasets
-[ot-rest]: https://portal.opentopography.org/apidocs/
-[rioxarray]: https://corteva.github.io/rioxarray/stable/getting_started/getting_started.html
-[xarray]: https://docs.xarray.dev/en/stable/index.html
-[xarray-da]: https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html
-[xarray-plot]: https://docs.xarray.dev/en/stable/generated/xarray.DataArray.plot.html

@@ -19,7 +19,6 @@ from importlib.metadata import version as package_version
 # The master toctree document.
 master_doc = "index"
 
-
 # -- Project information -----------------------------------------------------
 
 project = "bmi-topography"
@@ -39,7 +38,7 @@ extensions = [
     "sphinx.ext.autodoc",
     "sphinx.ext.napoleon",
     "sphinx.ext.viewcode",
-    "recommonmark",
+    "myst_parser",
 ]
 
 # Add any paths that contain templates here, relative to this directory.

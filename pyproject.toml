@@ -71,8 +71,7 @@ testing = [
 ]
 docs = [
   "sphinx",
-  "recommonmark",
-  "pandoc",
+  "myst_parser",
   "importlib-metadata",
 ]
 examples = [

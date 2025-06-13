@@ -80,23 +80,15 @@ def lint(session: nox.Session) -> None:
     session.run("pre-commit", "run", "--all-files")
 
 
-@nox.session(name="prepare-docs")
-def prepare_docs(session: nox.Session) -> None:
-    """Update docs source before building."""
-    session.run("sphinx-apidoc", "-f", "-o", "docs/source/api", PACKAGE)
-    for file in ["README", "CHANGES", "CONTRIBUTING", "CODE-OF-CONDUCT", "LICENSE"]:
-        session.run(
-            "pandoc", "--to", "rst", f"{file}.md", "--output", f"docs/source/{file}.rst"
-        )
-
-
-@nox.session(name="build-docs", venv_backend="conda")
+@nox.session(name="build-docs")
 def build_docs(session: nox.Session) -> None:
     """Build the docs."""
-    session.conda_install("--file", "docs/requirements.txt")
-    session.install("-e", ".")
+    session.install(".[docs]")
 
-    prepare_docs(session)
+    session.run("sphinx-apidoc", "-f", "-o", "docs/source/api", PACKAGE)
+
+    for file in ["CHANGES", "CONTRIBUTING", "CODE-OF-CONDUCT", "LICENSE"]:
+        shutil.copy(f"{file}.md", f"docs/source/{file}.md")
 
     if os.path.exists("build"):
         shutil.rmtree("build")

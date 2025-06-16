@@ -157,8 +157,10 @@ def test_fetch_load(tmpdir, dem_type, output_format, file_type):
     _fetch_load(tmpdir, dem_type, output_format, file_type)
 
 
+dem_types = [*Topography.VALID_DEM_TYPES]
+dem_types.remove("USGS1m")  # academic use only
 n_samples = 4
-dem_types_sample = random.sample(Topography.VALID_DEM_TYPES, n_samples)
+dem_types_sample = random.sample(dem_types, n_samples)
 
 
 @pytest.mark.skipif("NO_FETCH" in os.environ, reason="NO_FETCH is set")

@@ -44,6 +44,10 @@ class Topography:
         "COP90",
         "EU_DTM",
         "GEDI_L3",
+        "GEBCOIceTopo",
+        "GEBCOSubIceTopo",
+        "CA_MRDEM_DSM",
+        "CA_MRDEM_DTM",
     )
     VALID_USGSDEM_TYPES = (
         "USGS30m",

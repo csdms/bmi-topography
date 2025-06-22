@@ -38,6 +38,10 @@ The *bmi-topography* library provides access to the following global raster data
 * COP90 (Copernicus Global DSM 90m)
 * EU_DTM (DTM 30m)
 * GEDI_L3 (DTM 1000m)
+* GEBCOIceTopo (Global Bathymetry 500m)
+* GEBCOSubIceTopo (Global Bathymetry 500m)
+* CA_MRDEM_DSM (DSM 30m)
+* CA_MRDEM_DTM (DTM 30m)
 
 as well as these USGS 3DEP raster datasets:
 

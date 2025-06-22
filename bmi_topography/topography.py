@@ -42,6 +42,8 @@ class Topography:
         "NASADEM",
         "COP30",
         "COP90",
+        "EU_DTM",
+        "GEDI_L3",
     )
     VALID_USGSDEM_TYPES = (
         "USGS30m",

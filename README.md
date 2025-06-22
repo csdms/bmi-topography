@@ -36,6 +36,8 @@ The *bmi-topography* library provides access to the following global raster data
 * NASADEM (NASADEM Global DEM)
 * COP30 (Copernicus Global DSM 30m)
 * COP90 (Copernicus Global DSM 90m)
+* EU_DTM (DTM 30m)
+* GEDI_L3 (DTM 1000m)
 
 as well as these USGS 3DEP raster datasets:
 

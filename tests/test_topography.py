@@ -1,11 +1,14 @@
 """Test Topography class"""
 
 import os
+import random
 from pathlib import Path
 
 import pytest
+import requests
 
 from bmi_topography import Topography
+from bmi_topography.api_key import ApiKey
 
 CENTER_LAT = 40.0
 CENTER_LON = -105.0
@@ -95,6 +98,26 @@ def test_data_url(server_name):
     assert r == Topography.base_url() + server
 
 
+@pytest.mark.parametrize("dem_type", Topography.VALID_DEM_TYPES)
+def test_fetch(dem_type):
+    params = Topography.DEFAULT.copy()
+    params["dem_type"] = dem_type
+    params["west"] = CENTER_LON - WIDTH
+    params["east"] = CENTER_LON + WIDTH
+    params["north"] = CENTER_LAT + WIDTH
+    params["south"] = CENTER_LAT - WIDTH
+    params["api_key"] = ApiKey.INVALID_TEST_API_KEY
+
+    topo = Topography(**params)
+
+    with pytest.raises(requests.exceptions.HTTPError) as error:
+        topo.fetch()
+
+    assert error.value.response.status_code == 401
+    assert ApiKey.INVALID_TEST_API_KEY in error.value.response.url
+    assert topo._api_key.is_invalid_test_key() is True
+
+
 def test_fetch_load_default(tmpdir):
     with tmpdir.as_cwd():
         topo = Topography(**Topography.DEFAULT)
@@ -104,13 +127,7 @@ def test_fetch_load_default(tmpdir):
         assert topo.da.attrs["units"] == "degrees"
 
 
-@pytest.mark.skip(reason="disabled pending resolution of #83")
-@pytest.mark.skipif("NO_FETCH" in os.environ, reason="NO_FETCH is set")
-@pytest.mark.parametrize("dem_type", Topography.VALID_DEM_TYPES)
-@pytest.mark.parametrize(
-    "output_format,file_type", Topography.VALID_OUTPUT_FORMATS.items()
-)
-def test_fetch_load(tmpdir, dem_type, output_format, file_type):
+def _fetch_load(tmpdir, dem_type, output_format, file_type):
     with tmpdir.as_cwd():
         topo = Topography(
             dem_type=dem_type,
@@ -128,3 +145,28 @@ def test_fetch_load(tmpdir, dem_type, output_format, file_type):
         assert topo.da is not None
         assert topo.da.name == dem_type
         assert topo.da.attrs["units"] is not None
+
+
+@pytest.mark.skip(reason="too many downloads from OT server")
+@pytest.mark.skipif("NO_FETCH" in os.environ, reason="NO_FETCH is set")
+@pytest.mark.parametrize("dem_type", Topography.VALID_DEM_TYPES)
+@pytest.mark.parametrize(
+    "output_format,file_type", Topography.VALID_OUTPUT_FORMATS.items()
+)
+def test_fetch_load(tmpdir, dem_type, output_format, file_type):
+    _fetch_load(tmpdir, dem_type, output_format, file_type)
+
+
+dem_types = [*Topography.VALID_DEM_TYPES]
+dem_types.remove("USGS1m")  # academic use only
+n_samples = 4
+dem_types_sample = random.sample(dem_types, n_samples)
+
+
+@pytest.mark.skipif("NO_FETCH" in os.environ, reason="NO_FETCH is set")
+@pytest.mark.parametrize("dem_type", dem_types_sample)
+def test_fetch_load_sample(tmpdir, dem_type):
+    output_format, file_type = random.choice(
+        list(Topography.VALID_OUTPUT_FORMATS.items())
+    )
+    _fetch_load(tmpdir, dem_type, output_format, file_type)

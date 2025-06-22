@@ -35,6 +35,7 @@ class ApiKey:
     """
 
     DEMO_API_KEY = "demoapikeyot2022"
+    INVALID_TEST_API_KEY = "invalidtestkey"
     API_KEY_FILES = (".opentopography.txt", "~/.opentopography.txt")
     API_KEY_ENV_VAR = "OPENTOPOGRAPHY_API_KEY"
 
@@ -113,6 +114,10 @@ class ApiKey:
     def is_demo_key(self):
         """Check if the key is a demo key."""
         return self._api_key == ApiKey.DEMO_API_KEY
+
+    def is_invalid_test_key(self):
+        """Check if the key is the invalid test key."""
+        return self._api_key == ApiKey.INVALID_TEST_API_KEY
 
     def __repr__(self):
         return f"ApiKey({self.api_key!r}, source={self.source!r})"

@@ -111,6 +111,9 @@ doctest_optionflags = [
   "IGNORE_EXCEPTION_DETAIL",
   "ALLOW_UNICODE"
 ]
+markers = [
+  "hasuserkey: marks tests that fail with user key present (deselect with '-m \"not hasuserkey\"')",
+]
 
 [tool.isort]
 multi_line_output = 3

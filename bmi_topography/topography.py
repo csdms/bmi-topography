@@ -3,6 +3,7 @@
 import os
 import urllib
 import warnings
+from collections import namedtuple
 from pathlib import Path
 
 import requests
@@ -12,6 +13,11 @@ from rasterio.errors import CRSError
 
 from .api_key import ApiKey
 from .bbox import BoundingBox
+
+UrlComponents = namedtuple(
+    typename="UrlComponents",
+    field_names=["scheme", "netloc", "url", "path", "query", "fragment"],
+)
 
 
 class Topography:
@@ -160,14 +166,15 @@ class Topography:
 
     def _build_url(self):
         query_params = self._build_query()
-        url_components = (
-            Topography.SCHEME,
-            Topography.NETLOC,
-            self.server,
-            "",
-            urllib.parse.urlencode(query_params),
-            "",
+        url_components = UrlComponents(
+            scheme=Topography.SCHEME,
+            netloc=Topography.NETLOC,
+            url=self.server,
+            path="",
+            query=urllib.parse.urlencode(query_params),
+            fragment="",
         )
+
         return urllib.parse.urlunparse(url_components)
 
     def fetch(self):

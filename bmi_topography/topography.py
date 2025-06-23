@@ -128,16 +128,15 @@ class Topography:
         return Topography.base_url() + self._server
 
     def _build_filename(self):
-        return Path(
-            self.cache_dir
-        ) / "{dem_type}_{south}_{west}_{north}_{east}.{ext}".format(
-            dem_type=self.dem_type,
-            south=self.bbox.south,
-            north=self.bbox.north,
-            west=self.bbox.west,
-            east=self.bbox.east,
-            ext=self.file_extension,
+        filename = (
+            f"{self.dem_type}"
+            f"_{self.bbox.south}"
+            f"_{self.bbox.west}"
+            f"_{self.bbox.north}"
+            f"_{self.bbox.east}"
+            f".{self.file_extension}"
         )
+        return Path(self.cache_dir) / filename
 
     def fetch(self):
         """Download and locally store topography data.

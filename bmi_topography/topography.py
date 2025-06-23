@@ -138,6 +138,23 @@ class Topography:
         )
         return Path(self.cache_dir) / filename
 
+    def _build_query(self):
+        params = {
+            "south": self.bbox.south,
+            "north": self.bbox.north,
+            "west": self.bbox.west,
+            "east": self.bbox.east,
+            "outputFormat": self.output_format,
+        }
+        if "usgs" in self._server:
+            params["datasetName"] = self.dem_type
+        else:
+            params["demtype"] = self.dem_type
+        if self._api_key:
+            params["API_Key"] = str(self._api_key)
+
+        return params
+
     def fetch(self):
         """Download and locally store topography data.
 
@@ -147,21 +164,9 @@ class Topography:
         fname = self._build_filename()
         if not fname.is_file():
             self.cache_dir.mkdir(exist_ok=True)
-            params = {
-                "south": self.bbox.south,
-                "north": self.bbox.north,
-                "west": self.bbox.west,
-                "east": self.bbox.east,
-                "outputFormat": self.output_format,
-            }
-            if "usgs" in self._server:
-                params["datasetName"] = self.dem_type
-            else:
-                params["demtype"] = self.dem_type
-            if self._api_key:
-                params["API_Key"] = str(self._api_key)
+            query_params = self._build_query()
 
-            response = requests.get(self.data_url(), params=params, stream=True)
+            response = requests.get(self.data_url(), params=query_params, stream=True)
 
             if response.status_code == 401:
                 if self._api_key.source == "demo":

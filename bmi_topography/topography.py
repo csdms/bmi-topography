@@ -88,6 +88,8 @@ class Topography:
 
         self._bbox = BoundingBox((south, west), (north, east))
 
+        self._url = self._build_url()
+
         self._da = None
 
         if cache_dir is None:
@@ -113,6 +115,10 @@ class Topography:
     @property
     def bbox(self):
         return self._bbox
+
+    @property
+    def url(self):
+        return self._url
 
     @property
     def cache_dir(self):
@@ -155,6 +161,18 @@ class Topography:
 
         return params
 
+    def _build_url(self):
+        query_params = self._build_query()
+        url_components = (
+            Topography.SCHEME,
+            Topography.NETLOC,
+            self.server,
+            "",
+            urllib.parse.urlencode(query_params),
+            "",
+        )
+        return urllib.parse.urlunparse(url_components)
+
     def fetch(self):
         """Download and locally store topography data.
 
@@ -164,9 +182,8 @@ class Topography:
         fname = self._build_filename()
         if not fname.is_file():
             self.cache_dir.mkdir(exist_ok=True)
-            query_params = self._build_query()
 
-            response = requests.get(self.data_url(), params=query_params, stream=True)
+            response = requests.get(self.url, stream=True)
 
             if response.status_code == 401:
                 if self._api_key.source == "demo":

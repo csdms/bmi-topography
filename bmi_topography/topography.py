@@ -128,9 +128,15 @@ class Topography:
 
     @staticmethod
     def base_url():
-        return urllib.parse.urlunparse(
-            (Topography.SCHEME, Topography.NETLOC, "", "", "", "")
+        url_components = UrlComponents(
+            scheme=Topography.SCHEME,
+            netloc=Topography.NETLOC,
+            url="",
+            path="",
+            query="",
+            fragment="",
         )
+        return urllib.parse.urlunparse(url_components)
 
     def _build_filename(self):
         filename = (

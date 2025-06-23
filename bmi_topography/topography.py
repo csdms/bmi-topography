@@ -123,10 +123,6 @@ class Topography:
         return self._bbox
 
     @property
-    def url(self):
-        return self._url
-
-    @property
     def cache_dir(self):
         return self._cache_dir
 
@@ -176,6 +172,10 @@ class Topography:
         )
 
         return urllib.parse.urlunparse(url_components)
+
+    @property
+    def url(self):
+        return self._url
 
     def fetch(self):
         """Download and locally store topography data.

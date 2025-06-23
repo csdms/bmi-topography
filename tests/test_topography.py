@@ -82,22 +82,6 @@ def test_clear_cache(tmpdir):
             assert not file.is_file()
 
 
-@pytest.mark.parametrize("server_name", tuple(Topography.SERVER_NAME.values()))
-def test_data_url(server_name):
-    if "usgs" in server_name:
-        dem_type = "USGS30m"
-    else:
-        dem_type = "NASADEM"
-
-    params = Topography.DEFAULT.copy()
-    params["dem_type"] = dem_type
-    topo = Topography(**params)
-
-    server = Topography.SERVER_BASE + server_name
-    r = topo.data_url()
-    assert r == Topography.base_url() + server
-
-
 @pytest.mark.parametrize("dem_type", Topography.VALID_DEM_TYPES)
 def test_fetch(dem_type):
     params = Topography.DEFAULT.copy()

@@ -130,9 +130,6 @@ class Topography:
             (Topography.SCHEME, Topography.NETLOC, "", "", "", "")
         )
 
-    def data_url(self):
-        return Topography.base_url() + self._server
-
     def _build_filename(self):
         filename = (
             f"{self.dem_type}"

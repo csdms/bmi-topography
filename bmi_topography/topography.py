@@ -127,13 +127,8 @@ class Topography:
     def data_url(self):
         return Topography.base_url() + self._server
 
-    def fetch(self):
-        """Download and locally store topography data.
-
-        Returns:
-            pathlib.Path: The path to the downloaded file
-        """
-        fname = Path(
+    def _build_filename(self):
+        return Path(
             self.cache_dir
         ) / "{dem_type}_{south}_{west}_{north}_{east}.{ext}".format(
             dem_type=self.dem_type,
@@ -144,6 +139,13 @@ class Topography:
             ext=self.file_extension,
         )
 
+    def fetch(self):
+        """Download and locally store topography data.
+
+        Returns:
+            pathlib.Path: The path to the downloaded file
+        """
+        fname = self._build_filename()
         if not fname.is_file():
             self.cache_dir.mkdir(exist_ok=True)
             params = {

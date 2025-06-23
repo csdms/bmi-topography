@@ -150,17 +150,18 @@ class Topography:
         return Path(self.cache_dir) / filename
 
     def _build_query(self):
-        params = {
-            "south": self.bbox.south,
-            "north": self.bbox.north,
-            "west": self.bbox.west,
-            "east": self.bbox.east,
-            "outputFormat": self.output_format,
-        }
-        if "usgs" in self._server:
+        params = {}
+        if "usgs" in self.server:
             params["datasetName"] = self.dem_type
         else:
             params["demtype"] = self.dem_type
+
+        params["south"] = self.bbox.south
+        params["north"] = self.bbox.north
+        params["west"] = self.bbox.west
+        params["east"] = self.bbox.east
+        params["outputFormat"] = self.output_format
+
         if self._api_key:
             params["API_Key"] = str(self._api_key)
 

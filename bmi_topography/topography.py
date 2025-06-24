@@ -1,9 +1,9 @@
 """Base class to access elevation data"""
 
 import os
-import urllib
 import warnings
 from pathlib import Path
+from urllib.parse import ParseResult, urlencode, urlunparse
 
 import requests
 import rioxarray
@@ -19,7 +19,7 @@ class Topography:
 
     SCHEME = "https"
     NETLOC = "portal.opentopography.org"
-    SERVER_BASE = "/API"
+    SERVER_BASE = "API"
     SERVER_NAME = {"global": "/globaldem", "usgs": "/usgsdem"}
 
     DEFAULT = {
@@ -88,6 +88,8 @@ class Topography:
 
         self._bbox = BoundingBox((south, west), (north, east))
 
+        self._url = self._build_url()
+
         self._da = None
 
         if cache_dir is None:
@@ -120,12 +122,61 @@ class Topography:
 
     @staticmethod
     def base_url():
-        return urllib.parse.urlunparse(
-            (Topography.SCHEME, Topography.NETLOC, "", "", "", "")
+        url_components = ParseResult(
+            scheme=Topography.SCHEME,
+            netloc=Topography.NETLOC,
+            path="",
+            params="",
+            query="",
+            fragment="",
+        )
+        return urlunparse(url_components)
+
+    def _build_filename(self):
+        filename = (
+            f"{self.dem_type}"
+            f"_{self.bbox.south}"
+            f"_{self.bbox.west}"
+            f"_{self.bbox.north}"
+            f"_{self.bbox.east}"
+            f".{self.file_extension}"
+        )
+        return Path(self.cache_dir) / filename
+
+    def _build_query(self):
+        params = {}
+        if "usgs" in self.server:
+            params["datasetName"] = self.dem_type
+        else:
+            params["demtype"] = self.dem_type
+
+        params["south"] = self.bbox.south
+        params["north"] = self.bbox.north
+        params["west"] = self.bbox.west
+        params["east"] = self.bbox.east
+        params["outputFormat"] = self.output_format
+
+        if self._api_key:
+            params["API_Key"] = str(self._api_key)
+
+        return params
+
+    def _build_url(self):
+        query_params = self._build_query()
+        url_components = ParseResult(
+            scheme=Topography.SCHEME,
+            netloc=Topography.NETLOC,
+            path=self.server,
+            params="",
+            query=urlencode(query_params),
+            fragment="",
         )
 
-    def data_url(self):
-        return Topography.base_url() + self._server
+        return urlunparse(url_components)
+
+    @property
+    def url(self):
+        return self._url
 
     def fetch(self):
         """Download and locally store topography data.
@@ -133,34 +184,11 @@ class Topography:
         Returns:
             pathlib.Path: The path to the downloaded file
         """
-        fname = Path(
-            self.cache_dir
-        ) / "{dem_type}_{south}_{west}_{north}_{east}.{ext}".format(
-            dem_type=self.dem_type,
-            south=self.bbox.south,
-            north=self.bbox.north,
-            west=self.bbox.west,
-            east=self.bbox.east,
-            ext=self.file_extension,
-        )
-
+        fname = self._build_filename()
         if not fname.is_file():
             self.cache_dir.mkdir(exist_ok=True)
-            params = {
-                "south": self.bbox.south,
-                "north": self.bbox.north,
-                "west": self.bbox.west,
-                "east": self.bbox.east,
-                "outputFormat": self.output_format,
-            }
-            if "usgs" in self._server:
-                params["datasetName"] = self.dem_type
-            else:
-                params["demtype"] = self.dem_type
-            if self._api_key:
-                params["API_Key"] = str(self._api_key)
 
-            response = requests.get(self.data_url(), params=params, stream=True)
+            response = requests.get(self.url, stream=True)
 
             if response.status_code == 401:
                 if self._api_key.source == "demo":

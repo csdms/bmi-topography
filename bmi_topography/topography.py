@@ -1,7 +1,7 @@
 """Base class to access elevation data"""
 
 import os
-import urllib
+from urllib.parse import urlunparse, urlencode, ParseResult
 import warnings
 from collections import namedtuple
 from pathlib import Path
@@ -14,18 +14,13 @@ from rasterio.errors import CRSError
 from .api_key import ApiKey
 from .bbox import BoundingBox
 
-UrlComponents = namedtuple(
-    typename="UrlComponents",
-    field_names=["scheme", "netloc", "url", "path", "query", "fragment"],
-)
-
 
 class Topography:
     """Fetch and cache land elevation data from OpenTopography."""
 
     SCHEME = "https"
     NETLOC = "portal.opentopography.org"
-    SERVER_BASE = "/API"
+    SERVER_BASE = "API"
     SERVER_NAME = {"global": "/globaldem", "usgs": "/usgsdem"}
 
     DEFAULT = {
@@ -128,15 +123,15 @@ class Topography:
 
     @staticmethod
     def base_url():
-        url_components = UrlComponents(
+        url_components = ParseResult(
             scheme=Topography.SCHEME,
             netloc=Topography.NETLOC,
-            url="",
             path="",
+            params="",
             query="",
             fragment="",
         )
-        return urllib.parse.urlunparse(url_components)
+        return urlunparse(url_components)
 
     def _build_filename(self):
         filename = (
@@ -169,16 +164,16 @@ class Topography:
 
     def _build_url(self):
         query_params = self._build_query()
-        url_components = UrlComponents(
+        url_components = ParseResult(
             scheme=Topography.SCHEME,
             netloc=Topography.NETLOC,
-            url=self.server,
-            path="",
-            query=urllib.parse.urlencode(query_params),
+            path=self.server,
+            params="",
+            query=urlencode(query_params),
             fragment="",
         )
 
-        return urllib.parse.urlunparse(url_components)
+        return urlunparse(url_components)
 
     @property
     def url(self):

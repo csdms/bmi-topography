@@ -1,10 +1,9 @@
 """Base class to access elevation data"""
 
 import os
-from urllib.parse import urlunparse, urlencode, ParseResult
 import warnings
-from collections import namedtuple
 from pathlib import Path
+from urllib.parse import ParseResult, urlencode, urlunparse
 
 import requests
 import rioxarray

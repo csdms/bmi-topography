@@ -20,3 +20,9 @@ class BadApiKeySource(BmiTopographyError):
     """Raise for an invalid API key source."""
 
     pass
+
+
+class BoundingBoxError(BmiTopographyError):
+    """Raise for an invalid or incomplete bounding box."""
+
+    pass

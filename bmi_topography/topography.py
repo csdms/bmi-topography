@@ -12,6 +12,7 @@ from rasterio.errors import CRSError
 
 from .api_key import ApiKey
 from .bbox import BoundingBox
+from .errors import BoundingBoxError
 
 
 class Topography:
@@ -86,6 +87,10 @@ class Topography:
                 % [k for k in Topography.VALID_OUTPUT_FORMATS.keys()]
             )
 
+        if None in (south, west, north, east):
+            raise BoundingBoxError(
+                "'north', 'east', 'south', and 'west' parameters are required"
+            )
         self._bbox = BoundingBox((south, west), (north, east))
 
         self._url = self._build_url()

@@ -9,6 +9,7 @@ import requests
 
 from bmi_topography import Topography
 from bmi_topography.api_key import ApiKey
+from bmi_topography.errors import BoundingBoxError
 
 CENTER_LAT = 40.0
 CENTER_LON = -105.0
@@ -18,6 +19,18 @@ WIDTH = 0.01
 def test_invalid_dem_type():
     with pytest.raises(ValueError):
         Topography(dem_type="foo", output_format=Topography.DEFAULT["output_format"])
+
+
+def test_missing_bbox():
+    params = Topography.DEFAULT.copy()
+    with pytest.raises(BoundingBoxError):
+        Topography(params["dem_type"])
+
+
+def test_incomplete_bbox():
+    params = Topography.DEFAULT.copy()
+    with pytest.raises(BoundingBoxError):
+        Topography(params["dem_type"], south=CENTER_LAT, east=CENTER_LON)
 
 
 def test_default_output_format():

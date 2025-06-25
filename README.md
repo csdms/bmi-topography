@@ -12,6 +12,26 @@
 [xarray-da]: https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html
 [xarray-plot]: https://docs.xarray.dev/en/stable/generated/xarray.DataArray.plot.html
 
+<!-- Links to datasets on OT -->
+[SRTMGL3]: https://portal.opentopography.org/raster?opentopoID=OTSRTM.042013.4326.1
+[SRTMGL1]: https://portal.opentopography.org/raster?opentopoID=OTSRTM.082015.4326.1
+[SRTMGL1_E]: https://portal.opentopography.org/raster?opentopoID=OTSRTM.082016.4326.1
+[AW3D30]: https://portal.opentopography.org/raster?opentopoID=OTALOS.112016.4326.2
+[AW3D30_E]: https://portal.opentopography.org/raster?opentopoID=OTALOS.082017.4326.1
+[SRTM15Plus]: https://portal.opentopography.org/datasetMetadata?otCollectionID=OT.122019.4326.1
+[NASADEM]: https://doi.org/10.5069/G93T9FD9
+[COP30]: https://portal.opentopography.org/raster?opentopoID=OTSDEM.032021.4326.3
+[COP90]: https://portal.opentopography.org/raster?opentopoID=OTSDEM.032021.4326.1
+[EU_DTM]: https://portal.opentopography.org/datasetMetadata?otCollectionID=OT.092022.3035.1
+[GEDI_L3]: https://portal.opentopography.org/datasetMetadata?otCollectionID=OT.032022.4326.1
+[GEBCOIceTopo]: https://portal.opentopography.org/raster?opentopoID=OTSDEM.122023.4326.1
+[GEBCOSubIceTopo]: https://portal.opentopography.org/raster?opentopoID=OTSDEM.122023.4326.2
+[CA_MRDEM_DSM]: https://doi.org/10.5069/G9N8780J
+[CA_MRDEM_DTM]: https://doi.org/10.5069/G9N8780J
+[USGS30m]: https://portal.opentopography.org/raster?opentopoID=OTNED.012021.4269.2
+[USGS10m]: https://portal.opentopography.org/raster?opentopoID=OTNED.012021.4269.1
+[USGS1m]: https://portal.opentopography.org/raster?opentopoID=OTNED.012021.4269.3
+
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4608652.svg)](https://doi.org/10.5281/zenodo.4608652)
 [![Conda Version](https://img.shields.io/conda/vn/conda-forge/bmi-topography.svg)](https://anaconda.org/conda-forge/bmi-topography)
 [![PyPI](https://img.shields.io/pypi/v/bmi-topography)](https://pypi.org/project/bmi-topography)
@@ -27,27 +47,27 @@ using the [OpenTopography][ot] [REST API][ot-rest].
 
 The *bmi-topography* library provides access to the following global raster datasets:
 
-* SRTMGL3 (SRTM GL3 90m)
-* SRTMGL1 (SRTM GL1 30m)
-* SRTMGL1_E (SRTM GL1 Ellipsoidal 30m)
-* AW3D30 (ALOS World 3D 30m)
-* AW3D30_E (ALOS World 3D Ellipsoidal, 30m)
-* SRTM15Plus (Global Bathymetry SRTM15+ V2.1)
-* NASADEM (NASADEM Global DEM)
-* COP30 (Copernicus Global DSM 30m)
-* COP90 (Copernicus Global DSM 90m)
-* EU_DTM (DTM 30m)
-* GEDI_L3 (DTM 1000m)
-* GEBCOIceTopo (Global Bathymetry 500m)
-* GEBCOSubIceTopo (Global Bathymetry 500m)
-* CA_MRDEM_DSM (DSM 30m)
-* CA_MRDEM_DTM (DTM 30m)
+* [SRTMGL3][SRTMGL3] (SRTM GL3 90m)
+* [SRTMGL1][SRTMGL1] (SRTM GL1 30m)
+* [SRTMGL1_E][SRTMGL1_E] (SRTM GL1 Ellipsoidal 30m)
+* [AW3D30][AW3D30] (ALOS World 3D 30m)
+* [AW3D30_E][AW3D30_E] (ALOS World 3D Ellipsoidal, 30m)
+* [SRTM15Plus][SRTM15Plus] (Global Bathymetry SRTM15+ V2.1)
+* [NASADEM][NASADEM] (NASADEM Global DEM)
+* [COP30][COP30] (Copernicus Global DSM 30m)
+* [COP90][COP90] (Copernicus Global DSM 90m)
+* [EU_DTM][EU_DTM] (DTM 30m)
+* [GEDI_L3][GEDI_L3] (DTM 1000m)
+* [GEBCOIceTopo][GEBCOIceTopo] (Global Bathymetry 500m)
+* [GEBCOSubIceTopo][GEBCOSubIceTopo] (Global Bathymetry 500m)
+* [CA_MRDEM_DSM][CA_MRDEM_DSM] (DSM 30m)
+* [CA_MRDEM_DTM][CA_MRDEM_DTM] (DTM 30m)
 
 as well as these USGS 3DEP raster datasets:
 
-* USGS30m
-* USGS10m
-* USGS1m (limited to academic users)
+* [USGS30m][USGS30m]
+* [USGS10m][USGS10m]
+* [USGS1m][USGS1m] (limited to academic users)
 
 The library includes an API and a CLI that accept
 the dataset type,

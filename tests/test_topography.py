@@ -127,14 +127,31 @@ def test_fetch_load_default(tmpdir):
 
 
 def _fetch_load(tmpdir, dem_type, output_format, file_type):
+    scale_factor = 1.0
+    lat = CENTER_LAT
+    lon = CENTER_LON
+    match dem_type:
+        case "GEDI_L3":
+            scale_factor = 100.0
+        case "GEBCOIceTopo" | "GEBCOSubIceTopo":
+            scale_factor = 50.0
+        case "EU_DTM":
+            lat = 52.0
+            lon = 4.0
+        case "CA_MRDEM_DSM" | "CA_MRDEM_DTM":
+            lat = 44.5
+            lon = -63.5
+        case _:
+            pass
+
     with tmpdir.as_cwd():
         topo = Topography(
             dem_type=dem_type,
             output_format=output_format,
-            south=CENTER_LAT - WIDTH,
-            west=CENTER_LON - WIDTH,
-            north=CENTER_LAT + WIDTH,
-            east=CENTER_LON + WIDTH,
+            south=lat - WIDTH * scale_factor,
+            west=lon - WIDTH * scale_factor,
+            north=lat + WIDTH * scale_factor,
+            east=lon + WIDTH * scale_factor,
             cache_dir=".",
         )
         topo.fetch()

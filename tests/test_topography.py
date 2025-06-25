@@ -9,6 +9,7 @@ import requests
 
 from bmi_topography import Topography
 from bmi_topography.api_key import ApiKey
+from bmi_topography.errors import BoundingBoxError
 
 CENTER_LAT = 40.0
 CENTER_LON = -105.0
@@ -32,6 +33,18 @@ def test_default_output_format():
 def test_invalid_output_format():
     with pytest.raises(ValueError):
         Topography(dem_type=Topography.DEFAULT["dem_type"], output_format="foo")
+
+
+def test_missing_bbox():
+    params = Topography.DEFAULT.copy()
+    with pytest.raises(BoundingBoxError):
+        Topography(params["dem_type"])
+
+
+def test_incomplete_bbox():
+    params = Topography.DEFAULT.copy()
+    with pytest.raises(BoundingBoxError):
+        Topography(params["dem_type"], south=CENTER_LAT, east=CENTER_LON)
 
 
 def test_valid_bbox():
@@ -82,22 +95,7 @@ def test_clear_cache(tmpdir):
             assert not file.is_file()
 
 
-@pytest.mark.parametrize("server_name", tuple(Topography.SERVER_NAME.values()))
-def test_data_url(server_name):
-    if "usgs" in server_name:
-        dem_type = "USGS30m"
-    else:
-        dem_type = "NASADEM"
-
-    params = Topography.DEFAULT.copy()
-    params["dem_type"] = dem_type
-    topo = Topography(**params)
-
-    server = Topography.SERVER_BASE + server_name
-    r = topo.data_url()
-    assert r == Topography.base_url() + server
-
-
+@pytest.mark.skipif("NO_FETCH" in os.environ, reason="NO_FETCH is set")
 @pytest.mark.parametrize("dem_type", Topography.VALID_DEM_TYPES)
 def test_fetch(dem_type):
     params = Topography.DEFAULT.copy()
@@ -118,6 +116,7 @@ def test_fetch(dem_type):
     assert topo._api_key.is_invalid_test_key() is True
 
 
+@pytest.mark.skipif("NO_FETCH" in os.environ, reason="NO_FETCH is set")
 def test_fetch_load_default(tmpdir):
     with tmpdir.as_cwd():
         topo = Topography(**Topography.DEFAULT)

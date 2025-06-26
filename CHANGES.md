@@ -2,8 +2,10 @@
 
 ## 0.8.8 (unreleased)
 
-
-- Nothing changed yet.
+- Add new OT globaldem types (#95)
+- Check for missing or incomplete bounding box on instantiation (#94)
+- Construct download URL before fetching data (#92)
+- Use MyST for documentation (#90)
 
 
 ## 0.8.7 (2025-04-29)

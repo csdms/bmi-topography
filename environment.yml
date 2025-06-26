@@ -12,9 +12,6 @@ dependencies:
   - xarray
   - rioxarray
   - bmipy
-  - black
-  - flake8
-  - isort
   - nox
   - pytest
   - pytest-cov
@@ -23,8 +20,7 @@ dependencies:
   - coveralls
   - bmi-tester
   - sphinx
-  - recommonmark
-  - pandoc
+  - myst_parser
   - notebook
   - matplotlib
   - build

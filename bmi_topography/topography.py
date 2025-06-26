@@ -21,7 +21,7 @@ class Topography:
     SCHEME = "https"
     NETLOC = "portal.opentopography.org"
     SERVER_BASE = "API"
-    SERVER_NAME = {"global": "/globaldem", "usgs": "/usgsdem"}
+    SERVER_NAME = {"global": "globaldem", "usgs": "usgsdem"}
 
     DEFAULT = {
         "dem_type": "SRTMGL3",
@@ -80,9 +80,9 @@ class Topography:
         else:
             raise ValueError(f"dem_type must be one of {Topography.VALID_DEM_TYPES}.")
 
-        self._server = Topography.SERVER_BASE + Topography.SERVER_NAME["global"]
+        self._server = Topography.SERVER_BASE + "/" + Topography.SERVER_NAME["global"]
         if dem_type in Topography.VALID_USGSDEM_TYPES:
-            self._server = Topography.SERVER_BASE + Topography.SERVER_NAME["usgs"]
+            self._server = Topography.SERVER_BASE + "/" + Topography.SERVER_NAME["usgs"]
 
         if output_format in Topography.VALID_OUTPUT_FORMATS.keys():
             self._output_format = output_format

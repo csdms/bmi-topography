@@ -20,6 +20,9 @@ keywords = [
   "data",
   "csdms",
   "usgs",
+  "gedi",
+  "gebco",
+  "mrdem",
 ]
 license = {text = "MIT License"}
 classifiers = [

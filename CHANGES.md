@@ -1,6 +1,6 @@
 # Changes for bmi-topography
 
-## 0.8.8 (unreleased)
+## 0.9.0 (2025-06-26)
 
 - Add new OT globaldem types (#95)
 - Check for missing or incomplete bounding box on instantiation (#94)

@@ -161,9 +161,14 @@ Copy these and modify them with custom values:
 ```
 These coordinate values represent an area around Boulder, Colorado.
 
-Make a instance of `Topography` with these parameters:
+Make an instance of `Topography` with these parameters:
 ```python
 >>> boulder = Topography(**params)
+```
+Display the download URL:
+```python
+>>> boulder.url
+https://portal.opentopography.org/API/globaldem?demtype=SRTMGL3&south=39.93&north=40.0&west=-105.33&east=-105.26&outputFormat=GTiff&API_Key=demoapikeyot2022
 ```
 then fetch the data from OpenTopography:
 ```python
@@ -196,7 +201,7 @@ Attributes:
     location:      node
 ```
 
-Note that coordinate reference system information is stored in the `spatial_ref` non-dimension coordinate:
+Coordinate reference system (CRS) information is stored in the `spatial_ref` non-dimension coordinate:
 ```python
 >>> boulder.da.spatial_ref
 <xarray.DataArray 'spatial_ref' ()>

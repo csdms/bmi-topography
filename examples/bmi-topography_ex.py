@@ -12,10 +12,12 @@ params["east"] = -105.26
 
 boulder = Topography(**params)
 
+print(boulder.url)
+
 boulder.fetch()
 boulder.load()
 
-boulder.da.spatial_ref
+print(boulder.da.spatial_ref)
 
 boulder.da.plot()
 plt.show()

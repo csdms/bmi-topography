@@ -203,7 +203,7 @@ class Topography:
 
             if response.status_code == 401:
                 if self._api_key.source == "demo":
-                    msg = os.linesep.join(
+                    msg = (
                         "It looks like you are using a demo key. This error may be the result of "
                         "you reaching your maximum number of downloads."
                     )

@@ -70,6 +70,32 @@ def test_cache_dir(tmpdir, cache_dir):
         assert list(topo.cache_dir.glob("*.tif")) == []
 
 
+def test_cache_dir_default():
+    params = Topography.DEFAULT.copy()
+    default_cache_dir = params.pop("cache_dir")
+
+    expected = Path(default_cache_dir).expanduser().resolve()
+    topography = Topography(**params)
+    assert topography.cache_dir == expected
+
+
+@pytest.mark.parametrize("path", (".foobar", "~/foobar", "/foo/bar/"))
+def test_cache_dir_from_env(monkeypatch, path):
+    params = Topography.DEFAULT.copy()
+    params.pop("cache_dir")
+
+    with monkeypatch.context() as env:
+        expected = Path(path).expanduser().resolve().absolute()
+        env.setenv("BMI_TOPOGRAPHY_CACHE_DIR", path)
+        topography = Topography(**params)
+        assert topography.cache_dir == expected
+
+        env.setenv("BMI_TOPOGRAPHY_CACHE_DIR", "not-this-one")
+        expected = Path(path).expanduser().resolve().absolute()
+        topography = Topography(**params, cache_dir=path)
+        assert topography.cache_dir == expected
+
+
 def test_cached_data(tmpdir, shared_datadir):
     with tmpdir.as_cwd():
         params = Topography.DEFAULT.copy()

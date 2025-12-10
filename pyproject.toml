@@ -24,7 +24,8 @@ keywords = [
   "gebco",
   "mrdem",
 ]
-license = {text = "MIT License"}
+license = "MIT"
+license-files = ["LICENSE.md"]
 classifiers = [
   "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3.10",

@@ -104,7 +104,9 @@ class Topography:
         self._da = None
 
         if cache_dir is None:
-            cache_dir = Path(Topography.DEFAULT["cache_dir"])
+            cache_dir = os.environ.get(
+                "BMI_TOPOGRAPHY_CACHE_DIR", Topography.DEFAULT["cache_dir"]
+            )
         self._cache_dir = Path(cache_dir).expanduser().resolve().absolute()
 
     @property

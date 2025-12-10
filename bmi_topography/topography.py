@@ -203,15 +203,15 @@ class Topography:
 
             if response.status_code == 401:
                 if self._api_key.source == "demo":
-                    msg = os.linesep.join(
-                        "It looks like you are using a demo key. This error may be the result of "
-                        "you reaching your maximum number of downloads."
+                    msg = (
+                        "It looks like you are using a demo key. This error may be the"
+                        " result of you reaching your maximum number of downloads."
                     )
                 else:
                     msg = (
-                        "It looks like you are using a user-supplied key. This error may mean "
-                        "that your key is out of date or there is a typo in the supplied key. "
-                        f"(source={self._api_key.source})"
+                        "It looks like you are using a user-supplied key. This error"
+                        " may mean that your key is out of date or there is a typo in"
+                        f" the supplied key. (source={self._api_key.source})"
                     )
                 response.reason = os.linesep.join([response.reason, "", msg, ""])
             response.raise_for_status()

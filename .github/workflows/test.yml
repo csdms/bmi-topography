@@ -56,7 +56,6 @@ jobs:
           nox -s test --force-pythons=${{ matrix.python-version }}
 
       - name: Test BMI
-        if: ${{ matrix.python-version == '3.13' }}
         run: |
           nox -s test-bmi --force-pythons=${{ matrix.python-version }}
 

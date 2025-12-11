@@ -25,6 +25,7 @@ jobs:
         shell: bash -l {0}
 
     strategy:
+      fail-fast: false
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
         python-version: ["3.11", "3.12", "3.13"]
@@ -45,7 +46,7 @@ jobs:
           OPENTOPOGRAPHY_API_KEY: ${{ secrets.OPENTOPOGRAPHY_API_KEY }}
         if: ${{ matrix.python-version == '3.13' }}
         run: |
-          nox -s test
+          nox -s test --force-pythons=${{ matrix.python-version }}
 
       - name: Test older Python versions
         env:
@@ -53,12 +54,12 @@ jobs:
           NO_FETCH: 1
         if: ${{ matrix.python-version != '3.13' }}
         run: |
-          nox -s test
+          nox -s test --force-pythons=${{ matrix.python-version }}
 
       - name: Test BMI
         if: ${{ matrix.python-version == '3.13' }}
         run: |
-          nox -s test-bmi
+          nox -s test-bmi --force-pythons=${{ matrix.python-version }}
 
       - name: Coveralls
         if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.13'

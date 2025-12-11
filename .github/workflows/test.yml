@@ -14,15 +14,19 @@ jobs:
 
   test:
     name: Run unit tests
-    if:
-      github.event_name == 'push' || github.event.pull_request.head.repo.full_name !=
-      github.repository
+    if: |
+      github.repository == 'csdms/bmi-topography' &&
+      (github.event_name == 'push' ||
+       github.event.pull_request.head.repo.full_name != github.repository)
 
     runs-on: ${{ matrix.os }}
 
     defaults:
       run:
         shell: bash -l {0}
+
+    env:
+      OPENTOPOGRAPHY_API_KEY: ${{ secrets.OPENTOPOGRAPHY_API_KEY }}
 
     strategy:
       fail-fast: false
@@ -41,23 +45,17 @@ jobs:
       - name: Install nox
         run: pip install nox
 
-      - name: Test latest Python version
-        env:
-          OPENTOPOGRAPHY_API_KEY: ${{ secrets.OPENTOPOGRAPHY_API_KEY }}
-        if: ${{ matrix.python-version == '3.13' }}
+      - name: Set NO_FETCH for older Python versions
         run: |
-          nox -s test --force-pythons=${{ matrix.python-version }}
+          if [[ "${{ matrix.python-version }}" != "3.13" ]]; then
+            echo "NO_FETCH=1" >> "$GITHUB_ENV"
+          fi
 
-      - name: Test older Python versions
-        env:
-          OPENTOPOGRAPHY_API_KEY: ${{ secrets.OPENTOPOGRAPHY_API_KEY }}
-          NO_FETCH: 1
-        if: ${{ matrix.python-version != '3.13' }}
+      - name: Test latest Python version
         run: |
           nox -s test --force-pythons=${{ matrix.python-version }}
 
       - name: Test BMI
-        if: ${{ matrix.python-version == '3.13' }}
         run: |
           nox -s test-bmi --force-pythons=${{ matrix.python-version }}
 

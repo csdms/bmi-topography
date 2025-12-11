@@ -1,4 +1,4 @@
-"""Command-line interface for bmi-topography """
+"""Command-line interface for bmi-topography"""
 
 import click
 

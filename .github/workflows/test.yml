@@ -45,15 +45,13 @@ jobs:
       - name: Install nox
         run: pip install nox
 
-      - name: Test latest Python version
-        if: ${{ matrix.python-version == '3.13' }}
+      - name: Set NO_FETCH for older Python versions
         run: |
-          nox -s test --force-pythons=${{ matrix.python-version }}
+          if [[ "${{ matrix.python-version }}" != "3.13" ]]; then
+            echo "NO_FETCH=1" >> "$GITHUB_ENV"
+          fi
 
-      - name: Test older Python versions
-        env:
-          NO_FETCH: 1
-        if: ${{ matrix.python-version != '3.13' }}
+      - name: Test latest Python version
         run: |
           nox -s test --force-pythons=${{ matrix.python-version }}
 

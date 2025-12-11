@@ -9,8 +9,10 @@ concurrency:
 jobs:
   test-notebooks:
     name: Check notebooks
-    if:
-      github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository
+    if: |
+      github.repository == 'csdms/bmi-topography' &&
+      (github.event_name == 'push' ||
+       github.event.pull_request.head.repo.full_name != github.repository)
 
     runs-on: ${{ matrix.os }}
 

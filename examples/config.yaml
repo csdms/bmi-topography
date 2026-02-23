@@ -5,4 +5,4 @@ bmi-topography:
   west: -120.168457
   east: -118.465576
   output_format: GTiff
-  cache_dir: "~/.bmi_topography"
+  cache_dir: "."

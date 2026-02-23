@@ -1,7 +1,9 @@
 """Test bmi-topography command-line interface"""
 
+import os
 import pathlib
 
+import pytest
 from click.testing import CliRunner
 
 from bmi_topography.cli import main
@@ -21,6 +23,7 @@ def test_version():
     assert "version" in result.output
 
 
+@pytest.mark.skipif("NO_FETCH" in os.environ, reason="NO_FETCH is set")
 def test_defaults():
     runner = CliRunner()
     result = runner.invoke(main, ["--quiet"])
@@ -28,6 +31,7 @@ def test_defaults():
     assert result.exit_code == 0
 
 
+@pytest.mark.skipif("NO_FETCH" in os.environ, reason="NO_FETCH is set")
 def test_quiet():
     runner = CliRunner()
     quiet_lines = runner.invoke(main, ["--quiet"]).output.splitlines()

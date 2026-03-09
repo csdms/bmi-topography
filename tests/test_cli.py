@@ -31,6 +31,7 @@ def test_defaults():
     assert result.exit_code == 0
 
 
+@pytest.mark.skipif("NO_FETCH" in os.environ, reason="NO_FETCH is set")
 def test_quiet():
     runner = CliRunner()
     quiet_lines = runner.invoke(main, ["--quiet"]).output.splitlines()

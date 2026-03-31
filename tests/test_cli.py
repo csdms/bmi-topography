@@ -122,3 +122,9 @@ def test_output_format_is_case_sensitive():
     runner = CliRunner()
     result = runner.invoke(main, ["--output-format=gtiff"])
     assert result.exit_code != 0
+
+
+def test_api_key_is_used():
+    runner = CliRunner()
+    result = runner.invoke(main, ["--api-key=foobar", "--no-fetch"])
+    assert result.exit_code == 0

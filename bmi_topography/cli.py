@@ -71,7 +71,7 @@ def main(quiet, dem_type, south, north, west, east, output_format, api_key, no_f
     ".opentopography.txt" located either in your current directory or your home
     directory.
     """
-    topo = Topography(dem_type, south, north, west, east, output_format)
+    topo = Topography(dem_type, south, north, west, east, output_format, api_key=api_key)
     if not no_fetch:
         if not quiet:
             click.secho("Fetching data...", fg="yellow", err=True)

@@ -19,28 +19,28 @@ from .topography import Topography
     "--south",
     type=click.FloatRange(-90, 90),
     default=Topography.DEFAULT["south"],
-    help="WGS 84 bounding box south coordinate, in degrees, on [-90,90].",
+    help="WGS 84 bounding box south coordinate, in degrees.",
     show_default=True,
 )
 @click.option(
     "--north",
     type=click.FloatRange(-90, 90),
     default=Topography.DEFAULT["north"],
-    help="WGS 84 bounding box north coordinate, in degrees, on [-90,90].",
+    help="WGS 84 bounding box north coordinate, in degrees.",
     show_default=True,
 )
 @click.option(
     "--west",
     type=click.FloatRange(-180, 180),
     default=Topography.DEFAULT["west"],
-    help="WGS 84 bounding box west coordinate, in degrees, on [-180,180].",
+    help="WGS 84 bounding box west coordinate, in degrees.",
     show_default=True,
 )
 @click.option(
     "--east",
     type=click.FloatRange(-180, 180),
     default=Topography.DEFAULT["east"],
-    help="WGS 84 bounding box east coordinate, in degrees, on [-180,180].",
+    help="WGS 84 bounding box east coordinate, in degrees.",
     show_default=True,
 )
 @click.option(

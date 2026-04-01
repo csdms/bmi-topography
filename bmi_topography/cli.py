@@ -52,7 +52,9 @@ from .topography import Topography
 )
 @click.option(
     "--cache-dir",
-    type=click.Path(exists=False, file_okay=False, dir_okay=True, readable=True, writable=True),
+    type=click.Path(
+        exists=False, file_okay=False, dir_okay=True, readable=True, writable=True
+    ),
     default=Topography.DEFAULT["cache_dir"],
     help="Directory to store data files downloaded from OpenTopography.",
     show_default=True,
@@ -64,7 +66,18 @@ from .topography import Topography
     show_default=True,
 )
 @click.option("--no-fetch", is_flag=True, help="Do not fetch data from server.")
-def main(quiet, dem_type, south, north, west, east, output_format, cache_dir, api_key, no_fetch):
+def main(
+    quiet,
+    dem_type,
+    south,
+    north,
+    west,
+    east,
+    output_format,
+    cache_dir,
+    api_key,
+    no_fetch,
+):
     """Fetch and cache land elevation data from OpenTopography
 
     Some datasets require an OpenTopography API key. You can find instructions
@@ -79,7 +92,14 @@ def main(quiet, dem_type, south, north, west, east, output_format, cache_dir, ap
     directory, or 3) through the `--api-key` option.
     """
     topo = Topography(
-        dem_type, south, north, west, east, output_format, cache_dir=cache_dir, api_key=api_key
+        dem_type,
+        south,
+        north,
+        west,
+        east,
+        output_format,
+        cache_dir=cache_dir,
+        api_key=api_key,
     )
     if not no_fetch:
         if not quiet:

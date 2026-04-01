@@ -65,11 +65,11 @@ def main(quiet, dem_type, south, north, west, east, output_format, api_key, no_f
 
         https://opentopography.org/blog/introducing-api-keys-access-opentopography-global-datasets
 
-    Once you have a key, you can pass it to the bmi-topography
-    command in one of two ways: 1) through the environment variable
+    Once you have a key, you can pass it to the `bmi-topography`
+    command in one of three ways: 1) through the environment variable
     OPENTOPOGRAPHY_API_KEY, or 2) as the contents of the file
     ".opentopography.txt" located either in your current directory or your home
-    directory.
+    directory, or 3) through the `--api-key` option.
     """
     topo = Topography(
         dem_type, south, north, west, east, output_format, api_key=api_key

@@ -124,6 +124,7 @@ def test_output_format_is_case_sensitive():
     assert result.exit_code != 0
 
 
+@pytest.mark.filterwarnings("error:::bmi_topography.api_key")
 def test_api_key_is_used():
     runner = CliRunner()
     result = runner.invoke(main, ["--api-key=foobar", "--no-fetch"])

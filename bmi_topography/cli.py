@@ -19,28 +19,28 @@ from .topography import Topography
     "--south",
     type=click.FloatRange(-90, 90),
     default=Topography.DEFAULT["south"],
-    help="WGS 84 bounding box south coordinate, in degrees, on [-90,90].",
+    help="WGS 84 bounding box south coordinate, in degrees.",
     show_default=True,
 )
 @click.option(
     "--north",
     type=click.FloatRange(-90, 90),
     default=Topography.DEFAULT["north"],
-    help="WGS 84 bounding box north coordinate, in degrees, on [-90,90].",
+    help="WGS 84 bounding box north coordinate, in degrees.",
     show_default=True,
 )
 @click.option(
     "--west",
     type=click.FloatRange(-180, 180),
     default=Topography.DEFAULT["west"],
-    help="WGS 84 bounding box west coordinate, in degrees, on [-180,180].",
+    help="WGS 84 bounding box west coordinate, in degrees.",
     show_default=True,
 )
 @click.option(
     "--east",
     type=click.FloatRange(-180, 180),
     default=Topography.DEFAULT["east"],
-    help="WGS 84 bounding box east coordinate, in degrees, on [-180,180].",
+    help="WGS 84 bounding box east coordinate, in degrees.",
     show_default=True,
 )
 @click.option(
@@ -58,18 +58,18 @@ from .topography import Topography
 )
 @click.option("--no-fetch", is_flag=True, help="Do not fetch data from server.")
 def main(quiet, dem_type, south, north, west, east, output_format, api_key, no_fetch):
-    """Fetch and cache NASA SRTM and JAXA ALOS land elevation data
+    """Fetch and cache land elevation data from OpenTopography
 
     Some datasets require an OpenTopography API key. You can find instructions
     on how to obtain one from the OpenTopography website:
 
         https://opentopography.org/blog/introducing-api-keys-access-opentopography-global-datasets
 
-    Once you have a key, you can pass it to the bmi-topography
-    command in one of two ways: 1) through the environment variable
+    Once you have a key, you can pass it to the `bmi-topography`
+    command in one of three ways: 1) through the environment variable
     OPENTOPOGRAPHY_API_KEY, or 2) as the contents of the file
     ".opentopography.txt" located either in your current directory or your home
-    directory.
+    directory, or 3) through the `--api-key` option.
     """
     topo = Topography(
         dem_type, south, north, west, east, output_format, api_key=api_key

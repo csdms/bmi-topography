@@ -58,7 +58,7 @@ from .topography import Topography
 )
 @click.option("--no-fetch", is_flag=True, help="Do not fetch data from server.")
 def main(quiet, dem_type, south, north, west, east, output_format, api_key, no_fetch):
-    """Fetch and cache NASA SRTM and JAXA ALOS land elevation data
+    """Fetch and cache land elevation data from OpenTopography
 
     Some datasets require an OpenTopography API key. You can find instructions
     on how to obtain one from the OpenTopography website:

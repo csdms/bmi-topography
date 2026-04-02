@@ -140,6 +140,7 @@ def test_cache_dir_writable_dir(good_dir):
     assert "sooperdooper" in result.output
 
 
+@pytest.mark.skipif(sys.platform == "win32", reason="doesn't work on Windows")
 def test_cache_dir_unwritable_dir():
     runner = CliRunner()
     result = runner.invoke(main, ["--cache-dir=/usr"])

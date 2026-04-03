@@ -2,6 +2,7 @@
 
 import os
 import pathlib
+import sys
 
 import pytest
 from click.testing import CliRunner
@@ -129,3 +130,20 @@ def test_api_key_is_used():
     runner = CliRunner()
     result = runner.invoke(main, ["--api-key=foobar", "--no-fetch"])
     assert result.exit_code == 0
+
+
+@pytest.mark.skipif("NO_FETCH" in os.environ, reason="NO_FETCH is set")
+@pytest.mark.parametrize("good_dir", ["./sooperdooper", "~/sooperdooper"])
+def test_cache_dir_writable_dir(good_dir):
+    runner = CliRunner()
+    result = runner.invoke(main, [f"--cache-dir={good_dir}"])
+    assert result.exit_code == 0
+    assert "sooperdooper" in result.output
+
+
+@pytest.mark.skipif(sys.platform == "win32", reason="doesn't work on Windows")
+def test_cache_dir_unwritable_dir():
+    runner = CliRunner()
+    result = runner.invoke(main, ["--cache-dir=/usr"])
+    assert result.exit_code != 0
+    assert "is not writable" in result.output

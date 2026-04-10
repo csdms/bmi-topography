@@ -1,17 +1,15 @@
-"""Test config file"""
-
-import yaml
+"""Test the io module"""
 
 from bmi_topography import Topography
+from bmi_topography.io import load_config
 
 CONFIG_FILE = "config.yaml"
 DEM_TYPE = "SRTMGL3"
 OUTPUT_FORMAT = "GTiff"
 
 
-def test_read_config(shared_datadir):
-    with open(shared_datadir / CONFIG_FILE) as fp:
-        conf = yaml.safe_load(fp).get("bmi-topography", {})
+def test_load_config(shared_datadir):
+    conf = load_config(shared_datadir / CONFIG_FILE)
     assert conf["dem_type"] == DEM_TYPE
     assert conf["output_format"] == OUTPUT_FORMAT
 

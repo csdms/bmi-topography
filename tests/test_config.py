@@ -1,4 +1,4 @@
-"""Test the io module"""
+"""Test the config module"""
 
 from bmi_topography import Topography
 from bmi_topography.config import load_config

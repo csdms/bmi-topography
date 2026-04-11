@@ -3,7 +3,7 @@ from collections import namedtuple
 import numpy
 from bmipy import Bmi
 
-from .io import load_config
+from .config import load_config
 from .topography import Topography
 
 BmiVar = namedtuple(

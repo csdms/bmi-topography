@@ -1,7 +1,7 @@
 """Test the io module"""
 
 from bmi_topography import Topography
-from bmi_topography.io import load_config
+from bmi_topography.config import load_config
 
 CONFIG_FILE = "config.yaml"
 DEM_TYPE = "SRTMGL3"

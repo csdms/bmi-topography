@@ -18,6 +18,7 @@ _CONFIG_FILE_EXCLUSIVE = {
 }
 
 
+# Based on https://stackoverflow.com/a/37491504/1563298.
 class MutuallyExclusiveOption(click.Option):
     """A Click option that is mutually exclusive with --config-file."""
 

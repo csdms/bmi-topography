@@ -26,3 +26,9 @@ class BoundingBoxError(BmiTopographyError):
     """Raise for an invalid or incomplete bounding box."""
 
     pass
+
+
+class BadConfigFileError(BmiTopographyError):
+    """Raise for an invalid or incomplete config file."""
+
+    pass

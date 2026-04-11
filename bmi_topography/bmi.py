@@ -1,9 +1,9 @@
 from collections import namedtuple
 
 import numpy
-import yaml
 from bmipy import Bmi
 
+from .config import load_config
 from .topography import Topography
 
 BmiVar = namedtuple(
@@ -648,8 +648,7 @@ class BmiTopography(Bmi):
         with placeholder values is used by the BMI.
         """
         if config_file:
-            with open(config_file) as fp:
-                self._config = yaml.safe_load(fp).get("bmi-topography", {})
+            self._config = load_config(config_file)
         else:
             self._config = Topography.DEFAULT.copy()
         self._da = Topography(**self._config).load()

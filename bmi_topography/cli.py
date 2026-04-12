@@ -159,19 +159,17 @@ def main(
     else:
         defaults = Topography.DEFAULT
         params = {
-            "dem_type": dem_type if dem_type is not None else defaults["dem_type"],
-            "south": south if south is not None else defaults["south"],
-            "north": north if north is not None else defaults["north"],
-            "west": west if west is not None else defaults["west"],
-            "east": east if east is not None else defaults["east"],
-            "output_format": (
-                output_format
-                if output_format is not None
-                else defaults["output_format"]
-            ),
-            "cache_dir": cache_dir if cache_dir is not None else defaults["cache_dir"],
-            "api_key": api_key,
-        }
+            key: val if (val := locals()[key]) is not None else defaults[key]
+            for key in (
+                "dem_type",
+                "south",
+                "north",
+                "west",
+                "east",
+                "output_format",
+                "cache_dir",
+            )
+        } | {"api_key": api_key}
 
     topo = Topography(**params)
 

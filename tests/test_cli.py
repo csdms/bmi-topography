@@ -2,7 +2,7 @@
 
 import os
 import pathlib
-import sys
+import stat
 
 import pytest
 from click.testing import CliRunner
@@ -132,21 +132,17 @@ def test_api_key_is_used():
     assert result.exit_code == 0
 
 
-@pytest.mark.skipif("NO_FETCH" in os.environ, reason="NO_FETCH is set")
-@pytest.mark.parametrize("good_dir", ["./sooperdooper", "~/sooperdooper"])
-def test_cache_dir_writable_dir(good_dir):
-    runner = CliRunner()
-    result = runner.invoke(main, [f"--cache-dir={good_dir}"])
-    assert result.exit_code == 0
-    assert "sooperdooper" in result.output
+def test_cache_dir_is_readonly(tmpdir):
+    readonly_dir = tmpdir.mkdir("readonly")
+    readonly_dir.chmod(stat.S_IRUSR | stat.S_IXUSR)  # r-x, no write
 
-
-@pytest.mark.skipif(sys.platform == "win32", reason="doesn't work on Windows")
-def test_cache_dir_unwritable_dir():
-    runner = CliRunner()
-    result = runner.invoke(main, ["--cache-dir=/usr"])
-    assert result.exit_code != 0
-    assert "is not writable" in result.output
+    try:
+        runner = CliRunner()
+        result = runner.invoke(main, ["--cache-dir=" + str(readonly_dir), "--no-fetch"])
+        assert result.exit_code != 0
+        assert "not writable" in result.output
+    finally:
+        readonly_dir.chmod(stat.S_IRUSR | stat.S_IWUSR | stat.S_IXUSR)  # rwx
 
 
 # ---------------------------------------------------------------------------

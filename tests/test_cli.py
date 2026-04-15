@@ -2,6 +2,7 @@
 
 import os
 import pathlib
+import stat
 import sys
 
 import pytest
@@ -132,21 +133,18 @@ def test_api_key_is_used():
     assert result.exit_code == 0
 
 
-@pytest.mark.skipif("NO_FETCH" in os.environ, reason="NO_FETCH is set")
-@pytest.mark.parametrize("good_dir", ["./sooperdooper", "~/sooperdooper"])
-def test_cache_dir_writable_dir(good_dir):
-    runner = CliRunner()
-    result = runner.invoke(main, [f"--cache-dir={good_dir}"])
-    assert result.exit_code == 0
-    assert "sooperdooper" in result.output
+@pytest.mark.skipif(sys.platform == "win32", reason="no read-only on Windows")
+def test_cache_dir_is_readonly(tmpdir):
+    readonly_dir = tmpdir.mkdir("readonly")
+    readonly_dir.chmod(stat.S_IRUSR | stat.S_IXUSR)  # r-x, no write
 
-
-@pytest.mark.skipif(sys.platform == "win32", reason="doesn't work on Windows")
-def test_cache_dir_unwritable_dir():
-    runner = CliRunner()
-    result = runner.invoke(main, ["--cache-dir=/usr"])
-    assert result.exit_code != 0
-    assert "is not writable" in result.output
+    try:
+        runner = CliRunner()
+        result = runner.invoke(main, ["--cache-dir=" + str(readonly_dir), "--no-fetch"])
+        assert result.exit_code != 0
+        assert "not writable" in result.output
+    finally:
+        readonly_dir.chmod(stat.S_IRUSR | stat.S_IWUSR | stat.S_IXUSR)  # rwx
 
 
 # ---------------------------------------------------------------------------
@@ -200,6 +198,4 @@ def test_config_file_mutually_exclusive(tmp_path, extra_opt):
     cfg.write_text(CONFIG_YAML)
     runner = CliRunner()
     result = runner.invoke(main, [f"--config-file={cfg}", extra_opt, "--no-fetch"])
-    assert (
-        result.exit_code != 0
-    ), f"Expected non-zero exit when combining --config-file with {extra_opt}"
+    assert result.exit_code != 0

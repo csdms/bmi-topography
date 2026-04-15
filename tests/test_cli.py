@@ -198,6 +198,4 @@ def test_config_file_mutually_exclusive(tmp_path, extra_opt):
     cfg.write_text(CONFIG_YAML)
     runner = CliRunner()
     result = runner.invoke(main, [f"--config-file={cfg}", extra_opt, "--no-fetch"])
-    assert result.exit_code != 0, (
-        f"Expected non-zero exit when combining --config-file with {extra_opt}"
-    )
+    assert result.exit_code != 0
